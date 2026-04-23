@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>158 More Orders, $17,899 Less Revenue — Shivansh</title>
+    <meta name="description" content="Both numbers came from the same test. If I had only optimized for Conversion Rate, I would have shipped the variant that destroyed the margin. The pivot that followed: a threshold bar that grew revenue to $65K/mo incremental.">
+    <meta property="og:title" content="158 More Orders, $17,899 Less Revenue — Shivansh">
+    <meta property="og:description" content="The test that proved CVR isn't the same as revenue — and the threshold-bar pivot that generated $65K/mo.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .val.win { background: linear-gradient(135deg, #34D399, #6EE7B7); -webkit-background-clip: text; background-clip: text; }
+        .stat-card .val.loss { background: linear-gradient(135deg, #F87171, #FBBF24); -webkit-background-clip: text; background-clip: text; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+
+        /* Paradox visualization — two opposing bars */
+        .paradox { padding: 1.5rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); margin: 1.5rem 0 2rem; }
+        .paradox-row { margin-bottom: 1.25rem; }
+        .paradox-row:last-child { margin-bottom: 0; }
+        .paradox-row .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+        .paradox-row .label .name { text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+        .paradox-row .label .val { font-family: var(--font-heading); font-weight: 800; font-size: 1rem; }
+        .paradox-row.win .label .val { color: #34D399; }
+        .paradox-row.loss .label .val { color: #F87171; }
+        .paradox-bar { position: relative; height: 24px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; }
+        .paradox-bar .fill { height: 100%; border-radius: 4px; }
+        .paradox-bar .fill.win { background: linear-gradient(90deg, #34D399, #6EE7B7); }
+        .paradox-bar .fill.loss { background: linear-gradient(90deg, #F87171, #FBBF24); }
+        .paradox-summary { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); font-family: var(--font-heading); font-weight: 700; color: #fff; text-align: center; font-size: 1.05rem; }
+        .paradox-summary em { color: var(--accent-primary); font-style: normal; }
+
+        /* Math breakdown */
+        .math-breakdown { padding: 1.5rem; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: 'SF Mono', Menlo, monospace; font-size: 0.88rem; line-height: 1.9; color: var(--text-main); margin: 1.5rem 0 2rem; overflow-x: auto; }
+        .math-breakdown .eq-row { margin-bottom: 0.5rem; }
+        .math-breakdown .eq-row:last-child { margin-bottom: 0; }
+        .math-breakdown .label { color: var(--accent-primary); display: inline-block; min-width: 140px; }
+        .math-breakdown .neg { color: #F87171; }
+        .math-breakdown .pos { color: #34D399; }
+        .math-breakdown .divider { border-top: 1px dashed var(--border-color); margin: 0.75rem 0; }
+        .math-breakdown .conclusion { font-weight: 700; }
+
+        /* Threshold bar visualization */
+        .threshold-viz { padding: 1.5rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.18); margin: 1.5rem 0 2rem; }
+        .threshold-viz h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: #34D399; margin: 0 0 1rem; }
+        .threshold-bar-component { padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 6px; }
+        .threshold-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .threshold-label .current { color: #fff; font-weight: 600; }
+        .threshold-label .target { color: #34D399; font-weight: 600; }
+        .threshold-track { position: relative; height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; }
+        .threshold-fill { height: 100%; background: linear-gradient(90deg, #34D399, #6EE7B7); width: 62%; border-radius: 4px; }
+        .threshold-message { font-size: 0.85rem; color: var(--text-main); text-align: center; margin-top: 0.5rem; }
+        .threshold-message em { color: #34D399; font-style: normal; font-weight: 600; }
+
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        .result-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); text-align: center; }
+        .result-card .big { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .result-card .medium { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #34D399; line-height: 1.1; }
+        .result-card .result-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-card .result-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+
+        .case-body .visual-placeholder { margin: 2rem 0; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="pulse-dot"></span>Shivansh.</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">← Back to all cases</a>
+            <div class="badge">Lifestyle &amp; Apparel · D2C · Unit Economics</div>
+            <h1>158 More Orders, <span class="gradient-text">$17,899 Less Revenue</span></h1>
+            <p class="case-lede">A direct-to-consumer lifestyle and apparel brand running a bulk discount in the cart: buy more, save more. There was an internal argument about it. One side thought the discount messaging confused single-item buyers and suppressed Conversion Rate (CVR). The other thought it was the engine of multi-unit volume. I ran a controlled test to resolve the debate — and the result proved that <strong>CVR and revenue are not the same metric</strong>. If I had optimized for one, I would have shipped a variant that destroyed the other.</p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val win">+158</div><div class="lbl">Additional Orders (Variant)</div></div>
+                <div class="stat-card"><div class="val loss">−$17,899</div><div class="lbl">Monthly Revenue (Variant)</div></div>
+                <div class="stat-card"><div class="val">+14.31%</div><div class="lbl">RPV After Pivot</div></div>
+                <div class="stat-card"><div class="val">$65K</div><div class="lbl">Monthly Incremental (Pivot)</div></div>
+                <div class="stat-card"><div class="val">1</div><div class="lbl">Metric-Trap Avoided</div></div>
+            </div>
+
+            <h2>Phase 1: The Internal Debate</h2>
+            <p>The cart page displayed a prominent <em>"Buy 2, Save 10% · Buy 3, Save 15%"</em> block. Roughly a third of the brand's order volume came through that mechanism. The cart experience also felt commercial — noisy, discount-heavy, optimized for buyers who were going to buy multiple units.</p>
+
+            <p>The argument inside the team was reasonable on both sides:</p>
+            <ul>
+                <li><strong>Position A — the merchandising team:</strong> "The discount drives multi-unit volume. Remove it and Average Order Value (AOV) collapses."</li>
+                <li><strong>Position B — the CRO / UX team:</strong> "The discount confuses single-item buyers. We're losing the one-item purchaser who doesn't care about saving 10% on two items. Our CVR is suppressed."</li>
+            </ul>
+
+            <p>Both positions had real evidence behind them. The only way to resolve the argument was a clean test measuring both outcomes at the same time.</p>
+
+            <h2>Phase 2: The Test</h2>
+            <p>A controlled A/B on the cart page:</p>
+            <ul>
+                <li><strong>Control:</strong> bulk discount messaging visible in the cart as-is</li>
+                <li><strong>Variant:</strong> bulk discount messaging completely removed — clean cart, single-item focus</li>
+            </ul>
+
+            <p>Instrumentation on both arms measured:</p>
+            <ul>
+                <li>Conversion Rate (CVR)</li>
+                <li>Revenue Per Visitor (RPV)</li>
+                <li>Average Order Value (AOV)</li>
+                <li>Estimated Profit Per Visitor using the brand's actual unit economics</li>
+            </ul>
+
+            <p>The last metric was the one most teams skip. It is the one that matters.</p>
+
+            <h2>Phase 3: The Paradox</h2>
+
+            <div class="paradox">
+                <div class="paradox-row win">
+                    <div class="label"><span class="name">Conversion Rate</span><span class="val">+158 orders / mo</span></div>
+                    <div class="paradox-bar"><div class="fill win" style="width: 72%;"></div></div>
+                </div>
+                <div class="paradox-row loss">
+                    <div class="label"><span class="name">Average Order Value</span><span class="val">$84 → $52</span></div>
+                    <div class="paradox-bar"><div class="fill loss" style="width: 38%;"></div></div>
+                </div>
+                <div class="paradox-row loss">
+                    <div class="label"><span class="name">Total Monthly Revenue</span><span class="val">−$17,899</span></div>
+                    <div class="paradox-bar"><div class="fill loss" style="width: 58%;"></div></div>
+                </div>
+                <div class="paradox-summary">The variant won on CVR. The variant lost on revenue. <em>Both statements are true from the same test.</em></div>
+            </div>
+
+            <div class="callout warning" style="border-left-color: #F87171; background: rgba(248,113,113,0.04);">
+                <strong>What would have happened if I'd reported CVR alone.</strong> I would have declared the variant the winner. Shipped it. Looked competent doing it. Destroyed $17,899/mo in revenue. This is the most common metric trap in CRO — and the tests that trigger it are the ones most likely to make it past review because the headline number looks like a win.
+            </div>
+
+            <h2>Phase 4: Why the Numbers Moved Like This</h2>
+
+            <div class="math-breakdown">
+                <div class="eq-row"><span class="label">Control cart:</span>avg 1.8 units × $47 = <span class="pos">$84 AOV</span></div>
+                <div class="eq-row"><span class="label">Variant cart:</span>avg 1.1 units × $47 = <span class="neg">$52 AOV</span></div>
+                <div class="divider"></div>
+                <div class="eq-row"><span class="label">Control monthly:</span>1,940 orders × $84 = <span class="pos">$162,960</span></div>
+                <div class="eq-row"><span class="label">Variant monthly:</span>2,098 orders × $52 = <span class="pos">$109,096</span></div>
+                <div class="divider"></div>
+                <div class="eq-row conclusion"><span class="label">Net delta:</span><span class="neg">−$53,864 in gross / −$17,899 after margin adjustment</span></div>
+            </div>
+
+            <p>The variant gained orders by capturing single-item buyers who previously didn't convert because the cart felt too commercial. It lost revenue because it simultaneously eliminated the multi-unit signal that drove the higher-AOV behavior. <strong>Both effects were real. The one that mattered for the business was the revenue effect.</strong></p>
+
+            <h2>Phase 5: The Action</h2>
+            <p>I declared the Control the winner. Same-day readout to the executive team — not as a failed test, but as a clarifying one. The original argument was resolved, but not the way either side expected.</p>
+
+            <p>The new question was no longer "should we show the discount." It was: <em>how do we make the upsell signal feel like value rather than pressure?</em> The discount was load-bearing for revenue. It just wasn't the right <em>shape</em> for the cart experience.</p>
+
+            <h2>Phase 6: The Threshold Bar Pivot</h2>
+            <p>The intervention that followed was a dynamic progress bar at the top of the cart — gamified, not transactional.</p>
+
+            <div class="threshold-viz">
+                <h4>Dynamic threshold bar in the cart</h4>
+                <div class="threshold-bar-component">
+                    <div class="threshold-label">
+                        <span class="current">Current cart: $31 / $50</span>
+                        <span class="target">Unlock 10% off</span>
+                    </div>
+                    <div class="threshold-track"><div class="threshold-fill"></div></div>
+                    <div class="threshold-message">Add <em>$19 more</em> to unlock 10% off your order</div>
+                </div>
+            </div>
+
+            <p>The old discount box said: <em>"Buy 2, save 10%."</em> Prescriptive. Commercial. Noisy.</p>
+            <p>The threshold bar said: <em>"You're 62% of the way to 10% off."</em> Status-of-progress, not call-to-action. The discount became the reward for a goal the buyer was already pursuing — a full cart — rather than an instruction telling them to buy more than they had planned.</p>
+
+            <p>A complementary intervention shipped on the PDP at the same time: the per-unit price at different quantities visible directly on the product page, so the multi-unit decision was made upstream of the cart, not rediscovered in it.</p>
+
+            <div style="margin: 2rem 0;">
+                <img src="../assets/visuals/threshold-bar-wireframe.png" alt="Cart threshold bar redesign — prescriptive discount block replaced by gamified progress bar" style="width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border-color);" loading="lazy">
+            </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Prominent "Buy 2, Save 10% | Buy 3, Save 15%" text block in cart. Prescriptive, commercial-feeling. Drove multi-unit AOV ($84) but confused single-item buyers — suppressing CVR. <br><strong style="color: #fff;">After:</strong> Dynamic threshold progress bar: "You’re $19 away from 10% off!" with animated fill at 62%. Gamified, not transactional. Per-unit pricing surfaced on PDP upstream so multi-unit decision is made before cart. <strong style="color: #34D399;">+8.83% ATC, +14.31% RPV, $65K/mo incremental.</strong></p>
+            </div>
+
+            <h2>Phase 7: Results</h2>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="big">+8.83%</div>
+                    <div class="result-label">Add-to-Cart Rate</div>
+                    <div class="result-sub">Threshold bar + PDP updates</div>
+                </div>
+                <div class="result-card">
+                    <div class="big">+14.31%</div>
+                    <div class="result-label">Revenue Per Visitor</div>
+                    <div class="result-sub">Bulk-incentivized sessions</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">$65K/mo</div>
+                    <div class="result-label">Incremental Revenue</div>
+                    <div class="result-sub">Sustained</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">AOV ↑</div>
+                    <div class="result-label">Higher Basket Size</div>
+                    <div class="result-sub">Threshold psychology</div>
+                </div>
+            </div>
+
+            <p>The threshold bar generated more revenue than the original discount box did — because it reframed the upsell from a disruption into a progression. The buyer who would have ignored <em>"Buy 2 save 10%"</em> engaged with <em>"Add $19 more to unlock 10% off"</em> because the second framing made the incentive contingent on a threshold they had some control over, not a prescription they hadn't asked for.</p>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation &amp; Pricing</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">VWO</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Intelligems</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Liquid (Shopify)</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Shopify</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>Track the metric that matters, even when it's harder to calculate.</strong> Conversion Rate is easy to measure. Profit Per Visitor takes thirty extra seconds of analyst time. Those thirty seconds are the difference between shipping a variant that feels like a win and shipping a variant that destroys the margin.</li>
+                <li><strong>If the business runs on multi-unit economics, a "win" on single-item conversion is not a win.</strong> It's a tax disguised as one. Every engagement's first question should be: what does this brand's revenue actually depend on? Then pick metrics accordingly.</li>
+                <li><strong>A clarifying test is as valuable as a winning one.</strong> This test did not win. But it resolved an internal argument that had been blocking the roadmap, and it generated the exact insight that made the threshold-bar pivot possible. Tests are not failures when they produce learning that changes the next decision.</li>
+                <li><strong>Reframing a mechanism often beats removing or keeping it.</strong> The discount didn't need to disappear and didn't need to stay. It needed to be <em>reshaped</em>. Threshold psychology (progress toward a reward) beats prescriptive messaging (instruction to buy more) in almost every cart experience I've tested.</li>
+                <li><strong>The executive readout is the deliverable.</strong> The test result was one slide. The business recommendation — stop debating whether to show the discount, start testing how to reshape it — was the real output. Test results that don't end in a clear next action don't compound into program velocity.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><span class="pulse-dot"></span>Shivansh.</div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

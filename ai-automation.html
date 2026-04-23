@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Automation — Shivansh</title>
+    <meta name="description" content="AI isn't a feature I mention — it runs through the research, the hypothesis writing, the reporting, and the production pipelines. Here's how.">
+    <meta property="og:title" content="AI & Automation — Shivansh">
+    <meta property="og:description" content="From postMessage listeners to Kling-powered video pipelines — how AI and automation run through every engagement.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        /* Nav */
+        .page-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); }
+        .page-nav a.back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+        .page-nav a.back:hover { color: var(--accent-primary); }
+        .page-nav a.logo { font-family: var(--font-heading); font-weight: 700; color: #fff; font-size: 1.1rem; text-decoration: none; }
+
+        /* Hero */
+        .ai-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; }
+        .ai-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(129,140,248,0.1); border: 1px solid rgba(129,140,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-secondary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .ai-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+        .ai-hero p { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); max-width: 700px; }
+
+        /* Body */
+        .ai-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 5rem; }
+        .ai-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .ai-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .ai-body h3 { font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.6rem; color: var(--accent-primary); }
+        .ai-body p, .ai-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .ai-body strong { color: #fff; font-weight: 600; }
+        .ai-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .ai-body li { margin-bottom: 0.5rem; }
+
+        /* Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem 1rem; text-align: center; }
+        .stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent-secondary); line-height: 1; }
+        .stat-label { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.4rem; line-height: 1.3; }
+
+        /* CRO workflow AI uses */
+        .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .workflow-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem 1.25rem; }
+        .workflow-stage { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-secondary); margin-bottom: 0.5rem; }
+        .workflow-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+        .workflow-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; }
+        .workflow-tools { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .tool-chip { font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.15); color: var(--accent-primary); }
+
+        /* Featured project */
+        .featured-project { background: rgba(129,140,248,0.04); border: 1px solid rgba(129,140,248,0.2); border-radius: var(--radius); padding: 2rem; margin: 2rem 0; }
+        .featured-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-secondary); margin-bottom: 1rem; }
+        .featured-project h3 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; margin: 0 0 0.75rem; }
+        .featured-project .client-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--text-dim); background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 9999px; padding: 0.2rem 0.7rem; margin-bottom: 1rem; }
+        .featured-project p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin: 0 0 1rem; }
+
+        /* Pipeline diagram */
+        .pipeline { display: flex; align-items: stretch; gap: 0; margin: 1.5rem 0; flex-wrap: wrap; }
+        .pipeline-step { flex: 1; min-width: 120px; background: var(--bg-surface); border: 1px solid var(--border-color); padding: 1rem 0.9rem; position: relative; }
+        .pipeline-step:not(:last-child)::after { content: '→'; position: absolute; right: -0.7rem; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 1rem; z-index: 1; }
+        .pipeline-step:not(:first-child) { border-left: none; }
+        .pipeline-step:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+        .pipeline-step:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+        .step-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-secondary); margin-bottom: 0.3rem; }
+        .step-title { font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 0.2rem; }
+        .step-detail { font-size: 0.78rem; color: var(--text-dim); line-height: 1.4; }
+
+        /* Code block */
+        .code-wrap { margin: 1.5rem 0; }
+        .code-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+        pre.code-block { background: #0d0d1a; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; overflow-x: auto; margin: 0; }
+        pre.code-block code { font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-size: 0.82rem; line-height: 1.65; color: #c9d1d9; }
+        .c-comment { color: #6e7681; }
+        .c-keyword { color: #ff7b72; }
+        .c-string { color: #a5d6ff; }
+        .c-var { color: #79c0ff; }
+        .c-fn { color: #d2a8ff; }
+        .c-prop { color: #ffa657; }
+        .c-num { color: #79c0ff; }
+
+        /* Other projects grid */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .project-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.4rem; }
+        .project-card-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+        .project-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin: 0 0 0.6rem; }
+        .project-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 1rem; }
+        .project-impact { font-size: 0.82rem; font-weight: 600; color: var(--accent-primary); }
+
+        /* Tool stack */
+        .tool-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+        .tool-tag { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 500; padding: 0.35rem 0.8rem; border-radius: 9999px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-muted); }
+
+        /* Callout */
+        .callout { background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.15); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+        .callout p { font-size: 0.95rem; margin: 0; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+
+        /* ===== CRO ENGINE SECTION ===== */
+        .engine-section { position: relative; margin: 3rem 0; }
+        .engine-masthead { background: linear-gradient(135deg, rgba(129,140,248,0.08) 0%, rgba(56,189,248,0.06) 100%); border: 1px solid rgba(129,140,248,0.3); border-radius: var(--radius); padding: 2.5rem 2rem 2rem; margin-bottom: 1.5rem; overflow: hidden; }
+        .engine-masthead::before { content: ''; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(129,140,248,0.12) 0%, transparent 70%); pointer-events: none; }
+        .engine-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-secondary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .engine-label-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-secondary); animation: pulse-dot 2s ease-in-out infinite; }
+        @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+        .engine-masthead h2 { font-family: var(--font-heading); font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: #fff; margin: 0 0 1rem; letter-spacing: -0.02em; line-height: 1.2; border: none !important; padding: 0 !important; margin-top: 0 !important; }
+        .engine-masthead h2 .accent { background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .engine-masthead p.lede { font-size: 1.05rem; line-height: 1.75; color: var(--text-muted); max-width: 760px; margin: 0; }
+
+        /* Three planes */
+        .planes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-color); border-radius: var(--radius); overflow: hidden; margin: 1.5rem 0; }
+        .plane-card { background: var(--bg-surface); padding: 1.5rem 1.25rem; position: relative; }
+        .plane-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .plane-card.claude::after { background: linear-gradient(90deg, #a855f7, #818cf8); }
+        .plane-card.gemini::after { background: linear-gradient(90deg, #38bdf8, #22d3ee); }
+        .plane-card.codex::after { background: linear-gradient(90deg, #4ade80, #22d3ee); }
+        .plane-agent { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+        .plane-card.claude .plane-agent { color: #a855f7; }
+        .plane-card.gemini .plane-agent { color: #38bdf8; }
+        .plane-card.codex .plane-agent { color: #4ade80; }
+        .plane-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .plane-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.55; }
+        .plane-role { font-size: 0.78rem; font-weight: 600; margin-top: 0.75rem; padding: 0.3rem 0.65rem; border-radius: 9999px; display: inline-block; }
+        .plane-card.claude .plane-role { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); color: #a855f7; }
+        .plane-card.gemini .plane-role { background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: #38bdf8; }
+        .plane-card.codex .plane-role { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); color: #4ade80; }
+
+        /* Skills grid */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.65rem; margin: 1.25rem 0; }
+        .skill-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.9rem 1rem; transition: border-color 0.2s; }
+        .skill-card:hover { border-color: rgba(129,140,248,0.3); }
+        .skill-name { font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; }
+        .skill-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.45; }
+
+        /* Flow steps */
+        .flow-steps { margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0; }
+        .flow-step { display: flex; gap: 1.25rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .flow-step:last-child { border-bottom: none; }
+        .flow-step-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+        .flow-step-num.purple { background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); color: #a855f7; }
+        .flow-step-num.blue { background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); color: #38bdf8; }
+        .flow-step-num.green { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); color: #4ade80; }
+        .flow-step-body { flex: 1; }
+        .flow-step-title { font-size: 0.92rem; font-weight: 600; color: #fff; margin-bottom: 0.2rem; }
+        .flow-step-detail { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+        .flow-agent-tag { font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 9999px; margin-left: 0.5rem; vertical-align: middle; }
+        .tag-claude { background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.2); color: #a855f7; }
+        .tag-gemini { background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.15); color: #38bdf8; }
+        .tag-skills { background: rgba(129,140,248,0.1); border: 1px solid rgba(129,140,248,0.2); color: var(--accent-secondary); }
+        .tag-codex { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); color: #4ade80; }
+
+        /* Vision panel */
+        .vision-panel { background: linear-gradient(135deg, rgba(56,189,248,0.04) 0%, rgba(129,140,248,0.06) 100%); border: 1px solid rgba(56,189,248,0.2); border-radius: var(--radius); padding: 2rem; margin: 2rem 0; }
+        .vision-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-primary); margin-bottom: 1rem; }
+        .vision-panel h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0 0 1rem; font-family: var(--font-heading); }
+        .vision-panel p { font-size: 0.97rem; line-height: 1.75; color: var(--text-muted); margin: 0 0 1rem; }
+        .vision-panel p:last-child { margin-bottom: 0; }
+        .vision-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; }
+        .vision-step { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; }
+        .vision-step-stage { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-primary); margin-bottom: 0.4rem; }
+        .vision-step-title { font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; }
+        .vision-step-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.5; }
+
+        /* Tool Stack */
+        .tool-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .tool-tag { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.6rem 1.2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.92rem; font-weight: 500; color: #fff; transition: border-color 0.2s; }
+        .tool-tag:hover { border-color: rgba(56,189,248,0.3); }
+        .tool-logo { width: 24px; height: 24px; object-fit: contain; border-radius: 4px; }
+
+        @media (max-width: 640px) {
+            .planes-grid { grid-template-columns: 1fr; }
+            .pipeline { flex-direction: column; }
+            .pipeline-step { border-left: 1px solid var(--border-color) !important; border-top: none; border-radius: 0 !important; }
+            .pipeline-step:first-child { border-top: 1px solid var(--border-color); border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important; }
+            .pipeline-step:last-child { border-radius: 0 0 var(--radius-sm) var(--radius-sm) !important; }
+            .pipeline-step:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -0.7rem; transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="page-nav">
+        <a href="./index.html#operations" class="back">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back to Portfolio
+        </a>
+        <a href="./index.html" class="logo">Shivansh.</a>
+    </nav>
+
+    <div class="ai-hero">
+        <div class="badge">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            AI & Automation
+        </div>
+        <h1>AI as <span class="gradient-text">Operating Infrastructure</span></h1>
+        <p>Not a feature I demo in job interviews. AI runs through the research pipeline, the hypothesis writing, the reporting layer, and the production tooling. Some of it makes me faster. Some of it replaces workflows that used to require a team.</p>
+    </div>
+
+    <div class="ai-body">
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-num">4</div>
+                <div class="stat-label">Custom automation<br>tools built</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:var(--accent-primary)">100s</div>
+                <div class="stat-label">Video assets generated<br>at scale</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">28→3<span style="font-size:1rem">hrs</span></div>
+                <div class="stat-label">GTM setup time cut<br>via API automation</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#4ade80">Daily</div>
+                <div class="stat-label">AI use across<br>every engagement</div>
+            </div>
+        </div>
+
+        <!-- ===== CRO ENGINE ===== -->
+        <div class="engine-section">
+            <div class="engine-masthead">
+                <div class="engine-label">
+                    <div class="engine-label-dot"></div>
+                    In Development · Architecture Complete
+                </div>
+                <h2>The Autonomous <span class="accent">CRO Engine</span></h2>
+                <p class="lede">A multi-agent system where Claude orchestrates, Gemini reads live GA4 data, and specialist AI skills run the full CRO diagnostic — from detecting the biggest revenue leak to generating a prioritized experiment roadmap — without a human in the loop between steps.</p>
+            </div>
+
+            <p>Right now, a CRO engagement starts when a human opens a dashboard. The engine inverts that: it monitors GA4 continuously, detects when something meaningful shifts, decides what to audit, runs the audit using structured skills, and surfaces a treatment plan. The human's job becomes approving the work, not initiating it.</p>
+
+            <h3 style="color:#a855f7;margin-top:2rem;">Three Agents. One System of Record.</h3>
+            <div class="planes-grid">
+                <div class="plane-card claude">
+                    <div class="plane-agent">Claude · Orchestrator</div>
+                    <div class="plane-title">Control Plane</div>
+                    <div class="plane-desc">Receives the request or trigger. Resolves which client, which workflow, which specialist skills are needed. Loads the minimal context bundle, delegates scoped sub-tasks, reviews outputs, and writes the final state back.</div>
+                    <div class="plane-role">Intent → routing → synthesis</div>
+                </div>
+                <div class="plane-card gemini">
+                    <div class="plane-agent">Gemini · Data Plane</div>
+                    <div class="plane-title">Google / Data Layer</div>
+                    <div class="plane-desc">Reads and writes Google-native assets: GA4 export sheets, strategy docs, client Drive folders. Each client has explicit bindings — Gemini only touches what it's pointed at, with the right credentials for that account.</div>
+                    <div class="plane-role">Live data fetch + writeback</div>
+                </div>
+                <div class="plane-card codex">
+                    <div class="plane-agent">Codex · Execution Plane</div>
+                    <div class="plane-title">Code Layer</div>
+                    <div class="plane-desc">Invoked only when the system itself needs code changes — patching tracking scripts, adapters, or schemas. Returns reviewable diffs. Never touches live containers without a human approval step.</div>
+                    <div class="plane-role">Code patches → reviewable diffs</div>
+                </div>
+            </div>
+
+            <h3 style="color:var(--accent-secondary);">Nine Core Skills. Each Does One Thing Well.</h3>
+            <p>Skills are the reasoning layer — reusable intelligence units that don't know which client they're running for. The context (page maps, funnel data, VoC, scoring rules) is injected at runtime from the client workspace.</p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-name">GA4 Opportunity Engine</div>
+                    <div class="skill-desc">Reads live funnel data. Identifies the biggest leak by segment, device, and page type. Outputs a ranked scope recommendation before any audit begins.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Scope Recommendation Engine</div>
+                    <div class="skill-desc">Prevents over-auditing. Given the opportunity signal, decides which pages and which audit depth are worth running — not everything, just the right things.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Deep Audit Engine</div>
+                    <div class="skill-desc">Runs a structured audit on the chosen scope: heuristics, VoC evidence, competitor review, copy analysis, imagery critique. Outputs a diagnosis, not a list of suggestions.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Evidence Synthesizer</div>
+                    <div class="skill-desc">Connects the dots across data sources — session recordings, survey responses, review text, heatmaps — into a single coherent problem statement with confidence weighting.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Treatment Generator</div>
+                    <div class="skill-desc">Converts diagnosis into concrete experiment concepts. Each treatment includes a hypothesis, expected mechanism, success metric, and guardrails.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Test Prioritization Engine</div>
+                    <div class="skill-desc">ICE-scores the treatment backlog using agency-specific scoring rules. Outputs an ordered queue that accounts for implementation cost and current test pipeline state.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">AB Analysis</div>
+                    <div class="skill-desc">Reads test results, calculates statistical significance, checks for novelty effects and segment divergence, and writes a readout that explains the psychology — not just the metric.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Learning Memory Writer</div>
+                    <div class="skill-desc">After every test, writes what was learned into the client's persistent memory — so the next test starts from a compounding base, not from scratch.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Program Manager</div>
+                    <div class="skill-desc">Tracks pipeline state, flags blockers, surfaces what's in QA vs. live vs. awaiting analysis, and keeps the Master Tracker synchronized with the actual test queue.</div>
+                </div>
+            </div>
+
+            <h3 style="color:var(--accent-primary);">What a Single Request Looks Like End-to-End</h3>
+            <p style="font-size:0.92rem;color:var(--text-dim);margin-bottom:0.5rem;">Request: <em>"Find the biggest CRO opportunity for Comforth and recommend the next experiment."</em></p>
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="flow-step-num purple">1</div>
+                    <div class="flow-step-body">
+                        <div class="flow-step-title">Resolve client context <span class="flow-agent-tag tag-claude">Claude</span></div>
+                        <div class="flow-step-detail">Identifies agency (Cazy Web), client (Comforth), job type (opportunity detection + experiment recommendation). Loads client manifest, page map, funnel map, backlog, and tool bindings.</div>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-num blue">2</div>
+                    <div class="flow-step-body">
+                        <div class="flow-step-title">Fetch live data <span class="flow-agent-tag tag-gemini">Gemini</span></div>
+                        <div class="flow-step-detail">Reads the GA4 export sheet, any strategy notes doc, and designated Drive folder assets listed in the Comforth binding. Uses the right Google account credentials — no manual setup.</div>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-num purple">3</div>
+                    <div class="flow-step-body">
+                        <div class="flow-step-title">Run detection layer <span class="flow-agent-tag tag-skills">Skills</span></div>
+                        <div class="flow-step-detail">GA4 Opportunity Engine identifies where revenue is leaking. Scope Recommendation Engine narrows the audit to the highest-value surface — not a full-site sweep.</div>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-num purple">4</div>
+                    <div class="flow-step-body">
+                        <div class="flow-step-title">Scoped deep audit <span class="flow-agent-tag tag-skills">Skills</span></div>
+                        <div class="flow-step-detail">Deep Audit Engine + Evidence Synthesizer run on the chosen scope: heuristic review, VoC coding, competitor analysis, copy and imagery critique. Outputs a diagnosis, not a wishlist.</div>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-num purple">5</div>
+                    <div class="flow-step-body">
+                        <div class="flow-step-title">Generate treatment plan <span class="flow-agent-tag tag-skills">Skills</span></div>
+                        <div class="flow-step-detail">Treatment Generator converts the diagnosis into prioritized experiment concepts with hypotheses, success metrics, and guardrails. Prioritization Engine orders them against the live test queue.</div>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-num blue">6</div>
+                    <div class="flow-step-body">
+                        <div class="flow-step-title">Write everything back <span class="flow-agent-tag tag-gemini">Gemini</span> <span class="flow-agent-tag tag-claude">Claude</span></div>
+                        <div class="flow-step-detail">Opportunity report, audit doc, treatment plan, and backlog updates are written into the Comforth workspace. Recent-context cache is refreshed — next run starts from here, not from zero.</div>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-num green">7</div>
+                    <div class="flow-step-body">
+                        <div class="flow-step-title">Code patching only if needed <span class="flow-agent-tag tag-codex">Codex</span></div>
+                        <div class="flow-step-detail">If tracking changes are required, Codex patches the canonical script and returns a reviewable diff. Never auto-deploys — the human approves code changes before they ship.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision panel -->
+            <div class="vision-panel">
+                <div class="vision-label">The Autonomy Vision</div>
+                <h3>From "I ran the audit" to "the system found it"</h3>
+                <p>The current system is semi-autonomous: a human triggers the command, and the agents do the work. The full vision removes that trigger. The GA4 Opportunity Engine runs on a schedule, detects when a page's conversion rate drops by a meaningful threshold, and files a scoped audit job without anyone asking. By the time a strategist opens their laptop in the morning, the overnight analysis is already done — with treatments ready for review.</p>
+                <p>The key design constraint that makes this possible: <strong>every run writes back state</strong>. After each job, the client workspace contains an updated recent-context cache, a refreshed memory layer, and new entries in the evidence store. The next run reads that compounded knowledge instead of re-deriving everything from raw data. The system gets smarter with each engagement, not just faster.</p>
+                <div class="vision-steps">
+                    <div class="vision-step">
+                        <div class="vision-step-stage">Now</div>
+                        <div class="vision-step-title">Human-triggered, AI-executed</div>
+                        <div class="vision-step-desc">Strategist sends a command. Claude resolves context, runs skills, writes outputs. Human reviews and decides.</div>
+                    </div>
+                    <div class="vision-step">
+                        <div class="vision-step-stage">Next</div>
+                        <div class="vision-step-title">Scheduled detection + triage</div>
+                        <div class="vision-step-desc">GA4 monitoring runs on a cron. Meaningful changes trigger automatic audit scoping and backlog suggestions. Human approves scope before deep audit runs.</div>
+                    </div>
+                    <div class="vision-step">
+                        <div class="vision-step-stage">Target</div>
+                        <div class="vision-step-title">Fully autonomous program management</div>
+                        <div class="vision-step-desc">End-to-end: detect → audit → treat → prioritize → launch test → analyze → learn → repeat. Human approval gates remain for code deploys and live test launches.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===== END CRO ENGINE ===== -->
+
+        <h2>How AI Runs Through CRO Work</h2>
+
+        <p>There's a version of "I use AI" that means pasting things into ChatGPT occasionally. That's not this. AI is embedded in the research phase, the hypothesis generation, the copy testing, and the readout process — specific tools for specific jobs.</p>
+
+        <div class="workflow-grid">
+            <div class="workflow-card">
+                <div class="workflow-stage">Research</div>
+                <div class="workflow-title">VoC Synthesis at Scale</div>
+                <div class="workflow-desc">Review mining across 1,000–5,000+ entries. Structured prompts extract anxiety categories, objection patterns, and language — faster than manual coding and with consistent taxonomy across projects.</div>
+                <div class="workflow-tools">
+                    <span class="tool-chip">Claude</span>
+                    <span class="tool-chip">GPT-4</span>
+                    <span class="tool-chip">CSV → structured output</span>
+                </div>
+            </div>
+            <div class="workflow-card">
+                <div class="workflow-stage">Hypothesis Generation</div>
+                <div class="workflow-title">Research → Test Brief</div>
+                <div class="workflow-desc">Qualitative research findings fed into structured prompts that generate ICE-scored hypotheses mapped to specific page zones. Output goes directly into the Master Tracker, not a separate document to reformat.</div>
+                <div class="workflow-tools">
+                    <span class="tool-chip">Claude</span>
+                    <span class="tool-chip">Langflow</span>
+                    <span class="tool-chip">Notion API</span>
+                </div>
+            </div>
+            <div class="workflow-card">
+                <div class="workflow-stage">Copy Testing</div>
+                <div class="workflow-title">Variation Copy Generation</div>
+                <div class="workflow-desc">Brand voice-constrained prompts that generate 3–5 headline and body copy variants per test. Human editorial review selects the final set — AI handles the drafting volume problem, not the judgment problem.</div>
+                <div class="workflow-tools">
+                    <span class="tool-chip">GPT-4</span>
+                    <span class="tool-chip">Claude</span>
+                </div>
+            </div>
+            <div class="workflow-card">
+                <div class="workflow-stage">Reporting</div>
+                <div class="workflow-title">Automated Test Readouts</div>
+                <div class="workflow-desc">A Node.js pipeline reads raw funnel CSV + markdown strategy notes and compiles a styled HTML/PDF client report. The analyst focuses on the insight — not reformatting tables in Slides.</div>
+                <div class="workflow-tools">
+                    <span class="tool-chip">Node.js</span>
+                    <span class="tool-chip">Mermaid.js</span>
+                    <span class="tool-chip">CSV → PDF</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Featured Build: Video Creative at Scale</h2>
+
+        <div class="featured-project">
+            <div class="featured-label">Production Pipeline · Built & Deployed</div>
+            <h3>Programmatic Video Generation — Bonkers Corner</h3>
+            <span class="client-tag">Gen-Z Streetwear Brand · India · D2C</span>
+            <p>Creating platform-specific video creative for ad testing on TikTok and Meta is a production bottleneck at every D2C brand. Each SKU needs multiple variants — different hooks, different aspect ratios, different CTAs. Doing this manually with a video editor doesn't scale when you're testing 50+ products.</p>
+            <p>The solution: a Python script that reads a master product CSV, applies a standardized prompt template built and tested against brand guidelines, and submits each product to the Kling AI API for video generation. Output links are written back to a results CSV. The entire batch runs unattended.</p>
+        </div>
+
+        <h3>How the Pipeline Works</h3>
+        <div class="pipeline">
+            <div class="pipeline-step">
+                <div class="step-num">01</div>
+                <div class="step-title">CSV Input</div>
+                <div class="step-detail">Product handle, start image URL, end image URL, per-row prompt override — one row per asset</div>
+            </div>
+            <div class="pipeline-step">
+                <div class="step-num">02</div>
+                <div class="step-title">Preflight</div>
+                <div class="step-detail">HEAD/GET check on both image URLs before submitting — prevents burning API credits on broken CDN links</div>
+            </div>
+            <div class="pipeline-step">
+                <div class="step-num">03</div>
+                <div class="step-title">Kling API</div>
+                <div class="step-detail">createTask (image-to-video, start + end frame) → async threaded poll → download MP4 locally</div>
+            </div>
+            <div class="pipeline-step">
+                <div class="step-num">04</div>
+                <div class="step-title">Resume-safe output</div>
+                <div class="step-detail">Results appended to CSV as they complete. Re-run skips already-succeeded rows automatically</div>
+            </div>
+        </div>
+
+        <h3>What "Tested Prompt" Actually Means</h3>
+        <p>The default prompt in the script is the result of iterating against 20–30 outputs and locking a structure that reliably produces usable assets: <em>"Cinematic product showcase. Smooth camera orbit left-to-right. Subtle natural body movement. Fabric reacts realistically. No warping, no glitches."</em> Each row in the CSV can override it per-product. The pipeline logic never needs to change when the creative direction shifts.</p>
+
+        <div class="callout">
+            <p><strong>The real unlock:</strong> The script runs submission, polling, and downloading as separate thread pools in parallel — up to 6 submissions, 10 pollers, and 4 downloaders concurrently, with rate limiting and exponential backoff. A video editor produces 3–5 assets per day. This pipeline handles a full product catalog in a single overnight run.</p>
+        </div>
+
+        <div class="code-wrap">
+            <div class="code-label">Rate-limited submission with preflight — core of generate-videos.py</div>
+            <pre class="code-block"><code><span class="c-comment"># Preflight: check both images are reachable before spending API credits</span>
+<span class="c-keyword">if</span> <span class="c-var">args</span>.<span class="c-prop">preflight</span> == <span class="c-string">"on"</span>:
+    <span class="c-var">ok1</span>, <span class="c-var">e1</span> = <span class="c-fn">preflight_image</span>(<span class="c-var">start_url</span>)
+    <span class="c-var">ok2</span>, <span class="c-var">e2</span> = <span class="c-fn">preflight_image</span>(<span class="c-var">last_url</span>)
+    <span class="c-keyword">if not</span> <span class="c-var">ok1</span> <span class="c-keyword">or not</span> <span class="c-var">ok2</span>:
+        <span class="c-fn">writer.write</span>({ ..., <span class="c-prop">state</span>: <span class="c-string">"skipped_preflight"</span> })
+        <span class="c-keyword">return None</span>
+
+<span class="c-comment"># Rate-limited submission to Kling API (1.2 req/sec, 6 worker threads)</span>
+<span class="c-var">limiter</span>.<span class="c-fn">wait</span>()
+<span class="c-var">task_id</span> = <span class="c-fn">kie_create_task</span>(
+    api_key=<span class="c-var">api_key</span>, model=<span class="c-var">args</span>.<span class="c-prop">model</span>,
+    prompt=<span class="c-var">prompt</span>, image_url=<span class="c-var">start_url</span>, tail_image_url=<span class="c-var">last_url</span>,
+    duration=<span class="c-var">args</span>.<span class="c-prop">duration</span>, cfg_scale=<span class="c-var">args</span>.<span class="c-prop">cfg_scale</span>, ...
+)
+
+<span class="c-comment"># Log "submitted" immediately — polling runs in a separate thread pool</span>
+<span class="c-fn">writer.write</span>({ ..., <span class="c-prop">state</span>: <span class="c-string">"submitted"</span>, <span class="c-prop">taskId</span>: <span class="c-var">task_id</span> })
+
+<span class="c-comment"># Poller picks up tasks, writes "success" + local_mp4 path when done</span>
+<span class="c-comment"># Re-run: load_last_status() skips rows where state == "success"</span></code></pre>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+            <a href="https://github.com/shivanshsahu/video-automation" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;color:var(--accent-primary);text-decoration:none;font-size:0.9rem;font-weight:500;border:1px solid rgba(56,189,248,0.2);background:rgba(56,189,248,0.05);padding:0.5rem 1rem;border-radius:8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                View generate-videos.py on GitHub
+            </a>
+        </div>
+
+        <h2>Other Automation Builds</h2>
+
+        <div class="projects-grid">
+            <a class="project-card" href="./capabilities/gtm-automation.html" style="text-decoration:none;display:block;">
+                <div class="project-card-tag">Python · GTM API</div>
+                <h3>GTM Automation Engine</h3>
+                <p>8 GA4 properties, same ecommerce event schema. UPSERT logic, trigger name resolution, a --yes flag for batch runs. Idempotent — safe to re-run when configs change.</p>
+                <div class="project-impact">28 hours → 3 hours · Zero configuration drift across properties →</div>
+            </a>
+            <div class="project-card">
+                <div class="project-card-tag">Node.js · PDF Generation</div>
+                <h3>Automated CRO Reporting Engine</h3>
+                <p>Raw funnel CSV + markdown strategy notes → styled HTML/PDF client report. Mermaid.js handles flow diagrams. Dynamic tables pull directly from data. Analysts write the insight — the pipeline handles layout, formatting, and export.</p>
+                <div class="project-impact">Report production time cut from hours to minutes per engagement</div>
+            </div>
+            <div class="project-card">
+                <div class="project-card-tag">JavaScript · GTM Custom Tag</div>
+                <h3>GoKwik postMessage Listener</h3>
+                <p>When a third-party checkout doesn't talk to GTM, you build at the interface boundary. A window event listener intercepts GoKwik's postMessage events and transforms them to GA4 ecommerce schema — with a sessionStorage bridge for reliable purchase attribution.</p>
+                <div class="project-impact">Full checkout funnel visibility restored · 0 → 4 events tracked</div>
+            </div>
+        </div>
+
+        <h2>The Tool Stack</h2>
+
+        <h3>Models & AI Platforms</h3>
+        <div class="tool-row">
+            <span class="tool-tag">Claude (Anthropic)</span>
+            <span class="tool-tag">GPT-4 / ChatGPT</span>
+            <span class="tool-tag">Kling AI (Kie.ai)</span>
+            <span class="tool-tag">Langflow</span>
+        </div>
+
+        <h3>Automation & Orchestration</h3>
+        <div class="tool-row">
+            <span class="tool-tag">Make.com</span>
+            <span class="tool-tag">Python scripts</span>
+            <span class="tool-tag">Node.js</span>
+            <span class="tool-tag">REST APIs</span>
+            <span class="tool-tag">GTM API</span>
+            <span class="tool-tag">GA4 Data API</span>
+        </div>
+
+        <h3>Infrastructure</h3>
+        <div class="tool-row">
+            <span class="tool-tag">GCP (BigQuery, Cloud Functions)</span>
+            <span class="tool-tag">Firebase</span>
+            <span class="tool-tag">python-dotenv</span>
+            <span class="tool-tag">OAuth2 (InstalledAppFlow)</span>
+        </div>
+
+        <div class="callout" style="margin-top: 2.5rem;">
+            <p><strong>The principle behind all of it:</strong> AI and automation should remove the parts of the job that don't require judgment — the formatting, the schema translation, the repetitive configuration, the production volume. What's left is the part that actually matters: figuring out what to test, understanding why a test won or lost, and deciding what comes next. That's not automatable. Everything else is a candidate.</p>
+        </div>
+
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <a href="./capabilities/gokwik-postmessage.html" style="display:inline-flex;align-items:center;gap:0.5rem;color:var(--accent-primary);text-decoration:none;font-size:0.9rem;font-weight:500;">
+                GoKwik postMessage deep-dive <span aria-hidden="true">→</span>
+            </a>
+            <a href="./index.html#operations" style="display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);text-decoration:none;font-size:0.9rem;">
+                ← Back to Ops & Data
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

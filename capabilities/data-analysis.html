@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis & VoC Mining — Shivansh</title>
+    <meta name="description" content="Funnel audits that find where revenue is leaking, review mining at scale, cohort segmentation, and turning qualitative signal into a prioritized test roadmap.">
+    <meta property="og:title" content="Data Analysis & VoC Mining — Shivansh">
+    <meta property="og:description" content="Funnel audits that find where revenue is leaking, review mining at scale, cohort segmentation, and turning qualitative signal into a prioritized test roadmap.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <header class="case-hero capability-hero">
+        <div class="case-hero-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="case-hero-content">
+            <a href="../index.html#operations" class="case-back-link">← All capabilities</a>
+            <div class="case-hero-meta">
+                <span class="case-hero-industry">Research</span>
+            </div>
+            <h1 class="case-hero-title">Data Analysis & VoC Mining</h1>
+            <p class="case-hero-hook">Funnel audits that find where revenue is leaking, review mining at scale, cohort segmentation, and turning qualitative signal into a prioritized test roadmap.</p>
+        </div>
+    </header>
+
+    <main class="case-main">
+        <article class="case-article markdown-body">
+            <h2>Why It Matters</h2>
+<p>Most Conversion Rate Optimization (CRO) programs start with "what should we test?" — which is the wrong question. The right question is "where is the funnel leaking, and what do customers say when they leave?" Every hypothesis I ship is anchored to an answer for both. That's the research work this page describes.</p>
+<h2>1. Funnel Audits</h2>
+<p><strong>The output:</strong> a page-type-level breakdown of conversion behavior — entry, product, cart, checkout — segmented by device and traffic source. The goal is to surface where the biggest drop-off is happening, not to describe the aggregate funnel health.</p>
+<p><strong>What it catches that aggregates hide:</strong>
+- One engagement had a "healthy" 2.1% overall Conversion Rate and was losing 36.3% of entry traffic before it reached any product page. The overall number looked fine because high-intent returning visitors were compensating for catastrophic bounce on new traffic.
+- Another engagement had 85.6% abandonment between Product Detail Page view and Add-to-Cart — and the team had been running tests on the checkout because that felt like the natural place to test. The checkout was fine. The bleeding was two steps upstream.</p>
+<p><strong>The method:</strong> GA4 funnel exploration + cohort-based retention queries in BigQuery for brands with enough volume, cross-referenced with device and acquisition-source segmentation. Never reported as a single number.</p>
+<div class="visual-placeholder" data-visual-needed="true"><div class="visual-placeholder-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><span>Visual Needed</span></div><p>Example funnel breakdown chart by stage with device-level segmentation overlay</p></div>
+
+<h2>2. Voice of Customer (VoC) Mining</h2>
+<p><strong>The output:</strong> a categorized, weighted summary of what customers actually say — in reviews, support tickets, visitor surveys, and session recordings — tied directly to the funnel stage where each category of concern is occurring.</p>
+<p><strong>What scale looks like in practice.</strong> For one Gen-Z streetwear brand, I coded <strong>5,028 customer reviews</strong> across the catalog. The finding was specific: <strong>39% of all 1–3 star reviews</strong> were driven by two adjacent anxieties — sizing accuracy and fabric quality. Not shipping, not price, not design. That single dataset became the test roadmap — every hypothesis in the subsequent program was already sitting in the review database, pre-written by customers who couldn't pre-qualify the product from the Product Detail Page.</p>
+<p><strong>The method:</strong> Export reviews via the review platform's API or direct database access. Code each review by theme using a combination of keyword extraction and manual review on a statistically significant sample. Weight by rating (1-star reviews carry more signal than 5-star reviews — they tell you why buyers are disappointed, not why they're pleased). Cross-reference themes with funnel stages to identify which anxieties are killing which conversions.</p>
+<div class="visual-placeholder" data-visual-needed="true"><div class="visual-placeholder-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><span>Visual Needed</span></div><p>Review theme breakdown — stacked bar chart showing the proportion of each theme by rating tier (1★, 2★, 3★, 4★, 5★)</p></div>
+
+<h2>3. Visitor Surveys on the Live Site</h2>
+<p><strong>The output:</strong> short, targeted questions embedded on the pages where the behavioral question is unclear. Ran alongside session recordings so the quantitative and qualitative signals are captured in the same window.</p>
+<p><strong>What this surfaces that heatmaps don't.</strong> A heatmap tells you where users stopped. A survey tells you why. Running both simultaneously cuts interpretation time significantly — you're not guessing at the cause of a behavioral pattern, you're testing against a stated one.</p>
+<p>One visitor survey response on a B2B lighting distributor's Product Detail Page read: <em>"The difference between T8 and T12 bulbs."</em> That wasn't a design problem. That was an information architecture problem — and it reshaped the subsequent test roadmap toward specification-clarity interventions rather than visual redesigns.</p>
+<h2>4. Session Recordings at Scale</h2>
+<p><strong>The output:</strong> 100–200 session recordings sampled across device, entry page, and exit behavior, coded by hand into behavior patterns. Not watched one-by-one hoping for an insight — systematically categorized so patterns become visible.</p>
+<p><strong>What systematic coding surfaces.</strong> On one lighting distributor engagement, coding 200 sessions revealed that the mobile-to-desktop behavioral split was so different that every test had to fork by device. Aggregate metrics were hiding the divergence. The coded session dataset became the case for device-segmented testing across the rest of the program.</p>
+<div class="visual-placeholder" data-visual-needed="true"><div class="visual-placeholder-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><span>Visual Needed</span></div><p>Session-coding spreadsheet template with device / entry-page / exit-behavior columns and color-coded pattern tags</p></div>
+
+<h2>5. Post-Test Readouts</h2>
+<p><strong>The output:</strong> not a spreadsheet of confidence intervals — a business-language explanation of what happened and what to do next.</p>
+<p>A readout that says <em>"Variant B won at 95% confidence with an 8.3% CVR lift"</em> tells the executive team nothing actionable. A readout that says <em>"Variant B won — the change that drove the lift was moving the specifications into the first fold, and the same pattern should apply to the 12 other product categories we haven't tested yet"</em> tells them what to ship next.</p>
+<p>The analysis isn't done when significance is reached. It's done when the next hypothesis is written.</p>
+<h2>The Operating Standard</h2>
+<p>Every test in the pipeline has a paper trail from research to readout: the funnel data that identified the leak, the VoC quote that explained why buyers were leaving, the hypothesis that was derived from both, and the readout that translated the result into the next test. When the program is audited, that trail is what demonstrates the work was not guess-driven.</p>
+        </article>
+        <div class="case-footer-cta">
+            <a href="../index.html#operations" class="btn-secondary">← All capabilities</a>
+            <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36% Leaving Before They Started — Shivansh</title>
+    <meta name="description" content="A B2B safety equipment retailer had four simultaneous funnel leaks. The art wasn't finding them — it was picking the right two to fix first. A prioritization-led CRO program projecting $2.3M+ in additional revenue.">
+    <meta property="og:title" content="36% Leaving Before They Started — Shivansh">
+    <meta property="og:description" content="A B2B safety equipment retailer with four simultaneous funnel leaks. Prioritization-led program projecting $2.3M+ additional revenue.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+
+        /* Stats row */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Timeline bar */
+        .timeline-bar { display: flex; margin: 2.5rem 0; border-radius: var(--radius-sm); overflow: hidden; height: 44px; }
+        .timeline-bar .phase { display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 600; color: var(--bg-dark); text-align: center; padding: 0 0.5rem; line-height: 1.2; }
+        .timeline-bar .phase:nth-child(1) { background: #64748B; flex: 2; }
+        .timeline-bar .phase:nth-child(2) { background: #818CF8; flex: 2; }
+        .timeline-bar .phase:nth-child(3) { background: #38BDF8; flex: 3; }
+        .timeline-bar .phase:nth-child(4) { background: #34D399; flex: 3; }
+
+        /* Callout */
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+
+        /* Funnel waterfall */
+        .funnel { display: flex; flex-direction: column; gap: 0.35rem; margin: 1.5rem 0 2.5rem; }
+        .funnel-row { display: grid; grid-template-columns: 180px 1fr 90px; gap: 1rem; align-items: center; }
+        .funnel-stage { font-size: 0.88rem; color: var(--text-main); font-weight: 500; }
+        .funnel-bar-wrap { position: relative; height: 36px; background: rgba(255,255,255,0.03); border-radius: 6px; overflow: hidden; }
+        .funnel-bar { height: 100%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); display: flex; align-items: center; padding-left: 0.9rem; font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700; color: var(--bg-dark); transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .funnel-drop { font-size: 0.9rem; font-family: var(--font-heading); font-weight: 700; color: #F87171; text-align: right; }
+        .funnel-drop.ok { color: var(--text-dim); }
+        .funnel-drop.warn { color: #FBBF24; }
+        .funnel-drop.critical { color: #F87171; }
+        @media (max-width: 640px) { .funnel-row { grid-template-columns: 1fr; gap: 0.25rem; } .funnel-drop { text-align: left; } }
+
+        /* ICE prioritization matrix */
+        .ice-matrix { display: grid; grid-template-columns: 200px 1fr 1fr 1fr 80px; gap: 0; margin: 1.5rem 0 2rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; }
+        .ice-matrix > div { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border-color); font-size: 0.88rem; color: var(--text-muted); }
+        .ice-matrix > div:nth-last-child(-n+5) { border-bottom: none; }
+        .ice-matrix > div:not(:last-child) { border-right: 1px solid var(--border-color); }
+        .ice-matrix .head { background: rgba(56,189,248,0.06); color: var(--accent-primary); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .ice-matrix .test-name { color: #fff; font-weight: 600; font-size: 0.92rem; }
+        .ice-matrix .score { font-family: var(--font-heading); font-weight: 800; font-size: 1rem; text-align: center; }
+        .ice-matrix .score.high { color: #34D399; }
+        .ice-matrix .score.mid { color: #FBBF24; }
+        .ice-matrix .score.low { color: #F87171; }
+        .ice-matrix .picked { background: rgba(52,211,153,0.04); }
+        .ice-matrix .deprio { opacity: 0.65; }
+        @media (max-width: 768px) { .ice-matrix { grid-template-columns: 1fr 1fr 1fr 1fr; } .ice-matrix > div:nth-child(5n+1) { grid-column: 1/-1; font-weight: 600; color: #fff; background: rgba(255,255,255,0.03); border-right: none; } }
+
+        /* Leverage math block */
+        .leverage-math { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .leverage-math { grid-template-columns: 1fr; } }
+        .leverage-panel { padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .leverage-panel.small { background: rgba(248,113,113,0.04); border-color: rgba(248,113,113,0.18); }
+        .leverage-panel.big { background: rgba(52,211,153,0.04); border-color: rgba(52,211,153,0.18); }
+        .leverage-panel h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.5rem; }
+        .leverage-panel.small h4 { color: #F87171; }
+        .leverage-panel.big h4 { color: #34D399; }
+        .leverage-panel .formula { font-family: 'SF Mono', Menlo, monospace; font-size: 0.88rem; color: var(--text-main); margin: 0.5rem 0; padding: 0.6rem 0.75rem; background: rgba(0,0,0,0.2); border-radius: 6px; }
+        .leverage-panel .outcome { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; margin-top: 0.5rem; }
+        .leverage-panel.small .outcome { color: #F87171; }
+        .leverage-panel.big .outcome { color: #34D399; }
+        .leverage-panel p { font-size: 0.88rem; margin: 0; color: var(--text-muted); }
+
+        /* Results grid */
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        .result-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); text-align: center; }
+        .result-card .big { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .result-card .medium { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #34D399; line-height: 1.1; }
+        .result-card .result-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-card .result-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+
+        /* Visual placeholder */
+        .case-body .visual-placeholder { margin: 2rem 0; }
+
+        /* Back link */
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">← Back to all cases</a>
+            <div class="badge">Safety Equipment · B2B · US · Funnel Prioritization</div>
+            <h1>36% Leaving <span class="gradient-text">Before They Started</span></h1>
+            <p class="case-lede">A US-based B2B retailer in safety and protective equipment — a category where mid-size construction firms, industrial procurement managers, and individual contractors come to replenish specific items. The funnel wasn't leaking in one place. It was leaking in four. The work wasn't finding the leaks — it was picking which two deserved the bandwidth first, and convincing the team to skip the "obvious" test.</p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">4</div><div class="lbl">Funnel Stages Audited</div></div>
+                <div class="stat-card"><div class="val">36.3%</div><div class="lbl">Entry Drop-Off</div></div>
+                <div class="stat-card"><div class="val">85.6%</div><div class="lbl">PDP → ATC Abandonment</div></div>
+                <div class="stat-card"><div class="val">~20%</div><div class="lbl">Funnel Efficiency Lift</div></div>
+                <div class="stat-card"><div class="val">$2.3M+</div><div class="lbl">Projected Annual Revenue</div></div>
+            </div>
+
+            <div class="timeline-bar">
+                <div class="phase">Week 1–2: Funnel Audit</div>
+                <div class="phase">Week 2–3: ICE Prioritization</div>
+                <div class="phase">Week 3–6: Test Build</div>
+                <div class="phase">Week 6–10: Launch &amp; Read</div>
+            </div>
+
+            <h2>Phase 1: The "Healthy" Conversion Rate That Wasn't</h2>
+            <p>The brand's internal framing was that the funnel was "tight but slow." Traffic volume was stable. Category rankings in organic search were competitive. The aggregate conversion rate fell within what a generalist CRO consultant would call "normal for the category."</p>
+
+            <p>That framing was masking the real picture. Aggregate CVR is the statistic that hides problems. On this site, a reasonable-looking overall number was the average of two very different behaviors: high-intent returning visitors completing purchases at acceptable rates, and new visitors haemorrhaging out of the funnel at multiple stages. The aggregate number was fine. Neither segment's number was.</p>
+
+            <p>The brand team's intuitive test candidates — all reasonable on their face — were cart-level interventions: shipping cost transparency, trust badge additions, a quantity-incentive bar. These are the defaults a CRO consultant reaches for because the cart is where "conversion happens." In this case, the cart was fine. The bleeding was two stages upstream.</p>
+
+            <h2>Phase 2: The Four Leaks</h2>
+            <p>The full funnel broken down by page type, measured on the rolling 90-day window preceding the engagement:</p>
+
+            <div class="funnel">
+                <div class="funnel-row">
+                    <div class="funnel-stage">Session Entry</div>
+                    <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 100%;">100% of sessions</div></div>
+                    <div class="funnel-drop ok">baseline</div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-stage">Reached any PDP</div>
+                    <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 63.7%;">~63.7%</div></div>
+                    <div class="funnel-drop critical">−36.3%</div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-stage">Added to Cart</div>
+                    <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 9.2%;">~14.4% of PDPs</div></div>
+                    <div class="funnel-drop critical">−85.6%</div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-stage">Initiated Checkout</div>
+                    <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 7.1%;">~77% of carts</div></div>
+                    <div class="funnel-drop warn">−23%</div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-stage">Completed Purchase</div>
+                    <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 5.9%;">~83% of checkouts</div></div>
+                    <div class="funnel-drop ok">−17%</div>
+                </div>
+            </div>
+
+            <p>Two stages dominated the loss:</p>
+            <ul>
+                <li><strong>Session → PDP:</strong> more than one in three arriving visitors left before reaching a product detail page. Landing page and collection page weakness — they were not qualifying enough sessions to advance.</li>
+                <li><strong>PDP → ATC:</strong> of the buyers who did reach a product page, <strong>85.6% left without adding anything to cart</strong>. This was the largest single-stage volume loss on the site.</li>
+            </ul>
+
+            <p>Cart and checkout were within category norms. The math was uncomfortable for stakeholder conversations but clear: the two places the team wanted to test were the two places that were least leaky.</p>
+
+            <h2>Phase 3: The Prioritization Call</h2>
+            <p>I ran an Impact / Confidence / Effort scoring pass on the four candidate intervention areas. The scoring wasn't performative — it was a reality check against stakeholder expectations.</p>
+
+            <div class="ice-matrix">
+                <div class="head">Intervention</div>
+                <div class="head">Impact</div>
+                <div class="head">Confidence</div>
+                <div class="head">Effort</div>
+                <div class="head">ICE</div>
+
+                <div class="test-name">Collection + Filter Restructure</div>
+                <div>High — catches the 36.3% entry leak</div>
+                <div>Medium — large intervention, multi-element</div>
+                <div>High — dev + design heavy</div>
+                <div class="score high picked">9.2</div>
+
+                <div class="test-name">PDP Quick-Info + Sticky ATC</div>
+                <div>Very High — addresses 85.6% PDP abandonment on the largest-volume stage</div>
+                <div>High — behavior pattern well-understood</div>
+                <div>Medium — standard PDP work</div>
+                <div class="score high picked">9.6</div>
+
+                <div class="test-name deprio">Cart Trust / Quantity Bar</div>
+                <div class="deprio">Low — 23% cart-to-checkout drop is within category norm</div>
+                <div class="deprio">High — common pattern</div>
+                <div class="deprio">Low — fast to build</div>
+                <div class="score mid deprio">6.1</div>
+
+                <div class="test-name deprio">Checkout Simplification</div>
+                <div class="deprio">Low — 17% checkout-to-purchase drop is healthy</div>
+                <div class="deprio">Medium — platform-constrained</div>
+                <div class="deprio">High — third-party dependencies</div>
+                <div class="score low deprio">4.4</div>
+            </div>
+
+            <p>The two structural interventions scored substantially higher than the cart and checkout work. But the harder part wasn't the scoring — it was the stakeholder conversation.</p>
+
+            <div class="callout">
+                <strong>The argument I had to make.</strong> The team wanted to test the cart because the cart <em>felt like</em> where conversion happens. I had to make the case that testing a 6-point uplift on a 23% drop-off base was a smaller revenue lever than testing a 3-point uplift on an 85.6% drop-off base. The math is simple when you draw it out. The conversation is harder because you're asking people to ignore the intuition they've built from every other CRO article they've read — which overwhelmingly tests cart and checkout because those surfaces are easier to instrument, not because they're more leveraged.
+            </div>
+
+            <h3>The leverage math, made explicit</h3>
+            <p>This was the slide that got the roadmap approved. Same brand, same traffic, two different intervention choices:</p>
+
+            <div class="leverage-math">
+                <div class="leverage-panel small">
+                    <h4>Option A — Cart Test (the "obvious" default)</h4>
+                    <div class="formula">(23% drop-off) × (expected 6% reduction) × (cart base) = small</div>
+                    <div class="outcome">~3% funnel efficiency lift</div>
+                    <p style="margin-top: 0.6rem;">Testing a familiar, tight stage. The lift is real but it's measured against a small base — most buyers have already dropped off before reaching the cart.</p>
+                </div>
+                <div class="leverage-panel big">
+                    <h4>Option B — PDP Quick-Info (the leverage pick)</h4>
+                    <div class="formula">(85.6% drop-off) × (expected 4% reduction) × (PDP base) = large</div>
+                    <div class="outcome">~14% funnel efficiency lift</div>
+                    <p style="margin-top: 0.6rem;">A smaller percentage improvement on the largest-volume drop-off. Because the base is enormous, the absolute revenue impact is 4–5× larger than the cart test.</p>
+                </div>
+            </div>
+
+            <p>Option B wasn't a harder test. It was a less-defaulted one. Most programs skip it because the cart feels like the natural target. The funnel math said otherwise.</p>
+
+            <h2>Phase 4: The Tests</h2>
+            <p>Two coordinated structural tests. Neither was a cosmetic intervention — both were layout-level changes that required design and development coordination.</p>
+
+            <h3>Test 1 — Navigation &amp; Filter Restructure</h3>
+            <p>The collection and navigation surfaces were targeted first because they directly addressed the 36.3% entry drop. Specific changes:</p>
+
+            <ul>
+                <li><strong>Mobile filter elevation.</strong> Filters were originally collapsed behind a two-tap interaction pattern on mobile — meaning the vast majority of mobile visitors never applied a filter, and never saw the subset of the catalog relevant to their search intent. The variant surfaced primary filters (size, category, compliance rating) in a single-tap drawer accessible from the first fold.</li>
+                <li><strong>Category facet restructure.</strong> The legacy taxonomy was organized by product type (helmets / gloves / vests). The revised structure overlaid a use-case layer (construction / welding / first-responder) that matched how buyers searched — not how merchandisers catalogued inventory.</li>
+                <li><strong>Breadcrumb standardization.</strong> Breadcrumbs that were inconsistent across the catalog got normalized so back-navigation and related-category discovery worked predictably.</li>
+            </ul>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid rgba(52,211,153,0.15); background: rgba(52,211,153,0.03);">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WINNER</span>
+                    <span style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">Mobile Navigation & Filter — Before / After</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Filters collapsed behind double-tap interaction — most mobile users never applied a filter. Category taxonomy organized by product type (helmets / gloves / vests). <br><strong style="color: #fff;">After:</strong> Single-tap filter drawer with primary filters (size, category, compliance) in first fold. Use-case taxonomy overlay (construction / welding / first-responder) matching buyer search intent.</p>
+            </div>
+
+            <h3>Test 2 — PDP Quick-Info Block + Sticky Add-to-Cart</h3>
+            <p>The PDP intervention had to answer one question: "does this product meet my spec and compliance requirement?" Mobile sessions were arriving with a specific need, evaluating the page in under 60 seconds, and bouncing. The below-the-fold specification block was functionally invisible.</p>
+
+            <ul>
+                <li><strong>First-fold quick-info.</strong> The three specifications buyers actually needed — compatibility, safety certification, pack size — surfaced directly below the product title. The decision-critical data moved into the decision-critical viewport.</li>
+                <li><strong>Sticky mobile Add-to-Cart.</strong> A persistent bottom-anchored CTA appeared after the primary Add-to-Cart button scrolled out of view. Long spec descriptions were no longer penalizing the buyer who had finished reading them.</li>
+                <li><strong>Compliance callout.</strong> Safety equipment in a B2B context is purchased against specific regulatory standards (OSHA, ANSI, CE). The variant surfaced the relevant compliance standard directly on the product card — not buried in a downloadable specification PDF.</li>
+            </ul>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid rgba(52,211,153,0.15); background: rgba(52,211,153,0.03);">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WINNER</span>
+                    <span style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">PDP Quick-Info + Sticky ATC — Before / After</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Specifications buried below image carousel in a downloadable PDF. Compliance standards (OSHA, ANSI, CE) not visible in first fold. ATC button scrolled out of view on long spec pages. <br><strong style="color: #fff;">After:</strong> First-fold quick-info block with compatibility, certification, and pack size. Compliance callout on product card. Persistent sticky ATC bar on mobile. Double-digit mobile ATC lift.</p>
+            </div>
+
+            <h2>Phase 5: Results</h2>
+            <p>The tests ran on device-segmented traffic over a 6-week window. Results read against same-period control groups, not against historical baselines.</p>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="big">~20%</div>
+                    <div class="result-label">Funnel Efficiency Lift</div>
+                    <div class="result-sub">Weighted across both tests</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">$2.3M+</div>
+                    <div class="result-label">Projected Additional Revenue</div>
+                    <div class="result-sub">Annualized from measured deltas</div>
+                </div>
+                <div class="result-card">
+                    <div class="big">Double-digit</div>
+                    <div class="result-label">Mobile ATC Lift</div>
+                    <div class="result-sub">PDP test segment, mobile only</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">Entry Drop ↓</div>
+                    <div class="result-label">Collection Test Segment</div>
+                    <div class="result-sub">36.3% → single-digit improvement</div>
+                </div>
+            </div>
+
+            <p><em>Methodology note:</em> the $2.3M+ projection was derived from the measured monthly revenue deltas across both tests, annualized against the brand's documented traffic baseline. It is not a forward-looking forecast — it is the extrapolation of outcomes already observed in the test windows.</p>
+
+            <h3>What the cart test would have produced</h3>
+            <p>For the internal postmortem, I sanity-checked the prioritization call after the tests shipped. The cart-level intervention the team had originally wanted to run would have produced a projected lift of roughly <strong>one-fifth</strong> of what the two structural tests delivered combined. The prioritization call was not close.</p>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Convert.com</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">VWO</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Liquid (Shopify)</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Shopify</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>Audit the funnel before the brainstorm.</strong> Test ideas that emerge from "what do other CRO programs test" are structurally biased toward surfaces that are easy to instrument. Test ideas that emerge from "where is the funnel actually leaking" are almost always more leveraged — and almost always less defaulted.</li>
+                <li><strong>Aggregate CVR is the number that hides problems.</strong> A site with four simultaneous leaks can report a "normal" overall conversion rate while losing the most revenue at stages nobody on the team is looking at. Every engagement gets a page-type-level funnel breakdown before a single test is scoped.</li>
+                <li><strong>Leverage math beats intuition in stakeholder conversations.</strong> The "cart test feels more important" intuition is real and widely shared. Drawing the math explicitly — percentage × base × volume — reframes the conversation from what feels right to what moves the most revenue.</li>
+                <li><strong>De-prioritization is as much work as prioritization.</strong> Saying "we are not going to test the cart this quarter" is a harder conversation than "we are going to test the PDP." Both conversations have to be had. Skipping the first one produces a backlog that drifts back toward the default tests anyway.</li>
+                <li><strong>In B2B utilitarian commerce, filtering is a feature.</strong> The buyer profile is specs-driven. Filtering is not UX garnish — it is the primary decision-support mechanism. Treating it as a secondary feature is a category mismatch.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

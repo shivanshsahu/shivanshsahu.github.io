@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5,028 Reviews, One Real Problem | Shivansh</title>
+    <meta name="description" content="How I diagnosed broken tracking, mined 5,028 reviews, and built a 99-test pipeline for a high-volume Gen-Z streetwear brand processing 3M sessions/month.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .case-hero{padding:8rem 2rem 4rem;max-width:900px;margin:0 auto}
+        .case-hero .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:rgba(56,189,248,.1);color:var(--accent-primary);font-size:.85rem;font-weight:500;margin-bottom:1.5rem;border:1px solid rgba(56,189,248,.2)}
+        .case-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:1.5rem}
+        .case-hero .case-lede{font-size:1.15rem;line-height:1.7;color:var(--text-muted);max-width:750px}
+        .case-body{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+        .case-body h2{font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:700;margin:3.5rem 0 1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)}
+        .case-body h2:first-of-type{border-top:none}
+        .case-body h3{font-size:1.2rem;font-weight:600;margin:2rem 0 .75rem;color:var(--accent-primary)}
+        .case-body p,.case-body li{font-size:1.05rem;line-height:1.8;color:var(--text-muted)}
+        .case-body ul{padding-left:1.5rem}
+        .case-body li{margin-bottom:.5rem}
+        .case-body strong{color:var(--text-main)}
+        .case-body em{color:var(--accent-primary);font-style:normal}
+        .visual-card{margin:2.5rem 0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
+        .visual-card img{width:100%;display:block}
+        .visual-card figcaption{padding:1rem 1.5rem;font-size:.9rem;color:var(--text-muted);border-top:1px solid rgba(255,255,255,.06)}
+        .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.25rem;margin:2rem 0}
+        .stat-card{padding:1.25rem;border-radius:12px;background:rgba(56,189,248,.04);border:1px solid rgba(56,189,248,.1);text-align:center}
+        .stat-card .val{font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .stat-card .lbl{font-size:.8rem;color:var(--text-muted);margin-top:.25rem}
+        .pipeline-table{width:100%;border-collapse:collapse;margin:2rem 0;font-size:.85rem}
+        .pipeline-table th{text-align:left;padding:.6rem .8rem;background:rgba(56,189,248,.08);color:var(--accent-primary);font-weight:600;border-bottom:1px solid rgba(56,189,248,.15)}
+        .pipeline-table td{padding:.6rem .8rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-muted)}
+        .pipeline-table tr:hover td{background:rgba(56,189,248,.03)}
+        .tracking-diagram{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0}
+        @media(max-width:768px){.tracking-diagram{grid-template-columns:1fr}}
+        .diagram-panel{padding:1.5rem;border-radius:12px;border:1px solid rgba(255,255,255,.06)}
+        .diagram-panel.before{background:rgba(248,113,113,.04);border-color:rgba(248,113,113,.15)}
+        .diagram-panel.after{background:rgba(52,211,153,.04);border-color:rgba(52,211,153,.15)}
+        .diagram-panel h4{font-size:1rem;font-weight:700;margin-bottom:1rem}
+        .diagram-panel.before h4{color:#F87171}
+        .diagram-panel.after h4{color:#34D399}
+        .diagram-panel .flow-step{padding:.5rem .75rem;margin:.5rem 0;border-radius:8px;font-size:.85rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--text-muted)}
+        .diagram-panel .flow-arrow{text-align:center;color:rgba(255,255,255,.2);font-size:1.2rem}
+        .diagram-panel .flow-step.broken{border-color:rgba(248,113,113,.3);color:#F87171}
+        .diagram-panel .flow-step.fixed{border-color:rgba(52,211,153,.3);color:#34D399}
+        .cwv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:2rem 0}
+        .cwv-card{padding:1.25rem;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);text-align:center}
+        .cwv-card .metric-name{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:.5rem}
+        .cwv-card .metric-val{font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800}
+        .cwv-card .metric-budget{font-size:.75rem;color:var(--text-muted);margin-top:.25rem}
+        .cwv-card.fail .metric-val{color:#F87171}
+        .cwv-card.warn .metric-val{color:#FBBF24}
+        .callout{padding:1.25rem 1.5rem;border-radius:12px;margin:2rem 0;border-left:3px solid var(--accent-primary);background:rgba(56,189,248,.04);font-size:.95rem;line-height:1.7;color:var(--text-muted)}
+        .callout strong{color:var(--text-main)}
+        .back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--accent-primary);text-decoration:none;font-size:.95rem;font-weight:500;padding:.5rem 0;transition:gap .2s}
+        .back-link:hover{gap:.75rem}
+        .timeline-bar{display:flex;gap:0;margin:2rem 0;border-radius:12px;overflow:hidden;height:48px}
+        .timeline-bar .phase{display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:var(--bg-dark);text-align:center;padding:0 .5rem}
+        .timeline-bar .phase:nth-child(1){background:#F87171;flex:2}
+        .timeline-bar .phase:nth-child(2){background:#FBBF24;flex:2}
+        .timeline-bar .phase:nth-child(3){background:var(--accent-primary);flex:3}
+        .timeline-bar .phase:nth-child(4){background:#34D399;flex:2}
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="pulse-dot"></span>Shivansh.</a>
+            <div class="nav-links">
+                <a href="../index.html#case-studies">All Cases</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="../index.html#case-studies">All Cases</a>
+            <a href="../index.html#methodology">Methodology</a>
+            <a href="../index.html#contact" class="btn-primary" style="margin-top:1rem;">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <div class="case-hero">
+            <a href="../index.html#case-studies" class="back-link">&larr; Back to all cases</a>
+            <div class="badge" style="margin-top:1.5rem;">Fashion &middot; D2C &middot; India &middot; Mobile-First</div>
+            <h1>5,028 Reviews, <span class="gradient-text">One Real Problem</span></h1>
+            <p class="case-lede">A high-volume Gen-Z streetwear brand processing 3M sessions/month. Everything looked healthy on the surface &mdash; strong brand, cultural relevance, paid traffic flowing. Under the hood: broken GA4 attribution, a third-party checkout severing the data pipeline, and customers leaving because the product page couldn't answer two questions: <strong>&ldquo;Will this fit me?&rdquo;</strong> and <strong>&ldquo;Is the color really what I see?&rdquo;</strong></p>
+        </div>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">9</div><div class="lbl">Winning Tests</div></div>
+                <div class="stat-card"><div class="val">₹69M</div><div class="lbl">Annual Revenue Impact</div></div>
+                <div class="stat-card"><div class="val">140%</div><div class="lbl">Program ROI</div></div>
+                <div class="stat-card"><div class="val">5,028</div><div class="lbl">Reviews Mined</div></div>
+                <div class="stat-card"><div class="val">3M</div><div class="lbl">Monthly Sessions</div></div>
+            </div>
+
+            <div class="timeline-bar">
+                <div class="phase">Week 1&ndash;2: Tracking Fix</div>
+                <div class="phase">Week 2&ndash;3: Audit</div>
+                <div class="phase">Week 3&ndash;6: Research + Pipeline</div>
+                <div class="phase">Week 6+: Testing</div>
+            </div>
+
+            <h2>Phase 1: The Data Was Lying</h2>
+            <p>The brand used a third-party checkout system that severed the GA4 session chain. Purchase events either didn't fire or fired without item data, attribution collapsed to <em>direct / (none)</em>, and the revenue column in GA4 showed near-zero for campaigns clearly driving sales.</p>
+            <p>I also found <strong>14 duplicate-firing tags</strong> in GTM &mdash; multiple triggers on the same interaction inflating every KPI by up to 2&times;. The team was making decisions on metrics that were literally doubling the real numbers.</p>
+
+            <div class="tracking-diagram">
+                <div class="diagram-panel before">
+                    <h4>&cross; Before: Broken Pipeline</h4>
+                    <div class="flow-step">User lands on PDP (Shopify)</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step">Adds to cart &rarr; fires ATC event <strong>&times;2</strong></div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step broken">Redirects to 3rd-party checkout &rarr; session breaks</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step broken">Purchase fires without items[], value, or source</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step broken">GA4: revenue = $0, source = direct/none</div>
+                </div>
+                <div class="diagram-panel after">
+                    <h4>&check; After: Full-Funnel Attribution</h4>
+                    <div class="flow-step">User lands on PDP (Shopify)</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step fixed">ATC fires once (dedup via event_id hash)</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step fixed">Cross-domain linker preserves session + gclid</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step fixed">Purchase on Thank You page: full items[], value, tx_id</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-step fixed">GA4: revenue stitched, attribution intact</div>
+                </div>
+            </div>
+
+            <p>The fix involved four parallel workstreams:</p>
+            <ul>
+                <li><strong>Cross-domain continuity:</strong> Enabled the GA4 linker on both domains so session IDs and click IDs persisted across the checkout handoff.</li>
+                <li><strong>Purchase tagging on the Thank You page:</strong> Implemented the purchase event via the checkout platform's pixel manager with a standardized ecommerce data layer.</li>
+                <li><strong>Event deduplication:</strong> Built an order_id registry + event_id hashing system to prevent page-reload and SPA re-render duplicates.</li>
+                <li><strong>Consent Mode v2 + Enhanced Conversions:</strong> Hashed email/phone mappings from the data layer, standardized consent signals sitewide.</li>
+            </ul>
+
+            <div class="callout"><strong>The unglamorous truth:</strong> This tracking work took two weeks. It produced no test results. It moved no conversion metric. But without it, every test I would have run afterwards would have been measured against corrupted data. Fixing the data first is the most important work I do &mdash; and the hardest to sell.</div>
+
+            <h2>Phase 2: Understanding the Funnel</h2>
+            <p>With clean data, I ran a full funnel audit. The headline: <strong>1 in 40 product page viewers completed a purchase</strong>.</p>
+
+            <figure class="visual-card">
+                <img src="../assets/visuals/funnel_waterfall.png" alt="Conversion funnel: 3M sessions narrowing to 7K purchases" loading="lazy">
+                <figcaption>Site-wide purchase funnel. The 92% drop from product view to ATC is the critical leak.</figcaption>
+            </figure>
+
+            <p>The problem wasn't checkout or payment. <strong>92% of users who viewed a product never added it to cart.</strong> That's where the money was leaking &mdash; at the moment of product evaluation.</p>
+
+            <h3>The Device Divergence</h3>
+            <figure class="visual-card">
+                <img src="../assets/visuals/device_split.png" alt="Mobile vs desktop: 94/6 traffic split but desktop worth 26% more per visitor" loading="lazy">
+                <figcaption>Mobile dominates traffic but bleeds revenue. Every mobile UX improvement has 15&times; the addressable audience.</figcaption>
+            </figure>
+
+            <h3>Scroll Depth: The Invisible Wall</h3>
+            <p>100K+ mobile pageviews revealed: <strong>50% of mobile users were gone by 20% page depth.</strong> Only 1.5% reached the bottom.</p>
+
+            <figure class="visual-card">
+                <img src="../assets/visuals/scroll_decay.png" alt="Scroll depth decay: mobile loses 50% by 20% page depth" loading="lazy">
+                <figcaption>Anything below the first fold on mobile is functionally invisible to half the audience.</figcaption>
+            </figure>
+
+            <h3>Core Web Vitals</h3>
+            <div class="cwv-grid">
+                <div class="cwv-card fail"><div class="metric-name">LCP</div><div class="metric-val">3.77s</div><div class="metric-budget">Budget: &lt;2.5s</div></div>
+                <div class="cwv-card warn"><div class="metric-name">CLS</div><div class="metric-val">0.18</div><div class="metric-budget">Budget: &lt;0.10</div></div>
+                <div class="cwv-card fail"><div class="metric-name">INP</div><div class="metric-val">310ms</div><div class="metric-budget">Budget: &lt;200ms</div></div>
+                <div class="cwv-card fail"><div class="metric-name">TTFB</div><div class="metric-val">812ms</div><div class="metric-budget">Budget: &lt;200ms</div></div>
+            </div>
+            <p>Root causes: 780KB hero video on autoplay, duplicate JS bundles, 34% unused CSS, and 17 long tasks blocking main thread.</p>
+
+            <h2>Phase 3: Mining 5,028 Reviews</h2>
+            <p>The quant data showed <em>where</em> users dropped. To understand <em>why</em>, I mined every customer review &mdash; 5,028 total, published and unpublished.</p>
+
+            <figure class="visual-card">
+                <img src="../assets/visuals/review_sentiment.png" alt="39% sizing, 21% color accuracy, 18% fabric quality complaints" loading="lazy">
+                <figcaption>60% of negative reviews stem from information gaps solvable on the product page &mdash; not product defects.</figcaption>
+            </figure>
+
+            <p><strong>60% of all negative reviews were about information gaps</strong> &mdash; sizing uncertainty (39%), color mismatch (21%), and fabric feel (18%). These weren't product quality problems. They were product page communication problems.</p>
+
+            <div class="callout"><strong>The research insight that changed the roadmap:</strong> I also designed post-purchase and exit-intent surveys. The exit question &mdash; <em>&ldquo;What's missing from this page that would help you make the purchase decision?&rdquo;</em> &mdash; was deliberately open-ended. The questions you <em>don't</em> bias are the ones that surface the problems you weren't looking for.</div>
+
+            <h2>Phase 4: The 99-Test Pipeline</h2>
+            <table class="pipeline-table">
+                <thead><tr><th>Area</th><th>Change</th><th>Data Backing</th><th>Lift</th><th>ICE</th></tr></thead>
+                <tbody>
+                    <tr><td>PDP</td><td>Sticky ATC bar after first scroll</td><td>ATC only 1.1% taps; high scroll depth</td><td>+8%</td><td>21</td></tr>
+                    <tr><td>PDP</td><td>Inline 3-question fit finder</td><td>39% of 1&#9733; reviews cite size mis-fit</td><td>+6%</td><td>18</td></tr>
+                    <tr><td>PDP</td><td>Star rating moved above fold</td><td>&lt;2% scroll to reviews currently</td><td>+4%</td><td>20</td></tr>
+                    <tr><td>PDP</td><td>Daylight colour photo as hero</td><td>21% of 1&#9733; reviews cite colour issues</td><td>+3%</td><td>18</td></tr>
+                    <tr><td>PDP</td><td>Fabric stretch 5s video loop</td><td>32% of low reviews call fabric thin</td><td>+2%</td><td>15</td></tr>
+                    <tr><td>Collection</td><td>Sticky filter bar</td><td>Filters 3.7% taps; filter users CVR 1.9%</td><td>+6%</td><td>20</td></tr>
+                    <tr><td>Collection</td><td>Best-selling default sort</td><td>Sort-switchers convert 1.63%</td><td>+4%</td><td>20</td></tr>
+                    <tr><td>Collection</td><td>Hero height reduction to 250px</td><td>40% bounce before grid visible</td><td>+4%</td><td>18</td></tr>
+                    <tr><td>Homepage</td><td>Exposed full-width search bar</td><td>Searchers CVR 3.97% vs 2.4% avg</td><td>+50% use</td><td>19</td></tr>
+                    <tr><td>Homepage</td><td>Vertical reel hero</td><td>Static hero dead-taps at 25%</td><td>+3% CTR</td><td>16</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size:.85rem;color:var(--text-muted);">Showing 10 of 99 tests. Full pipeline covers PDP (15), Collection (10), Homepage (8), Cart (5), Navigation (4), and cross-functional experiments.</p>
+
+            <h2>Phase 5: Testing &mdash; 9 Winners, ₹69M Annual Impact</h2>
+            <p>The first test I shipped targeted the <strong>collection page</strong>, not the PDP. The premium cotton collection was showing reviews inline &mdash; the variant surfaced product USPs above the fold. It won, validating the core thesis: <em>information surfaced early converts better than information buried deep.</em></p>
+            <p>From there, I ran 25+ tests over 7 months. Nine produced statistically significant winners, all implemented:</p>
+
+            <table class="pipeline-table">
+                <thead><tr><th>Test</th><th>Area</th><th>Verdict</th><th>Monthly Revenue</th><th>Learning</th></tr></thead>
+                <tbody>
+                    <tr><td>Key Highlights (premium cotton)</td><td>PDP</td><td style="color:#34D399">Winner</td><td>₹120K</td><td>Trust-driven highlights near the decision zone accelerate commitment</td></tr>
+                    <tr><td>Details in Product Image</td><td>PDP</td><td style="color:#34D399">Winner</td><td>₹895K</td><td>Key product info early in the image gallery helps users decide without scrolling</td></tr>
+                    <tr><td>3-Month Guarantee Badge</td><td>PDP</td><td style="color:#34D399">Winner</td><td>₹247K</td><td>Even small reassurance signals lift revenue and perceived quality</td></tr>
+                    <tr><td>Size Guide Redesign</td><td>PDP</td><td style="color:#34D399">Winner</td><td>₹1.23M</td><td>Clearer sizing info improves confidence; placement and visibility are everything</td></tr>
+                    <tr><td>Size Guide v2 (Reiteration)</td><td>PDP</td><td style="color:#34D399">Winner</td><td>₹423K</td><td>Iterating on a winner extracts more value &mdash; the v2 added trust signals around sizing</td></tr>
+                    <tr><td>Exposed Search Bar</td><td>Sitewide</td><td style="color:#34D399">Winner</td><td>&mdash;</td><td>Searchers convert 63% higher; making search visible doubled usage</td></tr>
+                    <tr><td>Social Proof Badges</td><td>PDP</td><td style="color:#34D399">Winner</td><td>₹981K</td><td>Zero-review products need social proof from other signals; badges fill the gap</td></tr>
+                    <tr><td>360&deg; Product Rotation Videos</td><td>PDP/PLP</td><td style="color:#34D399">Winner</td><td>₹1.51M</td><td>Users paused and engaged with 360 views; reduced bounce and increased purchase confidence</td></tr>
+                    <tr><td>New Arrival Page Redesign</td><td>Collection</td><td style="color:#34D399">Winner</td><td>₹354K</td><td>Every funnel step improved &mdash; proving the collection page was the bottleneck, not PDP</td></tr>
+                </tbody>
+            </table>
+
+            <div class="stats-row" style="margin-top:2rem;">
+                <div class="stat-card"><div class="val">₹28.8M</div><div class="lbl">4-Month Revenue Impact</div></div>
+                <div class="stat-card"><div class="val">₹69M</div><div class="lbl">Annual Projection</div></div>
+                <div class="stat-card"><div class="val">140%</div><div class="lbl">Program ROI</div></div>
+            </div>
+
+            <h3 style="margin-top:2.5rem;">Test Visuals: Before &amp; After</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:1.5rem;margin-top:1.5rem;">
+
+                <figure class="visual-card">
+                    <img src="../assets/visuals/test_collection_page.png" alt="Collection page before/after: USP badges added between hero and product grid" loading="lazy">
+                    <figcaption><strong>New Arrival Page Redesign</strong> — ₹354K/mo. The first test: surfacing product USPs on the collection page above the grid. Validated the core thesis.</figcaption>
+                </figure>
+
+                <figure class="visual-card">
+                    <img src="../assets/visuals/test_details_in_pi.png" alt="Product image before/after: specs overlay added to image gallery" loading="lazy">
+                    <figcaption><strong>Details in Product Image</strong> — ₹895K/mo. Product specs embedded directly into the image gallery slide, eliminating the need to scroll past the fold.</figcaption>
+                </figure>
+
+                <figure class="visual-card">
+                    <img src="../assets/visuals/test_size_guide.png" alt="Size guide before/after: inline measurements replace hidden modal" loading="lazy">
+                    <figcaption><strong>Size Guide Redesign</strong> — ₹1.23M/mo. Inline measurements visible without clicking. 26% ATC uplift at 96% stat sig. The biggest single PDP improvement.</figcaption>
+                </figure>
+
+                <figure class="visual-card">
+                    <img src="../assets/visuals/test_guarantee_badge.png" alt="Guarantee badge before/after: 90-day guarantee added near price" loading="lazy">
+                    <figcaption><strong>3-Month Guarantee Badge</strong> — ₹247K/mo. A single trust element near the price zone. Small addition, measurable revenue.</figcaption>
+                </figure>
+
+                <figure class="visual-card">
+                    <img src="../assets/visuals/test_key_highlights.png" alt="Key highlights before/after: trust badges and inline sizing added to PDP" loading="lazy">
+                    <figcaption><strong>Key Highlights + Trust Badges</strong> — ₹120K/mo. Premium Fabric, Easy Exchange, and Prepaid Discount badges with inline size measurements near ATC.</figcaption>
+                </figure>
+
+            </div>
+
+            <div class="callout"><strong>The losses mattered too:</strong> The First Fold Layout Redesign lost &mdash; twice. The OOS Alternatives test lost. The ATC vs Buy Now test confirmed both CTAs are necessary. Every loss generated a documented learning that shaped the next iteration. The program's ROI came from iterating on what worked <em>and</em> stopping what didn't.</div>
+
+            <h2>Beyond CRO: AI Automation That Scaled the Wins</h2>
+            <p>This engagement extended well beyond A/B testing. Once tests started winning, the real question became: <em>how do you scale these results across 2,000+ SKUs without burning 6 months of manual work?</em> The answer was automation.</p>
+
+            <h3>Third-Party Checkout Data Layer</h3>
+            <p>The brand used a third-party checkout that severed the GA4 ecommerce funnel. No <code>begin_checkout</code>, no <code>add_shipping_info</code>, no <code>purchase</code> event &mdash; all invisible to analytics. I wrote a custom JavaScript data layer that listens to the checkout iframe's <code>postMessage</code> events, maps them to GA4 ecommerce schema, and restores the full funnel via <code>sessionStorage</code> persistence across the redirect.</p>
+            <p style="margin-top:.5rem;"><a href="https://github.com/shivanshsahu/third-party-checkout-events" target="_blank" rel="noopener" style="color:var(--accent-primary);font-weight:600;text-decoration:underline;">View the data layer on GitHub &rarr;</a></p>
+
+            <h3>Automated Video Generation Pipeline</h3>
+            <p>The 360&deg; rotation video test was the biggest single winner (₹1.51M/month). Scaling it manually across the catalog would have taken weeks. Instead, I built a Python automation pipeline that takes product image sets as input and programmatically generates 360&deg; rotation videos &mdash; consistent framing, standard rotation speed, export-ready for Shopify. This turned a single winning test into a production system that could process the entire catalog.</p>
+            <p style="margin-top:.5rem;"><a href="https://github.com/shivanshsahu/video-automation" target="_blank" rel="noopener" style="color:var(--accent-primary);font-weight:600;text-decoration:underline;">View the video automation on GitHub &rarr;</a></p>
+
+            <h3>Metafield Architecture + A+ Content Framework</h3>
+            <p>I built structured Shopify metafields for product attributes &mdash; fabric composition, GSM weight, fit type, care instructions &mdash; across 2,000+ SKUs. After the "Details in PI" test won (₹895K/month), I created the content framework specifying what information goes on which image slide and how the hierarchy maps to the review-driven anxiety signals uncovered in the research phase.</p>
+
+            <div class="callout"><strong>Why this matters:</strong> Most CRO operators stop at "the test won." I automated the scaling &mdash; a JavaScript data layer that restored broken attribution, a Python pipeline that generated hundreds of product videos, and a metafield system that structured product data across the catalog. That's the difference between a test result and a revenue engine.</div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>Tracking work is invisible and essential.</strong> Two weeks of cross-domain fixes produced no test results &mdash; and made every subsequent test trustworthy.</li>
+                <li><strong>Reviews are a research instrument, not social proof.</strong> Mining 5,028 reviews revealed the brand's biggest barrier: information anxiety, not product quality.</li>
+                <li><strong>The first test should prove the thesis, not optimize a metric.</strong> Starting on the collection page &mdash; not the PDP &mdash; validated the information-surfacing hypothesis at the point of highest traffic and highest bounce.</li>
+                <li><strong>A winning test is the beginning &mdash; automation is the end.</strong> The 360&deg; video test winning meant nothing until I built a Python pipeline to generate videos at scale and a metafield system to structure data across 2,000 products.</li>
+                <li><strong>Write code when it solves a CRO problem.</strong> A custom data layer for broken checkout attribution. A video generation script for scaling a winning test. The best CRO work isn't always in the testing tool.</li>
+                <li><strong>140% ROI came from discipline, not luck.</strong> 9 winners out of 25+ tests. That's a ~36% win rate. The other 64% generated learnings that made the winners possible.</li>
+            </ul>
+
+            <h2>Tools &amp; Stack</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:2rem;margin-top:1.5rem;">
+                <div>
+                    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.6rem;">Experimentation</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(0,245,212,.08);border:1px solid rgba(0,245,212,.2);color:var(--accent-primary);">VWO</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(0,245,212,.08);border:1px solid rgba(0,245,212,.2);color:var(--accent-primary);">Google Optimize</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(0,245,212,.08);border:1px solid rgba(0,245,212,.2);color:var(--accent-primary);">Custom A/B</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.6rem;">Analytics &amp; Tracking</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);color:var(--accent-secondary);">GA4</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);color:var(--accent-secondary);">GTM</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);color:var(--accent-secondary);">Microsoft Clarity</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);color:var(--accent-secondary);">dataLayer</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.6rem;">Development</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:#FBBF24;">JavaScript</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:#FBBF24;">Python</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:#FBBF24;">Shopify Liquid</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:#FBBF24;">Metafields API</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.6rem;">Platform</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:#34D399;">Shopify Plus</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:#34D399;">GitHub</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.6rem;">Research</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(244,114,182,.08);border:1px solid rgba(244,114,182,.2);color:#F472B6;">Review Mining (5,028)</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(244,114,182,.08);border:1px solid rgba(244,114,182,.2);color:#F472B6;">Heuristic Audits</span>
+                        <span style="padding:.35rem .75rem;border-radius:999px;font-size:.8rem;background:rgba(244,114,182,.08);border:1px solid rgba(244,114,182,.2);color:#F472B6;">Session Recordings</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);">
+                <a href="../index.html#case-studies" class="back-link">&larr; Back to all case studies</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><span class="pulse-dot"></span>Shivansh.</div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>&copy; 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

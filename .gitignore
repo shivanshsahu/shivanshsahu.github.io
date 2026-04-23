@@ -1,0 +1,20 @@
+# Build script — not needed for serving
+build_site.py
+
+# Markdown source files — already baked into index.html
+content/
+*.md
+!README.md
+
+# Build templates — not served
+case.template.html
+capability.template.html
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# macOS
+.DS_Store

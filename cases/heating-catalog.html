@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Revenue the Dashboard Was Hiding — Shivansh</title>
+    <meta name="description" content="A B2B/B2C heating retailer running two parallel PDP and collection tests. The PDP test was flat. The collection test generated $391K/mo. The collection page was doing the qualification work — and that's where the real conversion surface lived.">
+    <meta property="og:title" content="The Revenue the Dashboard Was Hiding — Shivansh">
+    <meta property="og:description" content="Why the PDP wasn't leaking — the collection page was. $391K/mo in incremental revenue from one structural test.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+
+        /* Collection card anatomy */
+        .card-anatomy { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .card-anatomy { grid-template-columns: 1fr; } }
+        .anatomy-card { padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .anatomy-card.before { background: rgba(255,255,255,0.02); }
+        .anatomy-card.after { background: rgba(52,211,153,0.04); border-color: rgba(52,211,153,0.18); }
+        .anatomy-card h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem; }
+        .anatomy-card.before h4 { color: var(--text-dim); }
+        .anatomy-card.after h4 { color: #34D399; }
+        .fake-card { padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 6px; border: 1px solid var(--border-color); }
+        .fake-card .image-placeholder { background: rgba(255,255,255,0.05); height: 80px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+        .fake-card .card-title { font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 0.4rem; }
+        .fake-card .card-specs { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.4; }
+        .fake-card .card-specs.new { color: var(--accent-primary); font-weight: 500; }
+        .fake-card .card-price { font-size: 0.95rem; color: #fff; font-weight: 700; margin-bottom: 0.5rem; }
+        .fake-card .card-cta { font-size: 0.75rem; padding: 0.35rem 0.75rem; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.35); border-radius: 4px; color: var(--accent-primary); text-align: center; }
+        .fake-card .card-cta.ghost { background: transparent; border: 1px dashed rgba(255,255,255,0.15); color: var(--text-dim); }
+
+        /* Parallel test comparison */
+        .test-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .test-compare { grid-template-columns: 1fr; } }
+        .test-col { padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .test-col.winner { background: rgba(52,211,153,0.04); border-color: rgba(52,211,153,0.18); }
+        .test-col.loser { background: rgba(251,191,36,0.04); border-color: rgba(251,191,36,0.18); }
+        .test-col .status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; }
+        .test-col.winner .status { background: rgba(52,211,153,0.15); color: #34D399; }
+        .test-col.loser .status { background: rgba(251,191,36,0.15); color: #FBBF24; }
+        .test-col h4 { font-size: 1rem; color: #fff; margin: 0 0 0.5rem; }
+        .test-col .test-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .test-col .outcome { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
+        .test-col.winner .outcome { color: #34D399; }
+        .test-col.loser .outcome { color: #FBBF24; }
+        .test-col .interpretation { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); line-height: 1.6; }
+
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        .result-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); text-align: center; }
+        .result-card .big { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .result-card .medium { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #34D399; line-height: 1.1; }
+        .result-card .result-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-card .result-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+
+        .case-body .visual-placeholder { margin: 2rem 0; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="pulse-dot"></span>Shivansh.</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">← Back to all cases</a>
+            <div class="badge">Home Goods · B2B + B2C · US · Catalog UX</div>
+            <h1>The Revenue the <span class="gradient-text">Dashboard Was Hiding</span></h1>
+            <p class="case-lede">A US-based retailer in home heating and outdoor living — deep catalog, two distinct buyer populations (contractors specifying commercial installations, homeowners replacing a unit). Both landing on the same collection pages, both receiving the same thin information. I ran two parallel tests — Collection and PDP. The PDP test read flat. The Collection test generated <strong>$391K/mo in incremental revenue</strong>. The story: the PDP wasn't leaking. The Collection grid was.</p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">+19.18%</div><div class="lbl">Conversion Rate</div></div>
+                <div class="stat-card"><div class="val">+11.99%</div><div class="lbl">Add-to-Cart</div></div>
+                <div class="stat-card"><div class="val">$391K</div><div class="lbl">Monthly Incremental Revenue</div></div>
+                <div class="stat-card"><div class="val">2</div><div class="lbl">Parallel Tests</div></div>
+                <div class="stat-card"><div class="val">1</div><div class="lbl">Won Decisively</div></div>
+            </div>
+
+            <h2>Phase 1: Where Everyone Wants to Test (and Why They're Wrong)</h2>
+            <p>When a catalog retailer has healthy traffic and underperforming conversion, the instinctive test target is the Product Detail Page (PDP). It's where "conversion happens." It's the page with the Add-to-Cart button. Every stakeholder in the room wants to test the PDP.</p>
+
+            <p>Here the PDP had a reasonable conversion rate for buyers who reached it. Session recordings showed engagement on the product page, not abandonment. The heatmaps weren't alarming. The funnel math said the PDP was converting at the expected rate for the category.</p>
+
+            <p>The Collection page was a different story. Session recordings showed a repeatable pattern: users landing on a collection page, scanning the grid for three to four seconds, then bouncing — not to a competitor's cart, but backwards into search results. They weren't rejecting the brand. They were rejecting the information architecture. The grid was not telling them enough to decide whether clicking through was worth it.</p>
+
+            <div class="callout">
+                <strong>The diagnostic hypothesis.</strong> The collection page was failing to qualify buyers well enough for the right ones to advance. The PDP was fine at converting <em>qualified</em> traffic — but it was receiving under-qualified traffic. A PDP test would have improved a page that didn't need improving. A Collection test would improve the page that was actually leaking.
+            </div>
+
+            <h2>Phase 2: Anatomy of the Two Cards</h2>
+
+            <div class="card-anatomy">
+                <div class="anatomy-card before">
+                    <h4>Before — sparse card</h4>
+                    <div class="fake-card">
+                        <div class="image-placeholder">product image</div>
+                        <div class="card-title">Model X7 Heater</div>
+                        <div class="card-price">$2,149</div>
+                        <div class="card-cta ghost">click for details</div>
+                    </div>
+                </div>
+                <div class="anatomy-card after">
+                    <h4>After — spec-forward card</h4>
+                    <div class="fake-card">
+                        <div class="image-placeholder">product image</div>
+                        <div class="card-title">Model X7 Heater</div>
+                        <div class="card-specs new">30,000 BTU · 1,000 sq ft · propane/NG<br>direct-vent · residential + commercial</div>
+                        <div class="card-price">$2,149 &nbsp;<span style="color: var(--text-dim); font-weight: 500; font-size: 0.75rem;">free shipping</span></div>
+                        <div class="card-cta">View specs &amp; buy</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>Five fields added to the collection card:</p>
+            <ul>
+                <li><strong>BTU rating</strong> — the single most-searched specification in this category</li>
+                <li><strong>Coverage area (sq ft)</strong> — what contractors and homeowners actually measure against</li>
+                <li><strong>Fuel compatibility</strong> — propane, natural gas, electric — binary pre-qualifier</li>
+                <li><strong>Venting type</strong> — direct-vent, vent-free, flue-required</li>
+                <li><strong>Application tag</strong> — residential, commercial, or both</li>
+            </ul>
+
+            <p>These were not new specifications. They had always existed — buried inside the PDP's description tab. Elevating them onto the card let the buyer decide on the grid whether a product was worth clicking through.</p>
+
+            <h2>Phase 3: Two Parallel Tests</h2>
+            <p>Rather than guess which surface to test, I scoped and ran both in parallel. A/A-verified split on each, non-overlapping traffic, read independently.</p>
+
+            <div class="test-compare">
+                <div class="test-col winner">
+                    <span class="status">✓ Won decisively</span>
+                    <h4>Test 1 — Collection Grid Redesign</h4>
+                    <div class="test-sub">Information-dense cards with inline specifications, standardized CTA, reordered filter hierarchy</div>
+                    <div class="outcome">+19.18% CVR<br>+11.99% ATC</div>
+                    <div class="interpretation">Interpretation: the grid was the real conversion surface. Specs-driven buyers were qualifying <em>at the card</em> — not at the PDP.</div>
+                </div>
+                <div class="test-col loser">
+                    <span class="status">≈ Read flat</span>
+                    <h4>Test 2 — PDP First Fold Restructure</h4>
+                    <div class="test-sub">Reorganized first fold to lead with spec validation, demoted description tab, elevated trust badges</div>
+                    <div class="outcome">Flat<br>no significant delta</div>
+                    <div class="interpretation">Interpretation: the PDP didn't need help. Once a qualified buyer arrived, the PDP was already doing its job. Upstream qualification was the constraint.</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>Why running both matters.</strong> If I had only tested the PDP — the default choice — the program would have produced a flat result and the team would have concluded "CRO doesn't work here." Running both surfaces in parallel proved exactly the opposite: CRO was working, the team had just been pointing it at the wrong page.
+            </div>
+
+            <div style="margin: 2rem 0; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(56,189,248,0.12);">
+                <img src="../assets/visuals/test_heating_collection.png" alt="Collection page grid before/after — sparse cards vs spec-forward cards with BTU, coverage, fuel type" style="width: 100%; display: block;">
+            </div>
+
+            <h2>Phase 4: Results</h2>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="big">+19.18%</div>
+                    <div class="result-label">Conversion Rate</div>
+                    <div class="result-sub">Collection test, sitewide segment</div>
+                </div>
+                <div class="result-card">
+                    <div class="big">+11.99%</div>
+                    <div class="result-label">Add-to-Cart Rate</div>
+                    <div class="result-sub">Direct card engagement lift</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">$391K/mo</div>
+                    <div class="result-label">Incremental Revenue</div>
+                    <div class="result-sub">Documented monthly delta</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">+6%</div>
+                    <div class="result-label">Chatbot Engagement</div>
+                    <div class="result-sub">Secondary — better qualified traffic</div>
+                </div>
+            </div>
+
+            <p><em>Baseline:</em> control traffic on unredesigned collection pages, 6-week test window, 50/50 allocation. The +6% chatbot engagement uplift was a secondary finding — buyers who now had the qualifying information on the card were more likely to ask follow-up questions via chat, feeding better data back to customer service and reducing pre-sales support load.</p>
+
+            <h3>The PDP test was not a failure</h3>
+            <p>Worth saying explicitly: the PDP test <em>reading flat</em> was the most valuable single data point in the program. It proved the conversion problem was not on the PDP. Without that flat read, the team would have continued scoping PDP tests for the next quarter, with predictable results. The flat PDP read redirected development bandwidth toward structural work upstream — where the actual leak was.</p>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Convert.com</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Liquid (Shopify)</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Shopify</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>The Collection page is the real conversion surface for specs-driven catalogs.</strong> In B2B and technical e-commerce where buyers arrive with measurable requirements, they decide on the grid. The PDP is confirmation, not persuasion. Most programs test the PDP because that's what general-audience CRO articles prescribe — and miss the surface where the actual qualification is happening.</li>
+                <li><strong>Run parallel tests when the diagnosis is ambiguous.</strong> The Collection vs PDP test saved the program from scoping the next three PDP tests. Running both at once cost marginal additional effort and produced definitive routing information for the rest of the roadmap.</li>
+                <li><strong>A flat test result is diagnostic, not a failure.</strong> The PDP test reading flat was informationally positive — it eliminated an entire test category from future scoping. Programs that treat flat results as failures are programs that don't learn.</li>
+                <li><strong>The specifications the buyer searches for should live wherever the buyer makes the decision.</strong> The BTU rating had always been on the PDP. Moving it to the grid wasn't adding data — it was moving data to the decision point. Same information, different location, dramatically different outcome.</li>
+                <li><strong>Secondary metrics (chatbot engagement) signal whether the real problem was solved.</strong> A test that lifts primary CVR but doesn't move secondary signals might be a surface-level intervention. A test that lifts CVR and also moves chat engagement, return-visitor rate, and support ticket volume is a structural intervention. This was the latter.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><span class="pulse-dot"></span>Shivansh.</div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

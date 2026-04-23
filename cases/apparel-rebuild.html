@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Pages, Three Wins, One Rebuild — Shivansh</title>
+    <meta name="description" content="A UK workwear brand rebuilt from the homepage down. Three coordinated tests across homepage, collection, and PDP — with dev briefs specifying the GA4 schema before the designer finished the artboards. +297% revenue on the collection redesign.">
+    <meta property="og:title" content="Three Pages, Three Wins, One Rebuild — Shivansh">
+    <meta property="og:description" content="A four-month multi-page CRO rebuild with coordinated design + dev + QA workstreams. +297% revenue on the collection redesign.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+
+        /* Gantt-style workstream timeline */
+        .gantt { margin: 2rem 0 2.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; }
+        .gantt-head { display: grid; grid-template-columns: 140px repeat(16, 1fr); background: rgba(255,255,255,0.03); }
+        .gantt-head > div { padding: 0.5rem 0.25rem; font-size: 0.65rem; color: var(--text-dim); text-align: center; letter-spacing: 0.05em; border-right: 1px solid var(--border-color); }
+        .gantt-head > div:first-child { text-align: left; padding-left: 0.85rem; color: var(--accent-primary); text-transform: uppercase; font-weight: 600; }
+        .gantt-row { display: grid; grid-template-columns: 140px 1fr; border-top: 1px solid var(--border-color); align-items: center; min-height: 48px; }
+        .gantt-label { padding: 0.5rem 0.85rem; font-size: 0.82rem; color: var(--text-main); font-weight: 500; border-right: 1px solid var(--border-color); height: 100%; display: flex; align-items: center; }
+        .gantt-track { position: relative; height: 32px; margin: 0 0.5rem; }
+        .gantt-bar { position: absolute; top: 4px; height: 24px; border-radius: 4px; display: flex; align-items: center; padding: 0 0.6rem; font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
+        .gantt-bar.design { background: rgba(129,140,248,0.25); color: #C7D2FE; border: 1px solid rgba(129,140,248,0.4); }
+        .gantt-bar.dev { background: rgba(56,189,248,0.25); color: #BAE6FD; border: 1px solid rgba(56,189,248,0.4); }
+        .gantt-bar.qa { background: rgba(52,211,153,0.25); color: #A7F3D0; border: 1px solid rgba(52,211,153,0.4); }
+        @media (max-width: 768px) { .gantt { font-size: 0.7rem; } .gantt-head { grid-template-columns: 100px repeat(16, 1fr); } .gantt-row { grid-template-columns: 100px 1fr; } }
+
+        /* Handoff brief code block */
+        .handoff { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); font-family: 'SF Mono', Menlo, monospace; font-size: 0.82rem; line-height: 1.7; color: var(--text-main); margin: 1.5rem 0 2rem; overflow-x: auto; }
+        .handoff .k { color: var(--accent-primary); }
+        .handoff .v { color: #34D399; }
+        .handoff .c { color: var(--text-dim); }
+        .handoff .group-label { color: #FBBF24; font-weight: 700; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; display: block; margin: 0.75rem 0 0.4rem; }
+        .handoff .group-label:first-child { margin-top: 0; }
+
+        /* Phase result block */
+        .phase-result { padding: 1.75rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); margin: 1.5rem 0 2rem; }
+        .phase-result h4 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #34D399; margin: 0 0 0.5rem; font-weight: 700; }
+        .phase-result .phase-title { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+        .phase-result .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.85rem; }
+        .phase-result .metric { padding: 0.85rem; background: rgba(0,0,0,0.2); border-radius: 6px; text-align: center; }
+        .phase-result .metric .val { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .phase-result .metric .lbl { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .phase-result .baseline { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); font-style: italic; }
+
+        /* Sequencing diagram */
+        .sequence { display: grid; grid-template-columns: 1fr 30px 1fr 30px 1fr; gap: 0.5rem; align-items: center; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .sequence { grid-template-columns: 1fr; } .sequence .arrow { transform: rotate(90deg); margin: 0 auto; } }
+        .sequence-step { padding: 1rem 1.25rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); text-align: center; }
+        .sequence-step .n { font-family: var(--font-heading); font-size: 0.7rem; color: var(--accent-primary); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; }
+        .sequence-step .t { font-weight: 600; color: #fff; font-size: 0.92rem; margin-bottom: 0.25rem; }
+        .sequence-step .d { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+        .sequence .arrow { color: var(--accent-primary); font-size: 1.5rem; text-align: center; }
+
+        .case-body .visual-placeholder { margin: 2rem 0; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="pulse-dot"></span>Shivansh.</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">← Back to all cases</a>
+            <div class="badge">Apparel · D2C · UK · Multi-Page Rebuild</div>
+            <h1>Three Pages, Three Wins, <span class="gradient-text">One Rebuild</span></h1>
+            <p class="case-lede">A UK workwear and apparel brand with a fragmented site stack, legacy third-party apps fighting for layout real estate, and three underperforming surfaces: homepage, collection, and Product Detail Page (PDP). A four-month coordinated rebuild with three tests sequenced to compound — because each surface changed the qualification of the traffic reaching the next. <strong>+297% revenue on the collection redesign</strong> was only possible because the homepage test had already shifted the traffic mix.</p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">+116%</div><div class="lbl">Homepage ATC</div></div>
+                <div class="stat-card"><div class="val">+297%</div><div class="lbl">Collection Revenue</div></div>
+                <div class="stat-card"><div class="val">+52%</div><div class="lbl">PDP Revenue</div></div>
+                <div class="stat-card"><div class="val">3</div><div class="lbl">Parallel Workstreams</div></div>
+                <div class="stat-card"><div class="val">4mo</div><div class="lbl">End-to-End Program</div></div>
+            </div>
+
+            <h2>Phase 1: The Coordination Problem</h2>
+            <p>Three pages were underperforming. The naive approach would have been to test each one in sequence — homepage first, read it, then collection, then PDP. Fourteen weeks minimum, compounding delays, and each test read against a moving baseline as the site changed around it.</p>
+            <p>The right approach was to <strong>sequence them as a program</strong> with overlapping workstreams: design prototyping starting before dev finished the previous build, QA running in parallel with dev on the next variant, and all three tests scheduled to land their readouts in a coordinated analysis window.</p>
+
+            <h3>Workstream schedule</h3>
+
+            <div class="gantt">
+                <div class="gantt-head">
+                    <div>Workstream</div>
+                    <div>W1</div><div>W2</div><div>W3</div><div>W4</div><div>W5</div><div>W6</div><div>W7</div><div>W8</div><div>W9</div><div>W10</div><div>W11</div><div>W12</div><div>W13</div><div>W14</div><div>W15</div><div>W16</div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-label">Design</div>
+                    <div class="gantt-track">
+                        <div class="gantt-bar design" style="left: 0%; width: 18%;">Homepage</div>
+                        <div class="gantt-bar design" style="left: 20%; width: 22%;">Collection</div>
+                        <div class="gantt-bar design" style="left: 44%; width: 18%;">PDP</div>
+                    </div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-label">Development</div>
+                    <div class="gantt-track">
+                        <div class="gantt-bar dev" style="left: 12%; width: 20%;">Homepage</div>
+                        <div class="gantt-bar dev" style="left: 34%; width: 22%;">Collection</div>
+                        <div class="gantt-bar dev" style="left: 58%; width: 20%;">PDP</div>
+                    </div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-label">QA &amp; Launch</div>
+                    <div class="gantt-track">
+                        <div class="gantt-bar qa" style="left: 30%; width: 10%;">HP</div>
+                        <div class="gantt-bar qa" style="left: 54%; width: 10%;">Coll</div>
+                        <div class="gantt-bar qa" style="left: 76%; width: 24%;">PDP → Read</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>Why sequencing mattered.</strong> If I had run these tests against each other in an un-sequenced A/B/C/D, the results would have been uninterpretable — each variant changing the conversion of the next. By sequencing, I could read each test cleanly against the new baseline established by the previous one. The +297% collection revenue was only readable because the homepage test had stabilized the traffic mix before it launched.
+            </div>
+
+            <h2>Phase 2: The Dev Brief That Made Handoffs Clean</h2>
+            <p>The largest single risk in a multi-page rebuild is the handoff. A strategist scopes a test, a designer creates something a developer can't build, the developer builds something QA can't verify, and the test launches with broken tracking. I've seen this sequence end otherwise solid programs.</p>
+
+            <p>Every variant on this program got a development brief before design was finished. Specification before handoff, not after.</p>
+
+            <div class="handoff">
+                <span class="group-label">Test</span>
+                <span class="k">test_id:</span> <span class="v">apparel-rebuild-002-collection</span><br>
+                <span class="k">url_targeting:</span> <span class="v">*/collections/*</span><br>
+                <span class="k">exclude:</span> <span class="v">*/collections/sale-*</span> <span class="c"># excluded — different template</span><br>
+                <span class="k">allocation:</span> <span class="v">50/50 · A/A verified W5d3</span><br><br>
+
+                <span class="group-label">GA4 data layer</span>
+                <span class="k">event:</span> <span class="v">view_item_list</span><br>
+                <span class="k">ecommerce.item_list_id:</span> <span class="v">{{collection.handle}}</span><br>
+                <span class="k">ecommerce.item_list_name:</span> <span class="v">{{collection.title}}</span><br>
+                <span class="k">ecommerce.items[].item_id:</span> <span class="v">{{product.sku}}</span><br>
+                <span class="k">ecommerce.items[].item_variant:</span> <span class="v">{{variant.title}}</span><br>
+                <span class="k">ecommerce.items[].index:</span> <span class="v">{{position}}</span> <span class="c"># 1-indexed, for card-position analysis</span><br>
+                <span class="k">ecommerce.items[].item_category:</span> <span class="v">{{collection.type}}</span><br><br>
+
+                <span class="group-label">Primary metric</span>
+                <span class="k">metric:</span> <span class="v">collection_to_atc_rate</span><br>
+                <span class="k">secondary:</span> <span class="v">revenue_per_visitor, add_to_cart_position_distribution</span><br>
+                <span class="k">guardrail:</span> <span class="v">-10% on collection_to_purchase_rate triggers 48hr review</span><br><br>
+
+                <span class="group-label">Responsive</span>
+                <span class="k">breakpoints:</span> <span class="v">320 · 768 · 1024 · 1440</span><br>
+                <span class="k">device_tested:</span> <span class="v">iPhone SE, iPhone 14, Pixel 6, iPad, desktop</span>
+            </div>
+
+            <p>No ambiguity at handoff. The first working build was already close to the spec because the spec <em>was</em> the scope. Every subsequent tracking question — "does this event need to fire here?" — was already answered by the brief.</p>
+
+            <h2>Phase 3: Why I Sequenced the Tests This Way</h2>
+            <p>The order was not cosmetic. It was a deliberate bet on how traffic quality compounds through a funnel:</p>
+
+            <div class="sequence">
+                <div class="sequence-step">
+                    <div class="n">Step 1</div>
+                    <div class="t">Homepage</div>
+                    <div class="d">Improves the quality of traffic reaching collection pages</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="sequence-step">
+                    <div class="n">Step 2</div>
+                    <div class="t">Collection</div>
+                    <div class="d">Improves the quality of traffic reaching PDPs</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="sequence-step">
+                    <div class="n">Step 3</div>
+                    <div class="t">PDP</div>
+                    <div class="d">Converts already-qualified traffic at higher rates</div>
+                </div>
+            </div>
+
+            <p>Running them in reverse order — PDP first — would have tested the PDP against noisy, mis-qualified traffic from the unredesigned homepage and collection. The PDP redesign's real impact would have been hidden by the bad traffic reaching it.</p>
+
+            <h2>Phase 4: The Three Tests &amp; Results</h2>
+
+            <h3>Test 1 — Homepage Redesign</h3>
+            <p>The existing homepage prioritized brand lifestyle imagery. For a workwear buyer, lifestyle imagery is decorative — product access is what they need. The redesign elevated category access, price-point visibility, and a clear "shop by use case" entry pattern.</p>
+
+            <div class="phase-result">
+                <h4>Phase 1 Result · Homepage</h4>
+                <div class="phase-title">Elevated category access, demoted lifestyle imagery</div>
+                <div class="metrics">
+                    <div class="metric"><div class="val">+116%</div><div class="lbl">Add-to-Cart Rate</div></div>
+                    <div class="metric"><div class="val">396→857</div><div class="lbl">Daily ATC Events</div></div>
+                    <div class="metric"><div class="val">+57.1%</div><div class="lbl">Orders</div></div>
+                </div>
+                <div class="baseline">Baseline: original homepage traffic during the same 3-week test window, 50/50 allocation.</div>
+            </div>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid rgba(52,211,153,0.15); background: rgba(52,211,153,0.03);">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WINNER</span>
+                    <span style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">Homepage — Before / After</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Hero-first lifestyle layout — full-bleed hero image with brand tagline, scrolling required to reach any product or category access. Decorative, not functional. <br><strong style="color: #fff;">After:</strong> Category-access-first layout — use-case tiles ("Workwear", "Outerwear", "PPE"), price-point entry, bestsellers grid in first fold. +116% ATC, +57.1% orders.</p>
+            </div>
+
+            <h3>Test 2 — Collection Page Redesign</h3>
+            <p>The collection grid was the single highest-leverage surface once the homepage was delivering qualified traffic. Product cards redesigned for information density — category, core use case, price, and the quality callout that repeatedly surfaced in the review data. This was the single biggest revenue move in the program.</p>
+
+            <div class="phase-result">
+                <h4>Phase 2 Result · Collection</h4>
+                <div class="phase-title">Information-dense product cards with quality callouts</div>
+                <div class="metrics">
+                    <div class="metric"><div class="val">+141%</div><div class="lbl">Add-to-Cart Rate</div></div>
+                    <div class="metric"><div class="val">+150%</div><div class="lbl">Orders</div></div>
+                    <div class="metric"><div class="val">+297%</div><div class="lbl">Revenue</div></div>
+                </div>
+                <div class="baseline">Baseline: control traffic on unredesigned collection pages, 6-week window, 50/50 split. Significance reached within 3 weeks and held to end-of-test. Revenue measured against a four-figure weekly baseline (exact figures under NDA).</div>
+            </div>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid rgba(52,211,153,0.15); background: rgba(52,211,153,0.03);">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WINNER</span>
+                    <span style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">Collection Grid — Before / After</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Low-density product cards — image, title, price only. No category context, no quality differentiator, no use-case signal. <br><strong style="color: #fff;">After:</strong> Information-dense cards — category tag, use-case label, price, quality callout from review data, improved filter hierarchy. +141% ATC, +150% orders, +297% revenue.</p>
+            </div>
+
+            <h3>Test 3 — PDP Redesign</h3>
+            <p>With homepage and collection converting upstream buyers at higher quality, the PDP needed to catch them. The redesign tightened the first fold, moved trust signals above the Add-to-Cart button, and re-sequenced the tab navigation.</p>
+
+            <div class="phase-result">
+                <h4>Phase 3 Result · PDP</h4>
+                <div class="phase-title">Trust signals elevated, tab navigation re-sequenced</div>
+                <div class="metrics">
+                    <div class="metric"><div class="val">+52%</div><div class="lbl">Revenue</div></div>
+                    <div class="metric"><div class="val">+26%</div><div class="lbl">Checkouts Initiated</div></div>
+                </div>
+                <div class="baseline">Baseline: control PDP traffic during the same 4-week window, 50/50 split. Read on post-homepage, post-collection traffic — so the PDP's lift is measured on already-qualified visitors.</div>
+            </div>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid rgba(52,211,153,0.15); background: rgba(52,211,153,0.03);">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WINNER</span>
+                    <span style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">PDP First Fold — Before / After</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Trust signals buried in tabs (description, specs, reviews). Buyer had to click through to find shipping, returns, quality assurance info. <br><strong style="color: #fff;">After:</strong> Trust signals elevated above ATC button — "Free Returns", "UK-Made Quality", "Same Day Dispatch" visible in first fold. Specifications tab set as default. +52% revenue, +26% checkouts initiated.</p>
+            </div>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Convert.com</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Liquid (Shopify)</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Shopify</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>A multi-page rebuild is one program, not three tests.</strong> Each surface changes the qualification of the traffic reaching the next. Sequencing is a structural decision, not a scheduling convenience.</li>
+                <li><strong>The dev brief is the test.</strong> A brief that specifies the GA4 data layer schema before the developer starts coding is worth more than any post-launch QA report. Ambiguous briefs produce ambiguous implementations — which produce ambiguous test reads.</li>
+                <li><strong>Design, dev, and QA can run in parallel if the interfaces are clean.</strong> The interface between design and dev is the handoff brief. The interface between dev and QA is the test plan. If both are specified up-front, the workstreams overlap without stepping on each other.</li>
+                <li><strong>The biggest-percentage test was only possible because of the smallest-percentage test.</strong> The +297% collection revenue was only readable because the +57% homepage orders had already stabilized the traffic mix. Credit for the collection win belongs partially to the homepage test that preceded it.</li>
+                <li><strong>Legacy third-party app cleanup is test work.</strong> Before the first variant shipped, I audited and removed four legacy third-party apps fighting the new template for layout real estate. That cleanup is invisible on the case study but was the prerequisite for the test variants to behave predictably.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><span class="pulse-dot"></span>Shivansh.</div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

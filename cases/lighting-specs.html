@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Survey Question Nobody Was Asking — Shivansh</title>
+    <meta name="description" content="A US B2B LED lighting distributor had healthy traffic and underperforming conversion. Running heatmaps and an on-site survey simultaneously surfaced a problem no quantitative audit could: buyers couldn't validate specs without leaving the page.">
+    <meta property="og:title" content="The Survey Question Nobody Was Asking — Shivansh">
+    <meta property="og:description" content="A US B2B LED lighting distributor had healthy traffic and underperforming conversion. Running heatmaps and an on-site survey simultaneously surfaced a problem no quantitative audit could.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+
+        /* Stats row */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Timeline bar */
+        .timeline-bar { display: flex; margin: 2.5rem 0; border-radius: var(--radius-sm); overflow: hidden; height: 44px; }
+        .timeline-bar .phase { display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 600; color: var(--bg-dark); text-align: center; padding: 0 0.5rem; line-height: 1.2; }
+        .timeline-bar .phase:nth-child(1) { background: #64748B; flex: 2; }
+        .timeline-bar .phase:nth-child(2) { background: #818CF8; flex: 3; }
+        .timeline-bar .phase:nth-child(3) { background: #38BDF8; flex: 2; }
+        .timeline-bar .phase:nth-child(4) { background: #34D399; flex: 3; }
+
+        /* Callout */
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+
+        /* Theme bar chart */
+        .theme-chart { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 2rem; }
+        .theme-row { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: center; }
+        .theme-label { font-size: 0.88rem; color: var(--text-main); font-weight: 500; }
+        .theme-track { position: relative; height: 30px; background: rgba(255,255,255,0.03); border-radius: 6px; overflow: hidden; }
+        .theme-bar { height: 100%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.75rem; font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700; color: var(--bg-dark); transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .theme-bar.subtle { background: rgba(255,255,255,0.12); color: var(--text-main); }
+        @media (max-width: 640px) { .theme-row { grid-template-columns: 1fr; gap: 0.25rem; } .theme-track { height: 26px; } }
+
+        /* Quote grid */
+        .quote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0 2.5rem; }
+        .quote-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem; margin: 0; display: flex; flex-direction: column; }
+        .quote-card blockquote { font-size: 0.98rem; line-height: 1.5; color: var(--text-main); margin: 0 0 1rem; font-style: italic; padding: 0; border: none; background: none; }
+        .quote-card blockquote::before { content: "\201C"; color: var(--accent-primary); font-size: 1.5rem; margin-right: 0.2rem; font-style: normal; }
+        .quote-card blockquote::after { content: "\201D"; color: var(--accent-primary); font-size: 1.5rem; margin-left: 0.2rem; font-style: normal; }
+        .quote-meta { margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.05em; }
+        .quote-theme { color: var(--accent-primary); text-transform: uppercase; font-weight: 600; }
+
+        /* Device split panel */
+        .device-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
+        @media (max-width: 768px) { .device-split { grid-template-columns: 1fr; } }
+        .device-panel { padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .device-panel.desktop { background: rgba(129,140,248,0.04); border-color: rgba(129,140,248,0.18); }
+        .device-panel.mobile { background: rgba(56,189,248,0.04); border-color: rgba(56,189,248,0.18); }
+        .device-panel h4 { font-size: 1rem; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .device-panel.desktop h4 { color: var(--accent-secondary); }
+        .device-panel.mobile h4 { color: var(--accent-primary); }
+        .device-panel p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+        .device-panel ul { margin: 0.5rem 0 0; padding-left: 1rem; }
+        .device-panel li { font-size: 0.9rem; }
+
+        /* Tab reorder diagram */
+        .tab-diagram { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 640px) { .tab-diagram { grid-template-columns: 1fr; } }
+        .tab-panel { padding: 1.25rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .tab-panel.before { background: rgba(255,255,255,0.02); }
+        .tab-panel.after { background: rgba(52,211,153,0.04); border-color: rgba(52,211,153,0.2); }
+        .tab-panel .panel-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 0.75rem; }
+        .tab-panel.after .panel-label { color: #34D399; }
+        .tab-row { display: flex; gap: 0.25rem; }
+        .tab { padding: 0.5rem 0.85rem; font-size: 0.78rem; color: var(--text-muted); border-bottom: 2px solid transparent; }
+        .tab.active { color: #fff; border-bottom-color: var(--accent-primary); }
+        .tab.lead { background: linear-gradient(180deg, rgba(56,189,248,0.12), transparent); }
+
+        /* Results grid */
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        .result-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); text-align: center; }
+        .result-card .big { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .result-card .medium { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #34D399; line-height: 1.1; }
+        .result-card .result-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-card .result-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+
+        /* Visual placeholder tuned for case page */
+        .case-body .visual-placeholder { margin: 2rem 0; }
+
+        /* Back link */
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">← Back to all cases</a>
+            <div class="badge">Lighting · B2B · US · Spec-Driven Buyers</div>
+            <h1>The Survey Question <span class="gradient-text">Nobody Was Asking</span></h1>
+            <p class="case-lede">A US-based B2B LED lighting distributor with healthy traffic, competitive pricing, and a conversion rate that underperformed what every quantitative signal suggested was possible. No amount of dashboard analysis pointed at a specific villain. I ran two qualitative instruments in the same window — 200 Clarity sessions and a live on-site survey — and a single visitor response reframed the entire test program: <em>"What's the difference between T8 and T12 bulbs?"</em></p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">200</div><div class="lbl">Clarity Sessions Coded</div></div>
+                <div class="stat-card"><div class="val">6</div><div class="lbl">Survey Themes Identified</div></div>
+                <div class="stat-card"><div class="val">80%</div><div class="lbl">Mobile Drop Below Fold</div></div>
+                <div class="stat-card"><div class="val">$192K</div><div class="lbl">Monthly Revenue Lifted</div></div>
+                <div class="stat-card"><div class="val">+15.6%</div><div class="lbl">Add-to-Cart Lift</div></div>
+            </div>
+
+            <div class="timeline-bar">
+                <div class="phase">Week 1–2: Audit</div>
+                <div class="phase">Week 2–4: Qualitative Research</div>
+                <div class="phase">Week 4–6: Hypothesis &amp; Build</div>
+                <div class="phase">Week 6–10: Launch &amp; Read</div>
+            </div>
+
+            <h2>Phase 1: The Silent Underperformance</h2>
+            <p>The brand sold LED lighting into a specific buyer profile — contractors, facility managers, and commercial installers — who did not browse the site. They arrived with a spec in mind: <em>T8 tube, 4ft, 40W-equivalent, 5000K color temperature, daylight white</em>. They wanted to validate the product matched that spec, confirm it was in stock, see the price, and check out.</p>
+
+            <p>Traffic quality was strong. Paid acquisition was running efficiently. Page load times were acceptable. The site design was functional and clean. By every quantitative measure, the conversion rate should have been higher than it was.</p>
+
+            <p>A standard Conversion Rate Optimization (CRO) audit surfaces the leak through funnel analysis, heatmaps, and competitive benchmarking. I ran all three. None of them pointed at a specific villain. The funnel drop-off was distributed — not concentrated on a single stage. Heatmaps showed engagement across the PDP, not abandonment at a specific element. The design was comparable to direct competitors.</p>
+
+            <p>When the quantitative audit doesn't point at a specific failure, the answer is never to test harder. It's to change instruments.</p>
+
+            <h2>Phase 2: Two Instruments, Same Window</h2>
+            <p>I deployed two qualitative research programs in parallel:</p>
+
+            <ul>
+                <li><strong>200 Microsoft Clarity session recordings</strong> — sampled across device, entry page, and exit behavior. Not watched one-by-one. Coded systematically by behavior pattern (spec-hunter / browser / comparison-shopper / bounce), device context, and exit-triggering behavior.</li>
+                <li><strong>A persistent on-site visitor survey</strong> on every Product Detail Page (PDP): <em>"What additional information would help you feel more confident completing your purchase today?"</em> Deliberately open-ended. Deliberately phrased around <em>confidence</em> rather than <em>design</em> or <em>experience</em>.</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Methodology note.</strong> A heatmap answers <em>where</em> users stopped. A survey answers <em>why</em>. Running them in the same window — overlapping date ranges, same PDP population — means every behavioral pattern you identify in Clarity has a stated-reason answer waiting for it in the survey. Running them sequentially doubles the interpretation time because each instrument has to be analyzed against its own memory of what the other instrument showed last month.
+            </div>
+
+            <h2>Phase 3: What the Survey Revealed</h2>
+            <p>Every survey response was coded into a theme. The raw response set covered hundreds of submissions across a rolling three-week window. The coded distribution surfaced six dominant themes — a much broader pattern than any one response would have hinted at.</p>
+
+            <div class="theme-chart">
+                <div class="theme-row">
+                    <span class="theme-label">Specification Clarification</span>
+                    <div class="theme-track"><div class="theme-bar" style="width: 42%">~42%</div></div>
+                </div>
+                <div class="theme-row">
+                    <span class="theme-label">Shipping &amp; Tax Transparency</span>
+                    <div class="theme-track"><div class="theme-bar" style="width: 22%">~22%</div></div>
+                </div>
+                <div class="theme-row">
+                    <span class="theme-label">Product Attributes (color, material, warranty)</span>
+                    <div class="theme-track"><div class="theme-bar" style="width: 15%">~15%</div></div>
+                </div>
+                <div class="theme-row">
+                    <span class="theme-label">Compatibility / Use-Case Fit</span>
+                    <div class="theme-track"><div class="theme-bar" style="width: 13%">~13%</div></div>
+                </div>
+                <div class="theme-row">
+                    <span class="theme-label">Dimming &amp; Control Questions</span>
+                    <div class="theme-track"><div class="theme-bar subtle" style="width: 5%">~5%</div></div>
+                </div>
+                <div class="theme-row">
+                    <span class="theme-label">Other</span>
+                    <div class="theme-track"><div class="theme-bar subtle" style="width: 3%">~3%</div></div>
+                </div>
+            </div>
+
+            <p><strong>Specification clarification was the dominant theme by a factor of nearly 2×.</strong> Not shipping. Not price. Not design. Buyers were on the product page for the exact item they wanted to buy and could not validate its specifications without leaving the site — which many of them then did, often to search queries that returned competitor results.</p>
+
+            <h3>Real visitor responses</h3>
+            <p>Six representative responses, unedited except for redaction of personal details. The authentic roughness of the phrasing is part of the signal:</p>
+
+            <div class="quote-grid">
+                <figure class="quote-card">
+                    <blockquote>What is the difference between T8 and T12 bulbs</blockquote>
+                    <div class="quote-meta"><span>Desktop</span><span class="quote-theme">Spec Clarification</span></div>
+                </figure>
+                <figure class="quote-card">
+                    <blockquote>How many lumens does this light put off and what is the warranty</blockquote>
+                    <div class="quote-meta"><span>Desktop</span><span class="quote-theme">Spec Clarification</span></div>
+                </figure>
+                <figure class="quote-card">
+                    <blockquote>are these bulbs same as keystone kt-led15t8-48gc-850-dx2-g2 ??</blockquote>
+                    <div class="quote-meta"><span>Desktop</span><span class="quote-theme">Compatibility</span></div>
+                </figure>
+                <figure class="quote-card">
+                    <blockquote>Identify tax and shipping prior to final checkout</blockquote>
+                    <div class="quote-meta"><span>Tablet</span><span class="quote-theme">Shipping / Tax</span></div>
+                </figure>
+                <figure class="quote-card">
+                    <blockquote>Looking to replace lighting in fellowship hall — will this fit a textured ceiling</blockquote>
+                    <div class="quote-meta"><span>Mobile</span><span class="quote-theme">Use-Case Fit</span></div>
+                </figure>
+                <figure class="quote-card">
+                    <blockquote>Do fixtures also come in black</blockquote>
+                    <div class="quote-meta"><span>Mobile</span><span class="quote-theme">Product Attributes</span></div>
+                </figure>
+            </div>
+
+            <div class="callout">
+                <strong>Why this mattered more than any one response.</strong> A single "T8 versus T12" question is a data point. Forty-two percent of all survey responses clustering on specification clarification is a <em>pattern</em>. Patterns drive test priorities; data points drive ideas. The roadmap changed because the distribution told us what to change it to.
+            </div>
+
+            <h2>Phase 4: The Device Divergence</h2>
+            <p>While the survey was running, the 200 Clarity recordings were being coded. The pattern that surfaced was not the one the quantitative funnel had suggested: the site had two distinct buyer populations with fundamentally different reading behaviors, and they needed to be tested as two separate experiences.</p>
+
+            <div class="device-split">
+                <div class="device-panel desktop">
+                    <h4>Desktop — The Scanner</h4>
+                    <p>Session durations averaged longer. Users moved between product tabs, used comparison behavior, opened multiple tabs in the same session, and cross-referenced specifications against notes or external sites.</p>
+                    <ul>
+                        <li>Horizontal viewport allowed spec tables to coexist with the Add-to-Cart button</li>
+                        <li>Below-the-fold content was read by the majority of sessions that reached the PDP</li>
+                        <li>Comparison behavior dominated — this buyer needed <em>structured</em> specification data, not just more of it</li>
+                    </ul>
+                </div>
+                <div class="device-panel mobile">
+                    <h4>Mobile — The Fast Searcher</h4>
+                    <p>Session durations were shorter and more fragmented. Users arrived from search with high intent, evaluated the page in under a minute, and either added to cart or bounced.</p>
+                    <ul>
+                        <li>Content below the first fold had approximately <strong>80% drop-off</strong> — functionally invisible to most mobile sessions</li>
+                        <li>Any spec table placed below the image carousel was adding page weight without adding visibility</li>
+                        <li>The single most important question — "does this meet my spec" — had to be answerable in the first viewport</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>A single "responsive" PDP template couldn't serve both populations. The mobile experience needed compression; the desktop experience needed structured expansion. The test architecture forked.</p>
+
+            <h2>Phase 5: The Tests</h2>
+            <p>Three coordinated tests launched on the PDP. Each was device-scoped — traffic was split by viewport width, not unified into an aggregate A/B.</p>
+
+            <h3>Test 1 — Mobile First-Fold Spec Summary</h3>
+            <p>The three most-searched specifications — lumens output, wattage equivalent, color temperature — moved directly below the product title as a compact inline summary. The below-the-fold specification table was removed entirely. Page weight dropped; first-fold information density rose.</p>
+
+            <div style="margin: 2rem 0; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(56,189,248,0.12);">
+                <img src="../assets/visuals/test_lightup_mobile_spec.png" alt="Mobile PDP before/after — specs buried below fold vs inline spec pills in first fold" style="width: 100%; display: block;">
+            </div>
+
+            <h3>Test 2 — Desktop Spec Comparison Block</h3>
+            <p>The desktop variant introduced an expandable comparison block in the first fold, letting buyers see the current product's core specifications alongside two commonly compared alternatives from the same catalog. Structured comparison, not more text.</p>
+
+            <div style="margin: 2rem 0; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(56,189,248,0.12);">
+                <img src="../assets/visuals/test_lightup_desktop_comparison.png" alt="Desktop PDP before/after — single-product view vs expandable comparison block" style="width: 100%; display: block;">
+            </div>
+
+            <h3>Test 3 — Tab Navigation Reorder</h3>
+            <p>The PDP tab navigation — Description / Specifications / Reviews — reordered to lead with Specifications. The buyer's first question was never "tell me about this product." It was "does this match the spec I came here looking for." The default tab should answer the first question.</p>
+
+            <div class="tab-diagram">
+                <div class="tab-panel before">
+                    <div class="panel-label">Before</div>
+                    <div class="tab-row">
+                        <div class="tab active">Description</div>
+                        <div class="tab">Specifications</div>
+                        <div class="tab">Reviews</div>
+                        <div class="tab">Q&amp;A</div>
+                    </div>
+                </div>
+                <div class="tab-panel after">
+                    <div class="panel-label">After</div>
+                    <div class="tab-row">
+                        <div class="tab active lead">Specifications</div>
+                        <div class="tab">Description</div>
+                        <div class="tab">Reviews</div>
+                        <div class="tab">Q&amp;A</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Phase 6: Results</h2>
+            <p>All three tests ran to statistical significance on device-segmented traffic. Results read separately by device, not aggregated.</p>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="big">+15.6%</div>
+                    <div class="result-label">Add-to-Cart Rate</div>
+                    <div class="result-sub">Mobile + Desktop combined</div>
+                </div>
+                <div class="result-card">
+                    <div class="big">+9.22%</div>
+                    <div class="result-label">Revenue Per Visitor</div>
+                    <div class="result-sub">Sitewide, sustained</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">$192K</div>
+                    <div class="result-label">Monthly Incremental</div>
+                    <div class="result-sub">Documented revenue delta</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">Return Visitors ↑</div>
+                    <div class="result-label">Return Segment Lift</div>
+                    <div class="result-sub">Research-friction reduction signal</div>
+                </div>
+            </div>
+
+            <p><em>Baseline:</em> control PDP traffic on the unmodified template during the same 4-week test window, 50/50 device-segmented split allocation. Significance reached within 2 weeks on mobile; desktop required a longer window due to lower session volume.</p>
+
+            <p>The return-visitor lift was the most interesting secondary finding. Visitors who had previously viewed the PDP without purchasing were returning and converting at a higher rate on the variant. The interpretation: specification clarity wasn't just closing first-time sessions — it was reducing the research friction that was sending buyers back to search results to verify the product elsewhere between visits.</p>
+
+            <!-- Full Program Winner Table -->
+            <h2>Full Program: Test-by-Test Results</h2>
+            <p>This engagement ran <strong>15 tests</strong> across PDP, homepage, collection, cart, and sitewide surfaces. Seven won. Four lost. Four were flat or inconclusive. The full ledger:</p>
+
+            <div style="overflow-x: auto; margin: 1.5rem 0 2rem;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid rgba(56,189,248,0.25);">
+                            <th style="text-align: left; padding: 0.75rem 0.5rem; color: var(--accent-primary); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;">Test</th>
+                            <th style="text-align: center; padding: 0.75rem 0.5rem; color: var(--accent-primary); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;">Result</th>
+                            <th style="text-align: right; padding: 0.75rem 0.5rem; color: var(--accent-primary); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;">Revenue</th>
+                            <th style="text-align: left; padding: 0.75rem 0.5rem; color: var(--accent-primary); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;">Key Learning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-main);">PDP Optimization</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WIN</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: #34D399; font-weight: 600;">$7,642/mo</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">CVR +6.85%, ATC +6.58%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-main);">Cart Contact Us Banner</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WIN</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: #34D399; font-weight: 600;">$17,723/mo</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">CVR +26.91%. B2B buyers need accessible support.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-main);">Sticky Search Bar &amp; Nav</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WIN</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-muted);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Search results +18.40%, click +16.99%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-main);">Wholesale Banner + CTA</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WIN</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-muted);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">B2B wholesale intent surfaced and captured</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-main);">Cart Page Drawer</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WIN</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-muted);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Drawer cart reduced checkout friction</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-main);">Search on Click Experience</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WIN</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-muted);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Instant search reduced spec-finding friction</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-main);">Category Tiles (Homepage)</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WIN</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-muted);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Application-based navigation for B2B buyers</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); opacity: 0.6;">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted);">Homepage Optimization</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(248,113,113,0.15); color: #F87171; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">LOSS</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-dim);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-dim); font-size: 0.85rem;">ATC -14.69%. Validated existing HP layout.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); opacity: 0.6;">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted);">Certifications Display</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(248,113,113,0.15); color: #F87171; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">LOSS</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-dim);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-dim); font-size: 0.85rem;">Certs alone didn't move spec-driven buyers</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); opacity: 0.6;">
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-muted);">Quick View + Infinity Scroll</td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: center;"><span style="background: rgba(248,113,113,0.15); color: #F87171; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">LOSS</span></td>
+                            <td style="padding: 0.6rem 0.5rem; text-align: right; color: var(--text-dim);">—</td>
+                            <td style="padding: 0.6rem 0.5rem; color: var(--text-dim); font-size: 0.85rem;">B2B buyers prefer paginated control</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout">
+                <strong>The losses mattered too:</strong> The Homepage Optimization test confirmed the existing layout worked. The Certifications Display showed that credentials alone don't answer spec questions. The Quick View + Infinity Scroll loss proved B2B buyers in this category prefer pagination over infinite scroll — they want control over product comparison, not speed. Every loss pre-qualified the next test.
+            </div>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Convert.com</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">VWO</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">On-Site Survey</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Liquid (Shopify)</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Shopify</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Alby (AI Chat)</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>When the quantitative audit doesn't point at a villain, change instruments.</strong> The funnel, the heatmaps, and the benchmark analysis all said "this site is fine." The qualitative instruments said otherwise. A site that looks fine in aggregate and converts below expectation is almost always losing buyers to a problem no quantitative tool will surface on its own.</li>
+                <li><strong>Run a heatmap and a survey in the same window, not sequentially.</strong> Every behavioral pattern has a stated-reason waiting for it in the survey data. Running them in series means you're analyzing one instrument against a stale memory of the other.</li>
+                <li><strong>Ask the question you're not biased toward.</strong> "What would help you feel more confident completing your purchase today?" is not the same question as "is there anything wrong with this page?" The first surfaces specification anxiety. The second surfaces design complaints.</li>
+                <li><strong>Device isn't a modifier — it's a buyer identity.</strong> Mobile and desktop visitors on this site were two different populations with two different reading strategies. Treating them as a single population with a responsive template ignored the structural split.</li>
+                <li><strong>One real sentence from a real customer is worth a week of dashboard interpretation.</strong> The T8/T12 question was not the insight. It was the moment the theme became visible. The insight was the <em>distribution</em> — that 42% of buyers were asking questions the PDP could answer, if the PDP were built for the buyer's decision instead of the merchandiser's narrative.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

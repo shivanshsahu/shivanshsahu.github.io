@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Platforms, Two Answers — Shivansh</title>
+    <meta name="description" content="A subscription media platform's aggregate conversion rate was fine. Underneath, mobile and desktop were two different buyer populations with two different drop-off patterns. Segmenting the tests produced $21.9K/mo in incremental revenue.">
+    <meta property="og:title" content="Two Platforms, Two Answers — Shivansh">
+    <meta property="og:description" content="Aggregate metrics hide the location of the problem. Segment first — then decide what to test.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+
+        /* Aggregate illusion comparison */
+        .agg-illusion { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+        .agg-row { padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .agg-row.aggregate { background: rgba(251,191,36,0.04); border-color: rgba(251,191,36,0.18); }
+        .agg-row.segmented { background: rgba(56,189,248,0.04); border-color: rgba(56,189,248,0.18); }
+        .agg-row h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.75rem; }
+        .agg-row.aggregate h4 { color: #FBBF24; }
+        .agg-row.segmented h4 { color: var(--accent-primary); }
+        .agg-row .metric-line { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; font-size: 0.92rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .agg-row .metric-line:last-child { border-bottom: none; }
+        .agg-row .metric-line .label { color: var(--text-muted); }
+        .agg-row .metric-line .val { font-family: var(--font-heading); font-weight: 700; }
+        .agg-row .metric-line .val.good { color: #34D399; }
+        .agg-row .metric-line .val.bad { color: #F87171; }
+        .agg-row .metric-line .val.neutral { color: var(--text-main); }
+        .agg-row .note { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); font-size: 0.82rem; color: var(--text-dim); font-style: italic; }
+
+        /* Device side-by-side funnels */
+        .device-funnels { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .device-funnels { grid-template-columns: 1fr; } }
+        .device-col { padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .device-col.mobile { background: rgba(56,189,248,0.04); border-color: rgba(56,189,248,0.18); }
+        .device-col.desktop { background: rgba(129,140,248,0.04); border-color: rgba(129,140,248,0.18); }
+        .device-col h4 { font-size: 1rem; margin: 0 0 0.25rem; display: flex; align-items: center; gap: 0.4rem; }
+        .device-col.mobile h4 { color: var(--accent-primary); }
+        .device-col.desktop h4 { color: var(--accent-secondary); }
+        .device-col .profile { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+        .funnel-step { padding: 0.55rem 0.75rem; margin-bottom: 0.35rem; border-radius: 5px; background: rgba(0,0,0,0.2); font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); }
+        .funnel-step .num { font-family: var(--font-heading); font-weight: 700; }
+        .funnel-step.drop { background: rgba(248,113,113,0.15); color: #fff; }
+        .funnel-step.drop .num { color: #F87171; }
+
+        /* Intervention + result combined panel */
+        .fork-results { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .fork-results { grid-template-columns: 1fr; } }
+        .fork-panel { padding: 1.5rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.18); }
+        .fork-panel h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #34D399; margin: 0 0 0.75rem; }
+        .fork-panel .intervention { font-size: 0.95rem; color: #fff; font-weight: 600; margin-bottom: 0.75rem; }
+        .fork-panel .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); }
+        .fork-panel .metric { text-align: center; padding: 0.6rem; background: rgba(0,0,0,0.2); border-radius: 4px; }
+        .fork-panel .metric .big-val { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .fork-panel .metric .lbl { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        .result-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); text-align: center; }
+        .result-card .big { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .result-card .medium { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #34D399; line-height: 1.1; }
+        .result-card .result-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-card .result-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+
+        .case-body .visual-placeholder { margin: 2rem 0; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="pulse-dot"></span>Shivansh.</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">← Back to all cases</a>
+            <div class="badge">Subscription Media · Device Segmentation</div>
+            <h1>Two Platforms, <span class="gradient-text">Two Answers</span></h1>
+            <p class="case-lede">A subscription-based media platform with significant cross-device traffic. The aggregate conversion rate looked acceptable. Underneath, mobile and desktop were two different buyer populations with two different drop-off patterns, two different failure modes, and they were fighting each other beneath a single "overall CVR" number. Aggregate metrics hide the location of the problem — <strong>segment first, then decide what to test</strong>.</p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">+13%</div><div class="lbl">Mobile CVR Lift</div></div>
+                <div class="stat-card"><div class="val">+9%</div><div class="lbl">Desktop CVR Lift</div></div>
+                <div class="stat-card"><div class="val">+20%</div><div class="lbl">Email Collection</div></div>
+                <div class="stat-card"><div class="val">$21.9K</div><div class="lbl">Monthly Incremental</div></div>
+                <div class="stat-card"><div class="val">2</div><div class="lbl">Distinct Buyer Populations</div></div>
+            </div>
+
+            <h2>Phase 1: The Aggregate That Hid Everything</h2>
+            <p>Aggregate Conversion Rate is the statistic most programs quote in stakeholder meetings and the statistic most programs should stop quoting. On this site, the overall number fell within what the category would consider "normal." That number was the mathematical average of two wildly different segments doing wildly different things.</p>
+
+            <div class="agg-illusion">
+                <div class="agg-row aggregate">
+                    <h4>What the dashboard showed (aggregate)</h4>
+                    <div class="metric-line"><span class="label">Overall CVR</span><span class="val neutral">within category norm</span></div>
+                    <div class="metric-line"><span class="label">Trial → paid</span><span class="val neutral">acceptable</span></div>
+                    <div class="metric-line"><span class="label">Email capture</span><span class="val neutral">OK</span></div>
+                    <div class="note">Nothing in this row suggests a fixable problem. This is the report that got presented in executive reviews.</div>
+                </div>
+                <div class="agg-row segmented">
+                    <h4>What the segmented funnel revealed</h4>
+                    <div class="metric-line"><span class="label">Mobile CVR</span><span class="val bad">below expected</span></div>
+                    <div class="metric-line"><span class="label">Desktop CVR</span><span class="val bad">below expected</span></div>
+                    <div class="metric-line"><span class="label">Drop-off locations</span><span class="val bad">entirely different by device</span></div>
+                    <div class="note">Both segments were underperforming — but at different stages, for different reasons. The average made the site look "fine."</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>Why this matters beyond this engagement.</strong> Aggregate metrics are not neutral. They actively suppress the surface signal that would otherwise prompt investigation. A healthy-looking aggregate on a two-population funnel means the two populations are failing symmetrically — not that either one is working. I now start every engagement with a device × acquisition-channel segmented funnel pass before any test scoping conversation.
+            </div>
+
+            <h2>Phase 2: The Two Populations</h2>
+
+            <div class="device-funnels">
+                <div class="device-col mobile">
+                    <h4>Mobile · The Fast Browser</h4>
+                    <div class="profile">Shorter sessions, higher category-browsing breadth, thumb-scroll reading pattern, frequent context switches. Arrived with interest, decided fast — or bounced.</div>
+                    <div class="funnel-step">Lands on content page <span class="num">100%</span></div>
+                    <div class="funnel-step">Browses 2+ categories <span class="num">~68%</span></div>
+                    <div class="funnel-step drop">Hits subscription gate <span class="num">−drop</span></div>
+                    <div class="funnel-step">Reaches trial prompt <span class="num">~22%</span></div>
+                    <div class="funnel-step">Completes trial signup <span class="num">~4%</span></div>
+                    <div class="profile" style="margin-top: 0.75rem; margin-bottom: 0; padding-top: 0.75rem; border-top: 1px solid var(--border-color);">Failure mode: the trial gate was cramped on mobile. Price, trial length, and primary CTA fought for the same first-fold real estate.</div>
+                </div>
+                <div class="device-col desktop">
+                    <h4>Desktop · The Sustained Reader</h4>
+                    <div class="profile">Longer sessions, deeper single-category engagement, keyboard-and-mouse reading behavior, multi-tab usage. More patient, more research-driven.</div>
+                    <div class="funnel-step">Lands on content page <span class="num">100%</span></div>
+                    <div class="funnel-step">Engages deeply <span class="num">~75%</span></div>
+                    <div class="funnel-step">Scrolls past trial prompt <span class="num">~52%</span></div>
+                    <div class="funnel-step drop">Loses trial prompt on scroll <span class="num">−drop</span></div>
+                    <div class="funnel-step">Completes trial signup <span class="num">~5%</span></div>
+                    <div class="profile" style="margin-top: 0.75rem; margin-bottom: 0; padding-top: 0.75rem; border-top: 1px solid var(--border-color);">Failure mode: desktop users scrolled past the trial prompt before they were ready to convert. By the time they were ready, the CTA was gone.</div>
+                </div>
+            </div>
+
+            <p>Two different populations. Two different failure modes. Two different correct interventions. A single unified "responsive" test would have produced noise on both segments and a confused read.</p>
+
+            <h2>Phase 3: Three Segmented Tests</h2>
+
+            <div class="fork-results">
+                <div class="fork-panel">
+                    <h4>Mobile Intervention</h4>
+                    <div class="intervention">Trial prompt redesigned for thumb reach — price, trial length, and primary CTA compressed into first-fold stack. Secondary value propositions demoted to scroll-accessible section.</div>
+                    <div class="metrics">
+                        <div class="metric"><div class="big-val">+13%</div><div class="lbl">Mobile CVR</div></div>
+                        <div class="metric"><div class="big-val">$12.3K</div><div class="lbl">Monthly</div></div>
+                    </div>
+                </div>
+                <div class="fork-panel">
+                    <h4>Desktop Intervention</h4>
+                    <div class="intervention">Persistent upper-right corner trial indicator added — keeping the CTA one click away regardless of scroll position. Primary placement elevated above existing position.</div>
+                    <div class="metrics">
+                        <div class="metric"><div class="big-val">+9%</div><div class="lbl">Desktop CVR</div></div>
+                        <div class="metric"><div class="big-val">$9.6K</div><div class="lbl">Monthly</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Third intervention — email capture as progressive profiling</h3>
+            <p>A parallel test targeting top-of-funnel email collection: progressive profiling rather than a single upfront form. Visitors who weren't ready to commit to a trial could share an email address first, receive relevant content, and be re-engaged later. Not a conversion test — a qualified-audience-building test.</p>
+
+            <div style="margin: 2rem 0;">
+                <img src="../assets/visuals/device-fork-wireframe.png" alt="Device-specific trial prompt redesign — mobile compressed first-fold stack vs desktop persistent corner indicator" style="width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border-color);" loading="lazy">
+            </div>
+
+            <h2>Phase 4: Results</h2>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="big">+13%</div>
+                    <div class="result-label">Mobile CVR</div>
+                    <div class="result-sub">≈ $12,324/mo incremental</div>
+                </div>
+                <div class="result-card">
+                    <div class="big">+9%</div>
+                    <div class="result-label">Desktop CVR</div>
+                    <div class="result-sub">≈ $9,638/mo incremental</div>
+                </div>
+                <div class="result-card">
+                    <div class="big">+20%</div>
+                    <div class="result-label">Email Collection</div>
+                    <div class="result-sub">Feeding retention funnel</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">$21,962/mo</div>
+                    <div class="result-label">Combined Monthly</div>
+                    <div class="result-sub">Documented delta</div>
+                </div>
+            </div>
+
+            <p>The email lift is the important context. The +20% email capture created a qualified audience that fed the subsequent retention and re-engagement programs — producing revenue downstream of the initial test window that the headline numbers do not capture. A portion of the trial conversions in the following quarter came from the email-captured cohort, meaning the email test's true impact was larger than the test's direct measurement.</p>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">VWO</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Convert.com</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Custom CMS</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>Aggregate CVR is the number that hides problems.</strong> When two segments behave differently, the aggregate is an average of two stories and tells you nothing actionable. Segmented reporting is not a nice-to-have — it's the default from which every other CRO decision should be made.</li>
+                <li><strong>Forking by device isn't about building two separate sites.</strong> It's about treating each device's experience as its own test surface with its own hypothesis, its own variant, and its own success metric. A test that wins "overall" is often a test that won on one device and lost on the other.</li>
+                <li><strong>Mobile and desktop users on the same site are different buyers, not different sizes of the same buyer.</strong> Shorter sessions versus longer, thumb-scroll versus keyboard-and-mouse, context-switching versus sustained attention. The interventions that help one population often hurt the other — which is why unified responsive tests produce muddy reads.</li>
+                <li><strong>Email capture is a CRO investment, not a lifecycle one.</strong> Treating email capture as separate from the conversion program misses the compounding value. A +20% email lift pays off in retention cycles for months after the original test window closes.</li>
+                <li><strong>Segment the funnel before you scope a test.</strong> Every engagement now gets a device × acquisition-channel segmented funnel pass before any test scoping conversation happens. Twenty minutes of segmentation work prevents entire test categories from being scoped against aggregate noise.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><span class="pulse-dot"></span>Shivansh.</div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

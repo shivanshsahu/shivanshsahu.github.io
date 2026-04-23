@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoKwik Checkout Tracking — Shivansh</title>
+    <meta name="description" content="After add-to-cart, the entire checkout funnel was invisible. GoKwik only fires postMessages — not dataLayer events. Built a listener that intercepts GoKwik's messages and restores full GA4 ecommerce visibility.">
+    <meta property="og:title" content="GoKwik postMessage Implementation — Shivansh">
+    <meta property="og:description" content="When a third-party checkout doesn't talk to GTM, you listen at the window instead.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 5rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.6rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem 1rem; text-align: center; }
+        .stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent-primary); line-height: 1; }
+        .stat-label { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.4rem; line-height: 1.3; }
+        .gap-diagram { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-color); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+        .gap-col { background: var(--bg-surface); padding: 1.5rem; }
+        .gap-col-header { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+        .gap-col.before .gap-col-header { color: #f87171; }
+        .gap-col.after .gap-col-header { color: #4ade80; }
+        .gap-event { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.75rem; border-radius: 6px; margin-bottom: 0.4rem; font-size: 0.88rem; }
+        .gap-event.visible { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); color: #4ade80; }
+        .gap-event.invisible { background: rgba(248,113,113,0.06); border: 1px solid rgba(248,113,113,0.15); color: #f87171; text-decoration: line-through; opacity: 0.6; }
+        .gap-event.partial { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); color: #fbbf24; }
+        .gap-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .dot-green { background: #4ade80; } .dot-red { background: #f87171; } .dot-yellow { background: #fbbf24; }
+        .arch-flow { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 2rem; margin: 2rem 0; }
+        .arch-flow-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.5rem; }
+        .flow-chain { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+        .flow-node { background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); border-radius: 8px; padding: 0.6rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--accent-primary); white-space: nowrap; }
+        .flow-node.gray { background: rgba(255,255,255,0.05); border-color: var(--border-color); color: var(--text-muted); }
+        .flow-node.green { background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.2); color: #4ade80; }
+        .flow-node.amber { background: rgba(251,191,36,0.08); border-color: rgba(251,191,36,0.2); color: #fbbf24; }
+        .flow-arrow { padding: 0 0.5rem; color: var(--text-dim); font-size: 1rem; }
+        .flow-break { width: 100%; height: 0.5rem; }
+        .trick-callout { background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.2); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin: 2rem 0; }
+        .trick-callout-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-secondary); margin-bottom: 0.75rem; }
+        .trick-callout p { font-size: 0.95rem; margin: 0; line-height: 1.7; color: var(--text-muted); }
+        .trick-callout strong { color: #fff; }
+        .event-map { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+        .event-map th { text-align: left; padding: 0.6rem 1rem; background: rgba(255,255,255,0.04); color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
+        .event-map td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-muted); vertical-align: middle; }
+        .event-map td:first-child { font-family: monospace; color: #ffa657; font-size: 0.85rem; }
+        .event-map td:nth-child(2) { font-family: monospace; color: var(--accent-primary); font-size: 0.85rem; }
+        .event-map tr:last-child td { border-bottom: none; }
+        .code-wrap { margin: 1.5rem 0; }
+        .code-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+        pre.code-block { background: #0d0d1a; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; overflow-x: auto; margin: 0; }
+        pre.code-block code { font-family: 'Fira Code','Cascadia Code','Consolas',monospace; font-size: 0.82rem; line-height: 1.65; color: #c9d1d9; }
+        .c-comment { color: #6e7681; } .c-keyword { color: #ff7b72; } .c-string { color: #a5d6ff; }
+        .c-var { color: #79c0ff; } .c-fn { color: #d2a8ff; } .c-prop { color: #ffa657; }
+        .back-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); }
+        .back-nav a.back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+        .back-nav a.back:hover { color: var(--accent-primary); }
+        .back-nav a.logo { font-family: var(--font-heading); font-weight: 700; color: #fff; font-size: 1.1rem; text-decoration: none; }
+        @media (max-width: 600px) { .gap-diagram { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="back-nav">
+        <a href="../index.html#operations" class="back">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Ops & Data
+        </a>
+        <a href="../index.html" class="logo">Shivansh.</a>
+    </nav>
+
+    <div class="rich-hero">
+        <div class="badge">GTM Engineering · Third-Party Checkout</div>
+        <h1>When the Checkout Doesn't Talk to GTM, <span class="gradient-text">You Listen at the Window</span></h1>
+        <p class="case-lede">GoKwik — India's dominant COD checkout platform — doesn't push to the dataLayer. It fires <code style="background:rgba(255,255,255,0.07);padding:0.1em 0.4em;border-radius:4px;font-size:0.9em;">window.postMessage</code> events instead. For a Gen-Z streetwear brand processing thousands of orders through GoKwik, that meant the entire checkout funnel was invisible after Add-to-Cart. This is how we got it back.</p>
+    </div>
+
+    <div class="case-body">
+        <div class="stats-row">
+            <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Funnel events recovered<br>(begin_checkout → purchase)</div></div>
+            <div class="stat-card"><div class="stat-num" style="color:var(--accent-secondary)">0 → 4</div><div class="stat-label">GA4 ecommerce events<br>tracked post-ATC</div></div>
+            <div class="stat-card"><div class="stat-num" style="color:#4ade80">100%</div><div class="stat-label">Purchase attribution<br>reliability restored</div></div>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>GoKwik is embedded as a checkout overlay — not a redirect. When the customer clicks "Buy Now", GoKwik's UI takes over. Standard ecommerce tracking assumes every funnel step pushes a <code style="background:rgba(255,255,255,0.07);padding:0.1em 0.4em;border-radius:4px;font-size:0.9em;">dataLayer.push()</code>. GoKwik doesn't. It emits <code style="background:rgba(255,255,255,0.07);padding:0.1em 0.4em;border-radius:4px;font-size:0.9em;">window.postMessage</code> events with its own schema — and none of the documentation tells you this clearly.</p>
+        <p>The result: funnel reports showed a wall after Add-to-Cart. Purchase events were unreliable because GoKwik reports the order back to Shopify, which then tries to fire its own GA4 event — a broken telephone that lost attribution on a meaningful percentage of conversions.</p>
+
+        <div class="gap-diagram">
+            <div class="gap-col before">
+                <div class="gap-col-header">Before — What GTM Could See</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>page_view</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>view_item</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>add_to_cart</div>
+                <div class="gap-event invisible"><div class="gap-dot dot-red"></div>begin_checkout</div>
+                <div class="gap-event invisible"><div class="gap-dot dot-red"></div>add_shipping_info</div>
+                <div class="gap-event invisible"><div class="gap-dot dot-red"></div>add_payment_info</div>
+                <div class="gap-event partial"><div class="gap-dot dot-yellow"></div>purchase (unreliable)</div>
+            </div>
+            <div class="gap-col after">
+                <div class="gap-col-header">After — Full Funnel Visible</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>page_view</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>view_item</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>add_to_cart</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>begin_checkout</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>add_shipping_info</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>add_payment_info</div>
+                <div class="gap-event visible"><div class="gap-dot dot-green"></div>purchase (reliable)</div>
+            </div>
+        </div>
+
+        <h2>The Architecture</h2>
+        <p>A single IIFE deployed via GTM as a Custom HTML tag firing on All Pages. It attaches a <code style="background:rgba(255,255,255,0.07);padding:0.1em 0.4em;border-radius:4px;font-size:0.9em;">window.addEventListener("message")</code>, transforms GoKwik's proprietary payload into standard GA4 ecommerce schema, and bridges the purchase event across a page navigation using <code style="background:rgba(255,255,255,0.07);padding:0.1em 0.4em;border-radius:4px;font-size:0.9em;">sessionStorage</code>.</p>
+
+        <div class="arch-flow">
+            <div class="arch-flow-title">Event Flow</div>
+            <div class="flow-chain">
+                <div class="flow-node amber">GoKwik postMessage</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">window.addEventListener</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">analyticsName filter</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">GA4 schema transform</div>
+                <div class="flow-break"></div>
+                <div class="flow-arrow" style="padding-left:0">→</div>
+                <div class="flow-node">dataLayer.push()</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node green">GTM tag fires</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node green">GA4 event recorded</div>
+            </div>
+        </div>
+
+        <h3>GoKwik → GA4 Event Mapping</h3>
+        <table class="event-map">
+            <thead><tr><th>GoKwik eventName</th><th>GA4 Event</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr><td>checkoutStarted</td><td>begin_checkout</td><td>First step inside GoKwik overlay</td></tr>
+                <tr><td>addressStep</td><td>add_shipping_info</td><td>Shipping address confirmed</td></tr>
+                <tr><td>paymentStep</td><td>add_payment_info</td><td>Payment method selected (COD, UPI, card)</td></tr>
+                <tr><td>orderPlaced</td><td>purchase</td><td>Stored in sessionStorage → fired on thank-you page</td></tr>
+            </tbody>
+        </table>
+
+        <h2>The Hard Part: The Purchase Event</h2>
+        <div class="trick-callout">
+            <div class="trick-callout-label">The sessionStorage Bridge</div>
+            <p>GoKwik's <code style="background:rgba(255,255,255,0.1);padding:0.1em 0.4em;border-radius:4px;">orderPlaced</code> event fires inside the checkout overlay, before the thank-you page loads. If you push a <code style="background:rgba(255,255,255,0.1);padding:0.1em 0.4em;border-radius:4px;">purchase</code> event at that moment, Shopify's redirect wipes the dataLayer. <strong>The order data gets stored in sessionStorage on the event, then read back and fired as a GA4 purchase event when the thank-you page initializes.</strong> The session clears the entry immediately after firing to prevent double-counting on refresh.</p>
+        </div>
+
+        <h2>The Code</h2>
+        <div class="code-wrap">
+            <div class="code-label">events.js — postMessage listener + sessionStorage bridge</div>
+            <pre class="code-block"><code><span class="c-comment">/* ── postMessage listener ── */</span>
+<span class="c-var">window</span>.<span class="c-fn">addEventListener</span>(<span class="c-string">"message"</span>, <span class="c-keyword">function</span>(evt) {
+  <span class="c-keyword">try</span> {
+    <span class="c-keyword">var</span> <span class="c-var">gk</span> = evt.data || {};
+    <span class="c-keyword">if</span> (<span class="c-var">gk</span>.<span class="c-prop">analyticsName</span> !== <span class="c-string">"shopifyAnalytics"</span>) <span class="c-keyword">return</span>;
+
+    <span class="c-var">window</span>.<span class="c-var">dataLayer</span>.<span class="c-fn">push</span>({ <span class="c-prop">event</span>: <span class="c-string">"gokwik_"</span> + <span class="c-var">gk</span>.<span class="c-prop">eventName</span>, <span class="c-prop">gokwikData</span>: <span class="c-var">gk</span> });
+
+    <span class="c-keyword">if</span> (<span class="c-var">gk</span>.<span class="c-prop">eventName</span> === <span class="c-string">"orderPlaced"</span>) {
+      <span class="c-var">sessionStorage</span>.<span class="c-fn">setItem</span>(<span class="c-string">"gokwik_orderPlaced"</span>, <span class="c-var">JSON</span>.<span class="c-fn">stringify</span>(<span class="c-var">gk</span>));
+    }
+
+    <span class="c-keyword">if</span> (<span class="c-var">gk</span>.<span class="c-prop">eventName</span> === <span class="c-string">"checkoutStarted"</span>) <span class="c-fn">pushGA4</span>(<span class="c-string">"begin_checkout"</span>,    <span class="c-var">gk</span>);
+    <span class="c-keyword">if</span> (<span class="c-var">gk</span>.<span class="c-prop">eventName</span> === <span class="c-string">"addressStep"</span>)     <span class="c-fn">pushGA4</span>(<span class="c-string">"add_shipping_info"</span>, <span class="c-var">gk</span>);
+    <span class="c-keyword">if</span> (<span class="c-var">gk</span>.<span class="c-prop">eventName</span> === <span class="c-string">"paymentStep"</span>)     <span class="c-fn">pushGA4</span>(<span class="c-string">"add_payment_info"</span>,  <span class="c-var">gk</span>);
+  } <span class="c-keyword">catch</span>(e) { <span class="c-var">console</span>.<span class="c-fn">warn</span>(<span class="c-string">"GK listener err"</span>, e); }
+}, <span class="c-keyword">false</span>);
+
+<span class="c-comment">/* ── Thank-you page: restore purchase from sessionStorage ── */</span>
+<span class="c-keyword">try</span> {
+  <span class="c-keyword">var</span> <span class="c-var">cached</span> = <span class="c-var">sessionStorage</span>.<span class="c-fn">getItem</span>(<span class="c-string">"gokwik_orderPlaced"</span>);
+  <span class="c-keyword">if</span> (<span class="c-var">cached</span>) {
+    <span class="c-fn">pushGA4</span>(<span class="c-string">"purchase"</span>, <span class="c-var">JSON</span>.<span class="c-fn">parse</span>(<span class="c-var">cached</span>));
+    <span class="c-var">sessionStorage</span>.<span class="c-fn">removeItem</span>(<span class="c-string">"gokwik_orderPlaced"</span>); <span class="c-comment">// prevent double-fire on refresh</span>
+  }
+} <span class="c-keyword">catch</span>(e) { <span class="c-var">console</span>.<span class="c-fn">warn</span>(<span class="c-string">"GK restore err"</span>, e); }</code></pre>
+        </div>
+
+        <h2>Why This Matters Beyond This Client</h2>
+        <p>GoKwik processes a significant portion of D2C COD orders in India. Any Indian Shopify brand using GoKwik has this same blind spot. The same pattern applies to any third-party checkout that uses postMessage rather than dataLayer (Bolt, Fast, some headless implementations). When a tool you don't control owns part of the funnel, you build at the interface boundary — <code style="background:rgba(255,255,255,0.07);padding:0.1em 0.4em;border-radius:4px;font-size:0.9em;">window.postMessage</code> is a public broadcast.</p>
+
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <a href="https://github.com/shivanshsahu/third-party-checkout-events" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;color:var(--accent-primary);text-decoration:none;font-size:0.9rem;font-weight:500;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                View on GitHub
+            </a>
+            <a href="../index.html#operations" style="display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);text-decoration:none;font-size:0.9rem;">← Back to Ops & Data</a>
+        </div>
+    </div>
+</body>
+</html>

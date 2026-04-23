@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When the ATC Follows the Buyer — Shivansh</title>
+    <meta name="description" content="A premium tea retailer with deeply-read PDPs and an Add-to-Cart button five scroll-heights behind the decision point. A category-behavior-led intervention that lifted CVR 54.81% and added $33K/mo in revenue.">
+    <meta property="og:title" content="When the ATC Follows the Buyer — Shivansh">
+    <meta property="og:description" content="A premium tea retailer with content-heavy PDPs. The ATC had to follow the buyer, not the other way around.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+
+        /* Stats row */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Timeline bar */
+        .timeline-bar { display: flex; margin: 2.5rem 0; border-radius: var(--radius-sm); overflow: hidden; height: 44px; }
+        .timeline-bar .phase { display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 600; color: var(--bg-dark); text-align: center; padding: 0 0.5rem; line-height: 1.2; }
+        .timeline-bar .phase:nth-child(1) { background: #64748B; flex: 2; }
+        .timeline-bar .phase:nth-child(2) { background: #818CF8; flex: 2; }
+        .timeline-bar .phase:nth-child(3) { background: #38BDF8; flex: 3; }
+        .timeline-bar .phase:nth-child(4) { background: #34D399; flex: 3; }
+
+        /* Callout */
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+
+        /* PDP section density diagram */
+        .pdp-density { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .pdp-density { grid-template-columns: 1fr; } }
+        .pdp-column { padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: rgba(255,255,255,0.02); }
+        .pdp-column h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); margin: 0 0 1rem; }
+        .pdp-section { padding: 0.55rem 0.85rem; margin-bottom: 0.4rem; border-radius: 6px; font-size: 0.85rem; background: rgba(255,255,255,0.03); color: var(--text-muted); border: 1px solid transparent; }
+        .pdp-section.atc { background: rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.35); color: #fff; font-weight: 600; }
+        .pdp-section.fold { border-bottom: 2px dashed rgba(255,255,255,0.15); padding-bottom: 0.85rem; margin-bottom: 0.85rem; position: relative; }
+        .pdp-section.fold::after { content: "↓ first fold ends ↓"; display: block; font-size: 0.65rem; color: var(--text-dim); text-align: center; letter-spacing: 0.1em; margin-top: 0.5rem; font-weight: 500; }
+        .pdp-section.decision { background: rgba(52,211,153,0.12); border-color: rgba(52,211,153,0.3); color: #34D399; font-weight: 600; }
+        .pdp-section.sticky { position: relative; background: rgba(56,189,248,0.2); border-color: rgba(56,189,248,0.45); color: #fff; font-weight: 600; }
+        .pdp-section.sticky::before { content: "★ sticky"; position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); font-size: 0.65rem; color: var(--accent-primary); font-weight: 700; letter-spacing: 0.05em; }
+
+        /* Scroll-to-decision gap diagram */
+        .gap-diagram { margin: 1.5rem 0 2rem; padding: 1.5rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); }
+        .gap-diagram .scale { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); margin-bottom: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .gap-track { position: relative; height: 10px; background: linear-gradient(90deg, rgba(56,189,248,0.2), rgba(52,211,153,0.2)); border-radius: 5px; margin: 1rem 0; }
+        .gap-marker { position: absolute; top: -6px; width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--bg-dark); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; font-family: var(--font-heading); color: #fff; }
+        .gap-marker.atc { background: var(--accent-primary); left: 13%; }
+        .gap-marker.decision { background: #34D399; right: 12%; }
+        .gap-labels { display: flex; justify-content: space-between; font-size: 0.82rem; margin-top: 0.25rem; }
+        .gap-labels .label { max-width: 40%; }
+        .gap-labels .label-atc { color: var(--accent-primary); font-weight: 600; }
+        .gap-labels .label-decision { color: #34D399; font-weight: 600; text-align: right; }
+        .gap-note { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); font-size: 0.88rem; color: var(--text-muted); }
+
+        /* Tests compare grid */
+        .tests-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .tests-compare { grid-template-columns: 1fr; } }
+        .test-panel { padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .test-panel.primary { background: rgba(56,189,248,0.04); border-color: rgba(56,189,248,0.18); }
+        .test-panel.secondary { background: rgba(129,140,248,0.04); border-color: rgba(129,140,248,0.18); }
+        .test-panel h4 { font-size: 1rem; margin: 0 0 0.25rem; color: #fff; }
+        .test-panel .tag { display: inline-block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.15rem 0.5rem; border-radius: 4px; margin-bottom: 0.75rem; font-weight: 700; }
+        .test-panel.primary .tag { background: rgba(56,189,248,0.15); color: var(--accent-primary); }
+        .test-panel.secondary .tag { background: rgba(129,140,248,0.15); color: var(--accent-secondary); }
+        .test-panel p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .test-panel .intent { font-size: 0.8rem; color: var(--text-dim); padding-top: 0.75rem; border-top: 1px solid var(--border-color); margin-top: 0.75rem; }
+        .test-panel .intent strong { color: var(--text-main); }
+
+        /* Subscription funnel */
+        .sub-funnel { display: flex; flex-direction: column; gap: 0.35rem; margin: 1.5rem 0 2rem; }
+        .sub-row { display: grid; grid-template-columns: 180px 1fr 120px; gap: 1rem; align-items: center; }
+        .sub-stage { font-size: 0.88rem; color: var(--text-main); font-weight: 500; }
+        .sub-bars { position: relative; height: 36px; display: flex; gap: 4px; }
+        .sub-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 0.8rem; font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; color: var(--bg-dark); }
+        .sub-bar.control { background: rgba(255,255,255,0.15); color: var(--text-main); }
+        .sub-bar.variant { background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); }
+        .sub-change { font-size: 0.88rem; font-family: var(--font-heading); font-weight: 700; color: #34D399; }
+        .sub-change.neutral { color: var(--text-dim); }
+        .sub-change.tbd { color: var(--text-muted); font-weight: 500; font-style: italic; font-size: 0.78rem; }
+        @media (max-width: 640px) { .sub-row { grid-template-columns: 1fr; gap: 0.25rem; } .sub-change { text-align: left; } }
+
+        /* Results grid */
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        .result-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); text-align: center; }
+        .result-card .big { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .result-card .medium { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #34D399; line-height: 1.1; }
+        .result-card .result-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-card .result-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+
+        /* Visual placeholder tuned */
+        .case-body .visual-placeholder { margin: 2rem 0; }
+
+        /* Back link */
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">← Back to all cases</a>
+            <div class="badge">Tea · Food &amp; Beverage · D2C · US · Content-Heavy PDPs</div>
+            <h1>When the ATC <span class="gradient-text">Follows the Buyer</span></h1>
+            <p class="case-lede">A premium tea retailer with a long-tail catalog — loose-leaf blends, single-origin selections, brewing kits, subscription boxes. High session duration, healthy Add-to-Cart activity, and a conversion rate that lagged what every engagement signal said was possible. The problem wasn't persuasion. It was <em>navigation</em> — buyers had decided to purchase, then had to scroll five viewport-heights backward to do it.</p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">+43.3%</div><div class="lbl">CVR — Sticky ATC Alone</div></div>
+                <div class="stat-card"><div class="val">+54.8%</div><div class="lbl">CVR — Combined Treatment</div></div>
+                <div class="stat-card"><div class="val">$33K</div><div class="lbl">Monthly Incremental Revenue</div></div>
+                <div class="stat-card"><div class="val">+318%</div><div class="lbl">Subscription Page Visits</div></div>
+                <div class="stat-card"><div class="val">~2,000w</div><div class="lbl">Avg Words Below ATC</div></div>
+            </div>
+
+            <div class="timeline-bar">
+                <div class="phase">Week 1–2: Behavioral Audit</div>
+                <div class="phase">Week 2–3: Hypothesis</div>
+                <div class="phase">Week 3–5: Build &amp; QA</div>
+                <div class="phase">Week 5–9: Launch &amp; Read</div>
+            </div>
+
+            <h2>Phase 1: The Category Most Frameworks Get Wrong</h2>
+            <p>Premium tea is not a commodity e-commerce category. Buyers do not arrive with a specific SKU in mind, add it to cart, and check out. They arrive to <em>learn about a tea</em> — its origin, its flavor profile, its brewing requirements, its caffeine content — and to decide whether it is worth buying. The Product Detail Page (PDP) is a research surface before it is a transaction surface.</p>
+
+            <p>This is the buyer behavior:</p>
+
+            <ul>
+                <li><strong>Enters the PDP</strong> from a category page, a blog post, a newsletter link, or organic search on the tea's name</li>
+                <li><strong>Reads the description</strong> — flavor notes, origin, harvest date, caffeine level — often all of it</li>
+                <li><strong>Scrolls to brewing instructions</strong> — water temperature, steep time, ratio</li>
+                <li><strong>Reads customer reviews</strong> — particularly the ones mentioning comparable teas they have bought before</li>
+                <li><strong>Returns to the price and package selection</strong> — and then realizes the Add-to-Cart button is five scroll-heights above</li>
+            </ul>
+
+            <p>The standard Conversion Rate Optimization (CRO) playbook says "put the Add-to-Cart button above the fold." That rule works for categories where the buyer has already decided before arriving. For browse-heavy content categories — specialty food, wine, fragrance, premium coffee, tea — the buyer has not decided when they arrive. They decide after reading.</p>
+
+            <p>The ATC above the fold is there when it isn't needed. It is missing when it is.</p>
+
+            <h2>Phase 2: Measuring the Gap</h2>
+            <p>Session recording analysis across ~200 mobile PDP sessions surfaced a consistent behavior pattern. Median scroll depth at the moment of purchase decision — the point where the user stopped reading, started scrolling upward, and looked for the buy action — was deep into the content stack.</p>
+
+            <h3>Where the buyer actually decides</h3>
+
+            <div class="gap-diagram">
+                <div class="scale"><span>0% scroll depth</span><span>100%</span></div>
+                <div class="gap-track">
+                    <div class="gap-marker atc" title="Add-to-Cart button position">ATC</div>
+                    <div class="gap-marker decision" title="Decision point">✓</div>
+                </div>
+                <div class="gap-labels">
+                    <div class="label label-atc">ATC button at ~15% scroll depth — above the fold, unused</div>
+                    <div class="label label-decision">Decision happens at ~85% depth — after the reviews</div>
+                </div>
+                <div class="gap-note">The friction is not hesitation. The buyer has decided. The friction is the ~70-point scroll gap between the decision and the button that completes it. On mobile that is five to six full viewports of scrolling backward — enough to lose the buyer to a distraction, a context switch, or a different tab.</div>
+            </div>
+
+            <h3>What actually lives below the Add-to-Cart on this PDP</h3>
+
+            <div class="pdp-density">
+                <div class="pdp-column">
+                    <h4>Before — standard PDP</h4>
+                    <div class="pdp-section">Image gallery</div>
+                    <div class="pdp-section">Title &amp; price</div>
+                    <div class="pdp-section atc">Add to Cart</div>
+                    <div class="pdp-section fold">Variant picker</div>
+                    <div class="pdp-section">Flavor description (~400w)</div>
+                    <div class="pdp-section">Origin &amp; provenance (~300w)</div>
+                    <div class="pdp-section">Brewing guide (~400w)</div>
+                    <div class="pdp-section">Caffeine &amp; ingredients</div>
+                    <div class="pdp-section">Customer reviews (~600w)</div>
+                    <div class="pdp-section decision">↑ decision happens here</div>
+                </div>
+                <div class="pdp-column">
+                    <h4>After — sticky ATC</h4>
+                    <div class="pdp-section">Image gallery</div>
+                    <div class="pdp-section">Title &amp; price</div>
+                    <div class="pdp-section atc">Add to Cart (primary)</div>
+                    <div class="pdp-section fold">Variant picker</div>
+                    <div class="pdp-section">Flavor description</div>
+                    <div class="pdp-section">Origin &amp; provenance</div>
+                    <div class="pdp-section">Brewing guide</div>
+                    <div class="pdp-section">Caffeine &amp; ingredients</div>
+                    <div class="pdp-section">Customer reviews</div>
+                    <div class="pdp-section sticky">Add to Cart (always reachable)</div>
+                </div>
+            </div>
+
+            <p>The primary Add-to-Cart did not move. A secondary bottom-anchored bar appeared once the primary button scrolled out of view — persistent, compact, tappable without reaching. The buyer who finished reading the reviews no longer had to navigate back to buy.</p>
+
+            <div class="callout">
+                <strong>Why this isn't a trend-chase.</strong> Sticky buy boxes are not a design fashion choice. They are a structural response to how mobile users read a product page. The buyer who has just finished 2,000 words of brewing instructions is the most qualified buyer on the page. Asking them to scroll back up to purchase is the most expensive thing you can ask them to do — and it is exactly what the default PDP template asks.
+            </div>
+
+            <h2>Phase 3: Two Tests, Two Intents</h2>
+            <p>Two tests launched in parallel. They targeted different parts of the buyer journey and were scored against different primary metrics — because optimizing for a single metric would have hidden the value of either test.</p>
+
+            <div class="tests-compare">
+                <div class="test-panel primary">
+                    <span class="tag">Test A · Conversion</span>
+                    <h4>Sticky Mobile Add-to-Cart</h4>
+                    <p>Persistent bottom-anchored CTA appearing after the primary button scrolls out of view. Compact bar — product title, price, variant selector, prominent tappable action. No overlay, no interruption, no modal.</p>
+                    <div class="intent"><strong>Primary metric:</strong> PDP-to-purchase Conversion Rate on mobile</div>
+                </div>
+                <div class="test-panel secondary">
+                    <span class="tag">Test B · Top of Funnel</span>
+                    <h4>Subscription Landing Restructure</h4>
+                    <p>The subscription-product landing page reorganized to lead with the value proposition (personalized monthly delivery, trial flexibility, curation quality) rather than the product catalog. Subscription-intent traffic was being qualified poorly by the product-first layout.</p>
+                    <div class="intent"><strong>Primary metric:</strong> Subscription landing page visits reaching meaningful engagement (scroll, click, session duration)</div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid rgba(52,211,153,0.15); background: rgba(52,211,153,0.03);">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <span style="background: rgba(52,211,153,0.15); color: #34D399; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">WINNER</span>
+                    <span style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">Mobile Sticky ATC — Before / After</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Standard PDP — user scrolls past flavor notes, brewing guide, ingredients, reviews. Original ATC button is 5+ viewport-heights above. No way to purchase without scrolling back. <br><strong style="color: #fff;">After:</strong> Persistent sticky bar at bottom of viewport — product name, price, "ADD TO CART" always visible regardless of scroll depth. +43.28% CVR lift on mobile.</p>
+            </div>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid rgba(56,189,248,0.12); background: rgba(56,189,248,0.03);">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <span style="background: rgba(251,191,36,0.15); color: #FBBF24; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">LEADING INDICATOR</span>
+                    <span style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">Subscription Landing — Before / After</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;"><strong style="color: #fff;">Before:</strong> Product-catalog-first layout — subscription page led with product grid, burying the value proposition (curation quality, trial flexibility, personalization). <br><strong style="color: #fff;">After:</strong> Value-proposition-first — curation narrative in first fold, subscription selection below. +318% landing page visit lift (top-of-funnel leading indicator).</p>
+            </div>
+
+            <h2>Phase 4: Results</h2>
+
+            <h3>Test A — Sticky ATC on mobile</h3>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="big">+43.28%</div>
+                    <div class="result-label">CVR Lift — Sticky ATC Alone</div>
+                    <div class="result-sub">Mobile PDP, 4-week window</div>
+                </div>
+                <div class="result-card">
+                    <div class="big">+54.81%</div>
+                    <div class="result-label">CVR Lift — Combined with PDP Updates</div>
+                    <div class="result-sub">Sticky ATC + first-fold value signal refinements</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">~$33,000</div>
+                    <div class="result-label">Monthly Incremental Revenue</div>
+                    <div class="result-sub">Attributable to combined treatment</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">Desktop ≈ flat</div>
+                    <div class="result-label">Desktop Parity</div>
+                    <div class="result-sub">Expected — friction was mobile-specific</div>
+                </div>
+            </div>
+
+            <p><em>Baseline:</em> mobile PDP visitors who saw the standard (non-sticky) Add-to-Cart during the same 4-week window, 50/50 split allocation. Statistical significance reached at 95%+ confidence on mobile within the first 2 weeks. Desktop held at parity throughout — correctly — because the scroll-to-ATC gap that the intervention addressed was specific to single-column mobile reading.</p>
+
+            <h3>Test B — Subscription landing restructure</h3>
+
+            <div class="sub-funnel">
+                <div class="sub-row">
+                    <div class="sub-stage">Landing page visits</div>
+                    <div class="sub-bars">
+                        <div class="sub-bar control" style="width: 100px;">control</div>
+                        <div class="sub-bar variant" style="width: 100%;">variant (+318%)</div>
+                    </div>
+                    <div class="sub-change">+318%</div>
+                </div>
+                <div class="sub-row">
+                    <div class="sub-stage">Meaningful engagement</div>
+                    <div class="sub-bars">
+                        <div class="sub-bar control" style="width: 40px;">control</div>
+                        <div class="sub-bar variant" style="width: 38%;">variant</div>
+                    </div>
+                    <div class="sub-change tbd">longer window</div>
+                </div>
+                <div class="sub-row">
+                    <div class="sub-stage">Subscription starts</div>
+                    <div class="sub-bars">
+                        <div class="sub-bar control" style="width: 18px;">control</div>
+                        <div class="sub-bar variant" style="width: 12%;">variant</div>
+                    </div>
+                    <div class="sub-change tbd">multi-session cycle</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>Reading the +318%.</strong> A 318% lift in landing page visits is not a 318% lift in subscription conversions. Subscription has a longer sales cycle — buyers research over multiple sessions, compare against other services, and commit after consideration rather than on first touch. What this result proved was that the <em>top of the subscription funnel was finally targeting the right intent</em>. The conversion lift is measurable only after the full sales cycle plays out. Reporting an early-indicator metric as the win, and explicitly marking the downstream metrics as pending, is how a test in a subscription category should be communicated to executives.
+            </div>
+
+            <h2>Phase 5: Why This Category Breaks Standard CRO Advice</h2>
+            <p>Most CRO playbooks say:</p>
+            <ul>
+                <li>"Put the Add-to-Cart above the fold."</li>
+                <li>"Reduce the number of scrollable sections on the PDP."</li>
+                <li>"Shorten your description copy."</li>
+                <li>"Never hide the price."</li>
+            </ul>
+
+            <p>In a commodity e-commerce category — where the buyer arrived already knowing what they wanted — these rules are correct. In premium tea, premium coffee, specialty food, fragrance, and subscription content categories, each rule is either wrong or incomplete:</p>
+
+            <ul>
+                <li><strong>"ATC above the fold" — incomplete.</strong> The ATC must be above the fold <em>and</em> reachable wherever the buyer currently is. One static position is not enough when the decision happens at depth.</li>
+                <li><strong>"Reduce scrollable sections" — wrong.</strong> The sections are the product in this category. Removing them strips the persuasion. The intervention is making the buy action keep up with the sections, not removing the sections.</li>
+                <li><strong>"Shorten descriptions" — wrong.</strong> Description depth is how the buyer qualifies the product. Customers actively <em>want</em> the flavor notes, the origin, the brewing guide. Shortening them undercuts the decision.</li>
+                <li><strong>"Never hide the price" — correct, but add: never hide the buy action either.</strong> Visible price + unreachable buy action is the same category of mistake as invisible price + visible buy action. Both break the path from decision to purchase.</li>
+            </ul>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Convert.com</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Liquid (Shopify)</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Shopify</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>Category determines playbook, not the other way around.</strong> CRO rules that are stated as universal are almost always universal for a single category and wrong for the next one. The first question every engagement answers is <em>what kind of buyer is this, and how do they read a product page</em> — not <em>what's our test idea</em>.</li>
+                <li><strong>Sticky buy boxes are structural, not stylistic.</strong> A sticky ATC is the visible representation of "the buy action must follow the buyer." In content-heavy categories this is a revenue intervention. In short-decision categories it is visual clutter. Both statements are true at the same time.</li>
+                <li><strong>Subscription tests read differently than conversion tests.</strong> A 318% top-of-funnel lift in a subscription category is a leading indicator, not a lagging one. The readout must explicitly mark downstream metrics as pending — otherwise stakeholders either over-celebrate the early signal or under-weight the real conversion outcome once it lands.</li>
+                <li><strong>Desktop parity is a win signal, not a problem.</strong> When a mobile-specific intervention does not move desktop, that is <em>evidence the intervention is well-scoped</em>. Aggregate-level metric flatness would be a problem. Device-segmented flatness on the device the intervention did not target is exactly what the hypothesis predicted.</li>
+                <li><strong>The buyer who finished reading is the highest-value buyer on the page.</strong> They self-selected through the entire persuasion stack. Making them scroll back to buy is the costliest friction in the funnel — because it is applied to the buyer most likely to convert.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

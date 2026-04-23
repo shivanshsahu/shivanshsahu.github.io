@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three PDPs in Eight Weeks — Shivansh</title>
+    <meta name="description" content="The first PDP redesign lost. The second was flat. The third won. This program was only possible because the team didn't declare the program dead after iteration one — and because iteration one's loss contained the exact insight iteration three needed.">
+    <meta property="og:title" content="Three PDPs in Eight Weeks — Shivansh">
+    <meta property="og:description" content="Loss → flat → win. How iterative redesign compounds when losses are read for information instead of buried.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; position: relative; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body em { color: var(--accent-primary); font-style: normal; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { padding: 1.25rem 1rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.12); text-align: center; }
+        .stat-card .val { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        .callout em { color: var(--accent-primary); font-style: italic; }
+        .iter-arc { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 768px) { .iter-arc { grid-template-columns: 1fr; } }
+        .iter-stage { padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); text-align: center; position: relative; }
+        .iter-stage.loss { background: rgba(248,113,113,0.04); border-color: rgba(248,113,113,0.2); }
+        .iter-stage.flat { background: rgba(251,191,36,0.04); border-color: rgba(251,191,36,0.2); }
+        .iter-stage.win { background: rgba(52,211,153,0.04); border-color: rgba(52,211,153,0.2); }
+        .iter-stage .badge-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem; }
+        .iter-stage.loss .badge-label { background: rgba(248,113,113,0.2); color: #F87171; }
+        .iter-stage.flat .badge-label { background: rgba(251,191,36,0.2); color: #FBBF24; }
+        .iter-stage.win .badge-label { background: rgba(52,211,153,0.2); color: #34D399; }
+        .iter-stage .big { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; line-height: 1; margin-bottom: 0.35rem; }
+        .iter-stage.loss .big { color: #F87171; }
+        .iter-stage.flat .big { color: #FBBF24; }
+        .iter-stage.win .big { color: #34D399; }
+        .iter-stage .name { font-weight: 600; color: #fff; font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .iter-stage .desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+        .iter-detail { margin: 1.5rem 0 2rem; padding: 1.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .iter-detail.loss { background: rgba(248,113,113,0.03); border-color: rgba(248,113,113,0.15); }
+        .iter-detail.flat { background: rgba(251,191,36,0.03); border-color: rgba(251,191,36,0.15); }
+        .iter-detail.win { background: rgba(52,211,153,0.03); border-color: rgba(52,211,153,0.15); }
+        .iter-detail h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.4rem; font-weight: 700; }
+        .iter-detail.loss h4 { color: #F87171; }
+        .iter-detail.flat h4 { color: #FBBF24; }
+        .iter-detail.win h4 { color: #34D399; }
+        .iter-detail .iter-title { font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 1rem; font-weight: 700; }
+        .iter-detail .fields { display: grid; grid-template-columns: 120px 1fr; gap: 0.5rem 1rem; font-size: 0.92rem; line-height: 1.6; }
+        .iter-detail .fields .k { color: var(--accent-primary); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; padding-top: 0.1rem; }
+        .iter-detail .fields .v { color: var(--text-muted); }
+        .iter-detail .fields .v strong { color: #fff; }
+        .learning-chain { margin: 1.5rem 0 2rem; padding: 1.5rem; border-radius: var(--radius-sm); background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.18); }
+        .learning-chain h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); margin: 0 0 1rem; }
+        .learning-step { display: grid; grid-template-columns: 50px 1fr; gap: 0.85rem; margin-bottom: 0.75rem; }
+        .learning-step:last-child { margin-bottom: 0; }
+        .learning-step .n { display: flex; align-items: center; justify-content: center; height: 32px; border-radius: 50%; background: rgba(56,189,248,0.15); color: var(--accent-primary); font-family: var(--font-heading); font-weight: 800; font-size: 0.9rem; }
+        .learning-step .content { font-size: 0.92rem; line-height: 1.6; color: var(--text-main); padding-top: 0.4rem; }
+        .learning-step .content strong { color: #fff; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        .result-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-sm); background: rgba(52,211,153,0.03); border: 1px solid rgba(52,211,153,0.15); text-align: center; }
+        .result-card .big { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #34D399; line-height: 1; }
+        .result-card .medium { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #34D399; line-height: 1.1; }
+        .result-card .result-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-card .result-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.7rem; }
+    </style>
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="pulse-dot"></span>Shivansh.</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#testimonials">Testimonials</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let\'s Talk</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="rich-hero">
+            <a href="../index.html#case-studies" class="back-link">\u2190 Back to all cases</a>
+            <div class="badge">Health &amp; Supplements \u00b7 D2C \u00b7 Iterative Design</div>
+            <h1>Three PDPs in <span class="gradient-text">Eight Weeks</span></h1>
+            <p class="case-lede">A direct-to-consumer health supplements brand running on BigCommerce with an aging theme. The brand wanted a data-driven Product Detail Page (PDP) redesign and was willing to commit to iterative testing rather than a one-shot launch. That commitment is the entire case. <strong>The first redesign lost. The second was flat. The third won.</strong> The program existed only because the team didn\'t declare it dead at iteration one — and iteration one\'s loss contained the exact insight that made iteration three\'s win possible.</p>
+        </header>
+
+        <div class="case-body">
+            <div class="stats-row">
+                <div class="stat-card"><div class="val">3</div><div class="lbl">PDP Iterations Shipped</div></div>
+                <div class="stat-card"><div class="val">8wk</div><div class="lbl">End-to-End Program</div></div>
+                <div class="stat-card"><div class="val">v3</div><div class="lbl">Winning Iteration</div></div>
+                <div class="stat-card"><div class="val">↑</div><div class="lbl">Subscription Take-rate</div></div>
+                <div class="stat-card"><div class="val">Loss→Win</div><div class="lbl">Program Arc</div></div>
+            </div>
+
+            <h2>The Foundation Nobody Tests</h2>
+            <p>Before any variant shipped, the BigCommerce theme itself needed an upgrade. The legacy theme didn\'t support clean per-section injection — every variant would have accumulated engineering debt across tests, making each successive iteration slower and messier to build.</p>
+
+            <p>Two foundation steps, neither glamorous, both prerequisite:</p>
+            <ul>
+                <li><strong>Theme upgrade.</strong> BigCommerce theme refactored to support modular PDP sections that could be swapped by variant without touching global templates.</li>
+                <li><strong>Tracking architecture.</strong> PDP event schema standardized: <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, and custom section-level events (<code>ingredient_explorer_open</code>, <code>dosage_calculator_use</code>, <code>subscription_toggle</code>). Every variant could be read at the section level, not just at the page level.</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Why section-level tracking mattered later.</strong> The win in iteration three could only be attributed to the specific sub-section that caused it — the subscription selector redesign — because the tracking schema captured sub-page interactions from the start. Without it, the program would have known "v3 won" but not <em>what about v3</em> won. The foundation work paid off on iteration three, not iteration one.
+            </div>
+
+            <h2>The Iteration Arc</h2>
+            <p>Three iterations, three different hypotheses, three different outcomes:</p>
+
+            <div class="iter-arc">
+                <div class="iter-stage loss">
+                    <div class="badge-label">Iteration 1</div>
+                    <div class="big">\u2212</div>
+                    <div class="name">The Informed Guess</div>
+                    <div class="desc">Health-claim-led first fold. <strong>Lost.</strong></div>
+                </div>
+                <div class="iter-stage flat">
+                    <div class="badge-label">Iteration 2</div>
+                    <div class="big">\u2248</div>
+                    <div class="name">The Partial Recovery</div>
+                    <div class="desc">Image-primary, claims secondary. <strong>Flat.</strong></div>
+                </div>
+                <div class="iter-stage win">
+                    <div class="badge-label">Iteration 3</div>
+                    <div class="big">+</div>
+                    <div class="name">The Subscription Fix</div>
+                    <div class="desc">Clean default plan, transparent per-unit savings. <strong>Won.</strong></div>
+                </div>
+            </div>
+            <h2>Iteration One — The Informed Guess</h2>
+
+            <div class="iter-detail loss">
+                <h4>Iteration 1 \u00b7 Lost</h4>
+                <div class="iter-title">Health-Claim-Led First Fold</div>
+                <div class="fields">
+                    <div class="k">Hypothesis</div>
+                    <div class="v">The existing PDP was too product-feature-focused and not enough "what this does for your body." Leading with health claims and supporting scientific callouts would persuade more buyers.</div>
+                    <div class="k">Changes</div>
+                    <div class="v">Product image demoted to smaller position. Health claims elevated into primary first-fold real estate. Ingredient explainer block added above the fold.</div>
+                    <div class="k">Result</div>
+                    <div class="v"><strong>Conversion dropped.</strong> Read at 95% confidence against control.</div>
+                    <div class="k">Root cause</div>
+                    <div class="v">Session recordings showed the health-claim-led hierarchy was slowing down the buyers who <em>already knew they wanted to buy</em>. The variant inserted educational content in front of a decision that had already been made. It was optimizing for the wrong moment in the funnel.</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>Why the team didn\'t stop here.</strong> Iteration one lost definitively. Most programs declare the redesign initiative "not working" at this point and revert. The reason this program continued was the structural commitment made at the start — the team had agreed upfront that the first iteration was a starting point, not the answer. Without that pre-commitment, iteration two would never have shipped.
+            </div>
+
+            <h2>Iteration Two — The Partial Recovery</h2>
+
+            <div class="iter-detail flat">
+                <h4>Iteration 2 \u00b7 Flat</h4>
+                <div class="iter-title">Image-Primary, Claims Secondary</div>
+                <div class="fields">
+                    <div class="k">Hypothesis</div>
+                    <div class="v">The product image is the decision anchor, not the copy. Restore the image to primary first-fold, keep the health claims but beside rather than above the buy action. Introduce an expandable ingredient section below the fold for buyers who want the detail.</div>
+                    <div class="k">Changes</div>
+                    <div class="v">Image-primary layout restored. Claims repositioned to secondary column. Ingredient detail moved to expandable "+ Learn more" block below-the-fold.</div>
+                    <div class="k">Result</div>
+                    <div class="v"><strong>Flat.</strong> Not a loss. Not a win. No significant delta against control.</div>
+                    <div class="k">What the data said</div>
+                    <div class="v">Image-primary layout was working for buyers who knew the product. But the subscription / one-time selector was still ambiguous — session recordings showed a meaningful fraction of buyers hesitating at the plan selection step rather than at the purchase step. The variant fixed the wrong problem from iteration one but didn\'t address the next problem down the chain.</div>
+                </div>
+            </div>
+
+            <h2>Iteration Three — The Win</h2>
+
+            <div class="iter-detail win">
+                <h4>Iteration 3 \u00b7 Won</h4>
+                <div class="iter-title">Subscription Selector Redesign</div>
+                <div class="fields">
+                    <div class="k">Hypothesis</div>
+                    <div class="v">The image-primary layout from iteration two was correct. The friction that was hiding a win was downstream — at the subscription vs. one-time selector. A cleaner, default-selected subscription plan with transparent per-unit savings would resolve the hesitation.</div>
+                    <div class="k">Changes</div>
+                    <div class="v">Kept iteration two\'s first fold. Completely redesigned the subscription selector: clean default-selected subscription plan with in-line per-unit savings displayed, single-click "switch to one-time" toggle that didn\'t punish either option with extra clicks.</div>
+                    <div class="k">Result</div>
+                    <div class="v"><strong>Winner.</strong> Conversion improved. Average Order Value held. Subscription take-rate climbed against baseline.</div>
+                    <div class="k">Section-level signal</div>
+                    <div class="v">The <code>subscription_toggle</code> event — tracked from day one on the foundation schema — confirmed the sub-section causing the lift. Without section-level tracking, the win would have been "v3 works." With it, the win was "v3 works because of the subscription selector."</div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <img src="../assets/visuals/iterative-pdp-wireframe.png" alt="Three PDP iterations — V1 health-claim-led (Lost), V2 image-primary (Flat), V3 subscription selector redesign (Won)" style="width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border-color);" loading="lazy">
+            </div>
+            <h2>The Learning Chain</h2>
+            <p>What each iteration taught the next. This is the structure that a one-shot redesign cannot produce:</p>
+
+            <div class="learning-chain">
+                <h4>How information compounded across iterations</h4>
+                <div class="learning-step">
+                    <div class="n">1</div>
+                    <div class="content"><strong>Iteration 1 (loss)</strong> taught: "Health claims in first-fold slow down high-intent buyers" — the variant was optimizing for an education moment the buyer had already passed.</div>
+                </div>
+                <div class="learning-step">
+                    <div class="n">2</div>
+                    <div class="content"><strong>Iteration 2 (flat)</strong> taught: "Image-primary is correct, but the real remaining friction is at plan selection, not product evaluation" — session recordings revealed the next friction downstream.</div>
+                </div>
+                <div class="learning-step">
+                    <div class="n">3</div>
+                    <div class="content"><strong>Iteration 3 (win)</strong> applied both learnings: image-primary layout (from iter 2) + redesigned subscription selector (from iter 2\'s session data). The win was a compound of the two prior iterations, not an independent idea.</div>
+                </div>
+            </div>
+
+            <h2>Results</h2>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="medium">CVR \u2191</div>
+                    <div class="result-label">Conversion Improved</div>
+                    <div class="result-sub">v3 vs control, 95%+ confidence</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">AOV held</div>
+                    <div class="result-label">Order Value Stable</div>
+                    <div class="result-sub">No cannibalization</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">Sub \u2191</div>
+                    <div class="result-label">Subscription Take-rate</div>
+                    <div class="result-sub">Higher vs baseline</div>
+                </div>
+                <div class="result-card">
+                    <div class="medium">Theme ready</div>
+                    <div class="result-label">Infrastructure Unlocked</div>
+                    <div class="result-sub">Future tests faster to ship</div>
+                </div>
+            </div>
+
+            <p style="font-size:0.88rem;color:var(--text-dim);margin-top:1rem;"><em>Note on numbers:</em> Per-test CVR, AOV, and subscription take-rate deltas are available under NDA. Specific confidence intervals and absolute metric deltas can be shared with employers under appropriate confidentiality.</p>
+
+            <!-- Tools & Stack -->
+            <h2>Tools &amp; Stack</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Experimentation</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">VWO</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Convert.com</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Analytics &amp; Research</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GA4</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Microsoft Clarity</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">GTM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Development</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">JavaScript / CSS</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">Figma</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); font-weight: 600; width: 100%; margin-bottom: -0.25rem;">Platform</span>
+                <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.82rem; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: var(--text-main);">BigCommerce</span>
+            </div>
+
+            <h2>What This Engagement Taught Me</h2>
+            <ul>
+                <li><strong>The first redesign of a complex page is an educated guess, not a solution.</strong> Brands that commit to iterative testing on the same surface — with each iteration informed by what the previous one actually taught — will outperform brands that ship one redesign and call it done. Iteration is the strategy, not the backup plan.</li>
+                <li><strong>Losses are informationally positive when the program continues.</strong> Iteration one\'s loss produced the exact learning that made iteration three\'s win possible. If the team had declared the program dead at iteration one, none of the subsequent revenue would have existed. The structural commitment to continue was worth more than any single variant.</li>
+                <li><strong>Flat results contain insight too.</strong> Iteration two didn\'t move the primary metric but it surfaced the downstream friction (the subscription selector) that iteration three then addressed. A test reading flat is a test that eliminated one hypothesis and pointed at the next.</li>
+                <li><strong>Section-level tracking is invisible until it isn\'t.</strong> The foundation work — instrumenting every sub-section of the PDP before any variant shipped — looked like overhead during iteration one. By iteration three it was the difference between "something worked" and "the subscription selector specifically worked, and here is why." That attribution fidelity becomes the basis for the next engagement\'s starting hypothesis.</li>
+                <li><strong>Theme infrastructure is test infrastructure.</strong> Upgrading the BigCommerce theme before the first variant shipped felt like engineering ceremony. By iteration three it was the reason each successive variant shipped faster than the last. Programs that try to test on legacy themes accumulate engineering debt per iteration and burn out within 3\u20134 tests.</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html#case-studies" class="btn-secondary">\u2190 All case studies</a>
+                <a href="../index.html#contact" class="btn-primary">Let\'s talk about your program \u2192</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><span class="pulse-dot"></span>Shivansh.</div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>\u00a9 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTM & Event Layer — Shivansh</title>
+    <meta name="description" content="Brittle Custom HTML tags replaced with deterministic templates. Duplicate events eliminated at the source. A data layer schema documented, not improvised.">
+    <meta property="og:title" content="GTM & Event Layer — Shivansh">
+    <meta property="og:description" content="Brittle Custom HTML tags replaced with deterministic templates. Duplicate events eliminated at the source. A data layer schema documented, not improvised.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="case-page">
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#methodology">Methodology</a>
+                <a href="../index.html#case-studies">Case Studies</a>
+                <a href="../index.html#operations">Ops &amp; Data</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="../index.html#contact" class="btn-outline">Let's Talk</a>
+        </div>
+    </nav>
+
+    <header class="case-hero capability-hero">
+        <div class="case-hero-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="case-hero-content">
+            <a href="../index.html#operations" class="case-back-link">← All capabilities</a>
+            <div class="case-hero-meta">
+                <span class="case-hero-industry">Tag Management</span>
+            </div>
+            <h1 class="case-hero-title">GTM & Event Layer</h1>
+            <p class="case-hero-hook">Brittle Custom HTML tags replaced with deterministic templates. Duplicate events eliminated at the source. A data layer schema documented, not improvised.</p>
+        </div>
+    </header>
+
+    <main class="case-main">
+        <article class="case-article markdown-body">
+            <h2>Why It Matters</h2>
+<p>Most Google Tag Manager (GTM) containers I audit are accumulated sediment — every agency that has touched the site left behind Custom HTML tags, and nobody has ever removed one. The result is inflated metrics, fragile firing logic, and tags that fight each other in ways that only surface as "mysterious" reporting anomalies.</p>
+<p>Cleaning the container is as important as adding the next test's tags.</p>
+<h2>1. Eliminating Duplicate Event Firing</h2>
+<p><strong>The problem pattern.</strong> Legacy Custom HTML tags combined with modern Google Tag templates produce duplicate events. A single "Add to Cart" click fires twice: once through the old custom tag, once through the new templated event. Every KPI is inflated by a factor of two. An A/B test showing a 10% lift in Add-to-Cart rate is meaningless because the baseline was fabricated.</p>
+<p>Single-Page Application (SPA) routers make this worse — the old custom tag fires on the original page load event, the new one fires on the SPA route change, and users see both counted.</p>
+<p><strong>The fix.</strong>
+- <strong>De-duplication architecture:</strong> each event gets a unique <code>event_id</code> (hashed from <code>user_id + product_id + timestamp</code> bucketed to 5 seconds) and GA4 drops duplicates at the server side
+- <strong>Session-scope flags:</strong> for events that should only fire once per session (like <code>view_subscription_page</code>), set a GTM variable in the data layer on first fire and short-circuit subsequent fires
+- <strong>Tag consolidation:</strong> strip out legacy Custom HTML/JS tags entirely and replace with structured Google Tag templates fed by a deterministic <code>dataLayer.push()</code> schema</p>
+<div class="visual-placeholder" data-visual-needed="true"><div class="visual-placeholder-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><span>Visual Needed</span></div><p>Before/after of GTM container — 40+ disorganized tags vs. consolidated structured schema with 12 tag templates</p></div>
+
+<h2>2. Data Layer Design</h2>
+<p>The data layer is the source of truth. Every tag in the container should read from it; none should compute its own values inline.</p>
+<p><strong>What the schema looks like:</strong></p>
+<pre><code class="language-javascript">dataLayer.push({
+  event: 'add_to_cart',
+  ecommerce: {
+    currency: 'USD',
+    value: 29.99,
+    items: [{
+      item_id: 'SKU-1234',
+      item_name: 'Product Title',
+      item_category: 'Apparel',
+      item_variant: 'Medium · Navy',
+      price: 29.99,
+      quantity: 1
+    }]
+  }
+});
+</code></pre>
+<p>This is the contract the development team implements. Every page emits events in this exact shape. Every GTM tag reads these exact fields. No custom JavaScript scraping the DOM to infer values. If a field is missing, the bug is in the data layer, not in thirty different tags guessing.</p>
+<h2>3. Replacing Custom HTML with Templates</h2>
+<p><strong>Why it matters:</strong> Custom HTML tags are the black holes of a GTM container. They can execute anything, they bypass GTM's built-in variable escaping, and they are invisible to anyone who didn't write them. The moment the original developer leaves, the tag becomes undocumented legacy that nobody will touch because "it probably does something important."</p>
+<p><strong>The refactor pattern:</strong>
+- Identify what each Custom HTML tag is actually doing (most are firing a pixel event or extracting a value from the DOM)
+- Replace with a templated equivalent: Google Tag, Facebook Pixel template, or a GTM Variable that reads the data layer directly
+- Document the replacement in the tag notes so the next auditor (probably me, in two years) knows what it replaced</p>
+<p>A container I audited recently had 14 Custom HTML tags. Nine of them were firing duplicate pixel events. Three were extracting values that already existed in the data layer. Two were dead — inherited from an agency that left three years ago. All 14 replaced with 11 clean templates.</p>
+<div class="visual-placeholder" data-visual-needed="true"><div class="visual-placeholder-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><span>Visual Needed</span></div><p>GTM workspace showing the tag list before and after cleanup, with "Custom HTML" count down from 14 to 0</p></div>
+
+<h2>4. Consent-Aware Tag Firing</h2>
+<p>Every tag in the container is configured with explicit consent state requirements. Analytics tags fire when <code>analytics_storage</code> is granted. Advertising tags fire when <code>ad_storage</code> is granted. There's no "fire if consent is ambiguous" — explicit grant or nothing. This is what keeps the setup compliant while also being what makes Consent Mode v2's modeling work properly.</p>
+<h2>The Operational Standard</h2>
+<p>The GTM container is documented. Every tag has a human-readable note explaining what it does, which team owns it, and when it was last reviewed. When a new tag is proposed, it gets added to the documentation before it ships — because the container that accumulates undocumented sediment is the container that silently corrupts the next team's analysis.</p>
+        </article>
+        <div class="case-footer-cta">
+            <a href="../index.html#operations" class="btn-secondary">← All capabilities</a>
+            <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivansh | CRO & Experimentation Ops</title>
+    <meta name="description"
+        content="800+ A/B tests. $5M+ revenue influenced. I fix broken data first, then build the testing system.">
+    <meta property="og:title" content="Shivansh | CRO & Experimentation Ops">
+    <meta property="og:description"
+        content="800+ A/B tests. $5M+ revenue influenced. I fix broken data first, then build the testing system.">
+    <meta property="og:type" content="website">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#methodology">Methodology</a>
+                <a href="#case-studies">Case Studies</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#operations">Ops & Data</a>
+                <a href="./tools-skills.html">Tools & Skills</a>
+                <a href="./ai-automation.html">AI & Automation</a>
+            </div>
+            <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="nav-linkedin"
+                aria-label="LinkedIn profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+            </a>
+            <a href="#contact" class="btn-outline">Let's Talk</a>
+            <!-- Mobile hamburger -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <!-- Mobile nav overlay -->
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="#about">About</a>
+            <a href="#methodology">Methodology</a>
+            <a href="#case-studies">Case Studies</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#operations">Ops & Data</a>
+            <a href="./tools-skills.html">Tools & Skills</a>
+            <a href="./ai-automation.html">AI & Automation</a>
+            <a href="#contact" class="btn-primary" style="margin-top:1rem;">Let's Talk</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="badge slide-up">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+                Senior CRO Operator & Strategist
+            </div>
+            <h1 class="slide-up delay-1">
+                I build <span class="gradient-text">experimentation systems</span>, not just A/B tests.
+            </h1>
+            <p class="hero-subtitle slide-up delay-2">
+                Most brands have broken data, weak test ideas, or both. I find where revenue is leaking, fix the
+                measurement infrastructure first, and build testing programs anchored in what customers actually tell
+                you — not what looks good in a Figma file.
+            </p>
+            <div class="hero-actions slide-up delay-3">
+                <a href="#case-studies" class="btn-primary">View Case Studies</a>
+                <a href="#methodology" class="btn-secondary">How I Work</a>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar slide-up delay-4">
+            <div class="stat-item">
+                <span class="stat-number" data-count="800">0</span><span class="stat-suffix">+</span>
+                <span class="stat-label">A/B Tests Launched</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="40">0</span><span class="stat-suffix">+</span>
+                <span class="stat-label">Brands Served</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-prefix">$</span><span class="stat-number" data-count="5">0</span><span
+                    class="stat-suffix">M+</span>
+                <span class="stat-label">Revenue Influenced</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="12">0</span><span class="stat-suffix">+</span>
+                <span class="stat-label">Industries</span>
+            </div>
+        </div>
+        <p class="stats-footnote slide-up delay-4">
+            <em>Revenue influenced</em> is aggregate documented monthly revenue delta attributed to winning tests across
+            flagship engagements, 2023–2026. Individual test outcomes and baselines are shown per case study.
+        </p>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about-container"
+            style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 4rem; align-items: flex-start;">
+            <div class="about-image" style="flex: 1 1 250px; max-width: 320px;">
+                <img src="./assets/shivansh.jpeg" alt="Shivansh"
+                    style="width: 100%; border-radius: var(--radius); border: 1px solid var(--border-color); box-shadow: 0 8px 30px rgba(0,0,0,0.4);">
+            </div>
+            <div class="about-text" style="flex: 2 1 400px;">
+                <h2 class="section-title">About <span class="gradient-text">Shivansh</span></h2>
+                <p class="about-lead">I started in SEO in 2020 — optimizing product titles and meta tags for a small
+                    incense brand. That led to digital marketing analytics at <strong>Digital ROI</strong>, which led to
+                    the question that's defined my work ever since: <em>"How do you actually know this worked?"</em></p>
+                <p>From early 2023 through March 2026 I was the CRO Analyst at <strong>Blue Bagels</strong>, owning the
+                    full testing lifecycle — research, hypothesis, instrumentation, QA, analysis, and the rollout
+                    conversation with the client. 800+ A/B tests across 40+ e-commerce brands, ranging from patriotic
+                    merchandise and Gen-Z streetwear to B2B industrial catalogs and LED lighting distributors. Alongside
+                    that, I've run freelance GA4/GTM engagements since 2023 — most recently as a GA4 Analyst at
+                    <strong>Bright Horizons</strong>.
+                </p>
+                <p>I also co-own a small retail brand (<strong>Masculine Store</strong>) on the side. Running a store
+                    keeps me honest — you learn fast what it feels like when your dashboard lies to you.</p>
+                <p>My approach is straightforward: <strong>Fix the data first. Test the right things. Tell the truth
+                        about the results — even when the truth is a loss.</strong></p>
+                <div class="about-tags">
+                    <span class="tag">GA4 / GTM Architecture</span>
+                    <span class="tag">A/B Testing (Convert, VWO)</span>
+                    <span class="tag">Heatmaps & Session Recordings</span>
+                    <span class="tag">Shopify & BigCommerce</span>
+                    <span class="tag">Consent Mode v2</span>
+                    <span class="tag">Cross-Domain Tracking</span>
+                    <span class="tag">Voice of Customer Mining</span>
+                    <span class="tag">ICE/PIE Prioritization</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections (pre-rendered at build time by build_site.py) -->
+    <main id="main-content">
+        <!-- BUILD:CONTENT_START -->
+
+        <section id="methodology" class="section reveal">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">The Operating System</h2>
+            </div>
+            <div class="markdown-body">
+                <h1>How I Work: The DDBL Framework</h1>
+<p>Every engagement follows the same four-phase structure: <strong>Diagnosing, Deciding, Building, Leading</strong>. Not because it's a framework worth naming, but because skipping any phase is how testing programs produce expensive noise instead of useful signal.</p>
+<hr />
+<h2>1. Diagnosing</h2>
+<p>Before changing a single element, I build a complete picture of where revenue is actually leaking. The goal is to arrive at a hypothesis that's grounded in data — not one borrowed from a best-practices list.</p>
+<ul>
+<li><strong>Heuristic &amp; UX Audits:</strong> I walk through the full user journey as a buyer, flagging friction points: buried navigation, ambiguous CTAs, spec information that requires three clicks to find.</li>
+<li><strong>Quantitative Analytics:</strong> GA4 funnel breakdowns, device segmentation, and exit-rate analysis to identify exactly where drop-off is concentrated — and how differently it behaves on desktop versus mobile.</li>
+<li><strong>Qualitative Voice of Customer (VoC):</strong> For one B2B LED lighting client, a visitor survey surfaced that buyers were leaving product pages to look up the difference between T8 and T12 bulb types — not because the design was wrong, but because the specs page answered the wrong questions. That single survey response reshaped a full quarter's test roadmap. VoC tells you <em>why</em> users are behaving the way the heatmap shows; running both simultaneously cuts interpretation time significantly.</li>
+<li><strong>Technical Tracking Audit:</strong> If the data is broken, the test is invalid. Before every new engagement, I audit the GA4/GTM setup for cross-domain attribution failures, duplicate event firing, and data layer schema gaps. I've inherited broken tracking on nearly every client I've taken on. Fixing it first is not optional.</li>
+</ul>
+<h2>2. Deciding</h2>
+<p>An idea is not a hypothesis. A hypothesis is a testable prediction: <em>if I change X because data showed Y, I expect metric Z to improve.</em> Without that structure, you're running tests that can't generate a clean learning regardless of the outcome.</p>
+<ul>
+<li><strong>Prioritization:</strong> I use Impact, Confidence, and Effort scoring. A homepage redesign might score high on Impact but low on Confidence and Effort — making it a lower priority than a sticky buy box test that addresses a documented friction point with low development cost and high confidence in the behavioral signal.</li>
+<li><strong>The hypothesis format:</strong> <em>"If I [change X] because [data showed Y], then I expect [metric Z] to improve."</em> Every test in my pipeline is written this way. If I can't complete that sentence with evidence for Y, the test doesn't get built.</li>
+<li><strong>Device-forking:</strong> I avoid "one-size-fits-all" test designs. A dropdown menu that works for a mouse user on a wide screen fails on a 6-inch vertical viewport. I segment tests by device when the behavioral data shows divergence — and in my experience, it almost always does.</li>
+</ul>
+<h2>3. Building</h2>
+<p>The gap between strategy and execution is where most testing programs break. A clearly-scoped hypothesis that survives handoff intact is rarer than it should be.</p>
+<ul>
+<li><strong>The Master Tracker:</strong> Every test lives in a centralized pipeline with strict stages: <em>Backlog → Scoped → Designed → In Dev → QA → Live → Analyzing</em>. Developers don't start work on an undefined scope. QA doesn't approve tests without a tracking parity check. The tracker makes bottlenecks visible — if design takes two days and QA takes fourteen, that shows up immediately.</li>
+<li><strong>Clean handoffs:</strong> Developers receive documentation that specifies the exact URL targeting pattern (e.g., <code>*/collections/*</code>), the required GA4 event triggers with the full <code>ecommerce</code> data layer schema, the expected CSS behavior on each breakpoint, and the success metric. Not "update the button" — the exact change, with the exact measurement attached.</li>
+<li><strong>QA protocols:</strong> Nothing launches broken. Every test passes cross-browser rendering checks, mobile responsiveness verification, tracking parity confirmation in GA4 DebugView, and an A/A allocation check before going live.</li>
+</ul>
+<h2>4. Leading</h2>
+<p>A winning test generates revenue. A losing test generates intelligence. Both are valuable — but only if you communicate the results honestly.</p>
+<ul>
+<li><strong>The guardrail check:</strong> Within the first 48 hours of a live test, I monitor for catastrophic drops in primary KPIs. If a CTA color test drops Revenue Per Visitor by 18% in the first two days, I kill it immediately. Stopping the bleeding fast is what makes loss-led testing sustainable.</li>
+<li><strong>The final readout:</strong> Results get translated into business language. Not "Variant B won at 95% confidence." Instead: <em>the sticky header test is projected to add $7,943/month on desktop and confirmed to lose on mobile — here's why and here's how we roll it out selectively.</em> Executives need to know what to do with the result, not just what the result was.</li>
+<li><strong>The culture shift:</strong> The most durable outcome of a well-run testing program isn't any individual test result — it's the team's relationship with evidence. When a brand stops launching features based on the founder's gut feeling and starts anchoring every decision to verified customer data, the testing program has done its real job.</li>
+</ul>
+            </div>
+        </section>
+
+        <section id="case-studies" class="section reveal case-studies-section">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">Case Studies</h2>
+                <p class="section-lede">Eleven engagements. Eleven different problems. Real numbers. Real trade-offs. Click any card for the full write-up.</p>
+            </div>
+            <div class="case-grid">
+                
+        <a class="case-preview reveal" href="cases/heating-catalog.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Home Goods · B2B</span>
+            </div>
+            <h3 class="case-preview-title">The Revenue the Dashboard Was Hiding</h3>
+            <p class="case-preview-hook">A deep catalog with specs-driven buyers doesn't need better copy. It needs better information hierarchy on the collection page.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">$391K/mo</span>
+                    <span class="case-preview-metric-label">Incremental Revenue</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/streetwear-reviews.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Fashion · D2C</span>
+            </div>
+            <h3 class="case-preview-title">5,028 Reviews, One Real Problem</h3>
+            <p class="case-preview-hook">The brand had everything — design, traffic, cultural relevance. What it didn't have was confidence at the Add-to-Cart button.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">₹31.17L/mo</span>
+                    <span class="case-preview-metric-label">Incremental Contribution</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/lighting-specs.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Lighting · B2B</span>
+            </div>
+            <h3 class="case-preview-title">The Survey Question Nobody Was Asking</h3>
+            <p class="case-preview-hook">"'What would help you feel more confident? The difference between T8 and T12 bulbs.' That wasn't a design problem. That was an information architecture problem."</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">$192K/mo</span>
+                    <span class="case-preview-metric-label">Incremental Revenue</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/patriotic-pivot.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Home & Lifestyle · D2C</span>
+            </div>
+            <h3 class="case-preview-title">The Loss That Paid for the Program</h3>
+            <p class="case-preview-hook">A CTA color test dropped Revenue Per Visitor by 18%. I killed it in 48 hours. It was the most valuable thing I ran all quarter.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">$205K+</span>
+                    <span class="case-preview-metric-label">Documented Revenue Impact</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/apparel-rebuild.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Fashion · D2C · UK</span>
+            </div>
+            <h3 class="case-preview-title">Three Pages, Three Wins, One Rebuild</h3>
+            <p class="case-preview-hook">Homepage, collection, PDP — all three redesigned, all three tested, all three shipped. A four-month coordinated rebuild across design, dev, and CRO.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">+297%</span>
+                    <span class="case-preview-metric-label">Revenue on Collection Redesign</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/safety-funnel.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Safety Equipment · B2B</span>
+            </div>
+            <h3 class="case-preview-title">36% Leaving Before They Started</h3>
+            <p class="case-preview-hook">The funnel wasn't leaking in one place. It was leaking in four — and I had to prove which leak deserved the bandwidth first.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">$2.3M+</span>
+                    <span class="case-preview-metric-label">Projected Additional Revenue</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/tea-sticky-atc.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Food & Beverage · D2C</span>
+            </div>
+            <h3 class="case-preview-title">When the ATC Follows the Buyer</h3>
+            <p class="case-preview-hook">A sticky Add-to-Cart button on mobile doesn't sound like a revenue story. In this category, it was.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">$33K/mo</span>
+                    <span class="case-preview-metric-label">Incremental Revenue</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/baby-checkout.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Baby & Kids · D2C · EU</span>
+            </div>
+            <h3 class="case-preview-title">Why 88% of Mobile Traffic Was Leaving the Checkout</h3>
+            <p class="case-preview-hook">The checkout wasn't slow. It wasn't broken. It just kept telling mobile buyers new bad news at the last possible moment.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">€40.2K</span>
+                    <span class="case-preview-metric-label">Incremental Revenue</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/unit-economics.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Fashion · D2C</span>
+            </div>
+            <h3 class="case-preview-title">158 More Orders, $17,899 Less Revenue</h3>
+            <p class="case-preview-hook">Both numbers came from the same test. If I'd optimized for Conversion Rate alone, I would have shipped the variant that destroyed margin.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">$65K/mo</span>
+                    <span class="case-preview-metric-label">Incremental Revenue After Pivot</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/device-fork.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Media · Subscription</span>
+            </div>
+            <h3 class="case-preview-title">Two Platforms, Two Answers</h3>
+            <p class="case-preview-hook">Desktop and mobile are not two sizes of the same product. They're two different products with two different buyers, and the test plan has to respect that.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">$21.9K/mo</span>
+                    <span class="case-preview-metric-label">Incremental Monthly Revenue</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview reveal" href="cases/iterative-pdp.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Health · Supplements · D2C</span>
+            </div>
+            <h3 class="case-preview-title">Three PDPs in Eight Weeks</h3>
+            <p class="case-preview-hook">The first redesigned PDP lost. The second was flat. The third won. The program was only possible because we didn't stop at the first test.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">v3</span>
+                    <span class="case-preview-metric-label">Iteration Shipped</span>
+                </div>
+                <span class="case-preview-cta">Read case <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+            </div>
+            
+            <div class="case-study-divider">
+                <h2>— Three More from the Loss Column —</h2>
+            </div>
+            <div class="losses-grid">
+                <div class="cs-intro"><p>Not every test has a clean pivot and a winning follow-up. Some just teach something true and end. These three losses taught the programs they belonged to more than any win that quarter.</p></div>
+<div class="case-study-card loss-card reveal" id="loss-1">
+<h2>Loss 1: The "Modern Design" Trap</h2>
+<p><strong>Client:</strong> B2B/B2C Home &amp; Logistics Retailer
+<strong>Hypothesis:</strong> A redesigned, whitespace-forward collection page will improve engagement and increase conversions. The legacy layout was visually outdated.
+<strong>Execution:</strong> A Split URL test — legacy collection page versus a freshly coded "modern" redesign.
+<strong>The data:</strong> Conversion Rate crashed <strong>-24.82%</strong> at 96% confidence. Add-to-Cart rate dropped <strong>-12.73%</strong>. Average Order Value rose slightly ($614 → $681) on dramatically lower volume. <em>Measured against control traffic on the legacy collection pages over a 4-week window, 50/50 split. The variant dropped at launch and sustained the deficit — not a slow decay, an immediate rejection by a high-intent buyer base.</em>
+<strong>What actually happened:</strong> The "outdated" control page featured a dense, text-heavy list with first-fold filters that served high-intent B2B buyers perfectly. They knew exactly what dimensions they needed and could find them immediately. The modern redesign added whitespace and cleaner visuals, but buried the technical specs behind better aesthetics. I paused the variant immediately and pivoted to optimizing the filter mechanics on the control — not the visual design.
+<strong>The lesson:</strong> In technical and utilitarian e-commerce, information density is a feature. "Ugly" often converts because it respects how the buyer actually thinks.</p>
+</div>
+<div class="case-study-card loss-card reveal" id="loss-2">
+<h2>Loss 2: The Navigation Divergence</h2>
+<p><strong>Client:</strong> Same B2B/B2C Home &amp; Logistics Retailer
+<strong>Hypothesis:</strong> Reorganizing the top navigation into a more structured, nested hierarchy will help users locate niche products faster and reduce bounce.
+<strong>Execution:</strong> A sitewide A/B test of the global navigation structure.
+<strong>The data:</strong> Overall CVR -0.28%, overall ATC -1.13%. The aggregate masked a clean divergence: desktop users benefited from the structured hierarchy (CVR improved), mobile users experienced severe decline (nested taps overwhelming small viewports).
+<strong>What actually happened:</strong> The new taxonomy worked exactly as designed — for users with a mouse and a wide screen. On mobile, navigating a deep nested hierarchy through a hamburger menu required four to five taps to reach a subcategory. The friction was invisible on desktop and critical on mobile. The aggregate numbers hid the split.
+<strong>The action:</strong> I forked the navigation strategy. Preserved the deep structured mega-menu for desktop. Built a radically simplified, top-categories-only navigation exclusively for mobile.
+<strong>The lesson:</strong> Always segment your test results by device before reading the topline. Aggregate CVR is the number that tells you nothing useful.</p>
+</div>
+<div class="case-study-card loss-card reveal" id="loss-3">
+<h2>Loss 3: The ATC That Lied</h2>
+<p><strong>Client:</strong> B2B/B2C supplier of industrial and residential products
+<strong>Hypothesis:</strong> Cleaning up the PDP first fold and tightening the information layout will reduce cognitive load and speed up the path to purchase.
+<strong>Execution:</strong> A standard A/B test on the Product Detail Page.
+<strong>The data:</strong> Add-to-Cart Rate increased <strong>+17.79%</strong>. Conversion Rate dropped <strong>-11.06%</strong>.
+<strong>What actually happened:</strong> The "cleaner" design removed friction from the add-to-cart action — so buyers clicked it faster. But they hadn't confirmed the product specifications before adding. Once in the cart, they weren't sure they'd picked the right spec. Uncertainty at checkout equals abandonment. The test generated a large spike in ATC with a corresponding drop in checkout completion.
+<strong>The lesson:</strong> ATC is a leading indicator, not a conversion metric. In B2B and specs-driven e-commerce, friction at the product level is often <em>necessary</em> friction — it's the buyer confirming they made the right choice. Removing it artificially speeds up a decision the customer wasn't ready to make.</p>
+</div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section reveal testimonials-section">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">What People Say</h2>
+                <p class="section-lede">LinkedIn recommendations from clients, teammates, and direct reports. Full recommendations visible on my <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener">LinkedIn profile</a>.</p>
+            </div>
+            <div class="testimonials-grid">
+                
+        <figure class="testimonial-card reveal">
+            <svg class="testimonial-quote-mark" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M9.5 6c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6zm9 0c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6z"/>
+            </svg>
+            <blockquote class="testimonial-quote">I had the pleasure of working with Shivansh through our agency partnership, where he supported our CRO efforts across 5 different brand websites. He has excellent attention to detail and a strong understanding of analytics. He consistently went beyond surface-level test results by using Convert and GA4 to uncover meaningful insights. Shivansh was always responsive, collaborative and proactive in bringing forward new testing ideas. I highly recommend him to any team looking for a detail-oriented and reliable CRO expert.</blockquote>
+            <figcaption class="testimonial-attribution">
+                <div class="testimonial-avatar" aria-hidden="true">JA</div>
+                <div class="testimonial-meta">
+                    <div class="testimonial-name">Jennifer Angileri, PMP</div>
+                    <div class="testimonial-role">Project Manager</div>
+                    <div class="testimonial-relationship">Client — Agency partnership across 5 brand websites</div>
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="testimonial-card reveal">
+            <svg class="testimonial-quote-mark" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M9.5 6c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6zm9 0c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6z"/>
+            </svg>
+            <blockquote class="testimonial-quote">Shivansh was an incredible mentor to me while we worked together on various client accounts. His approach to performance marketing is both data-driven and highly strategic, but what truly sets him apart is his dedication to team growth. He didn't just manage projects; he invested time in my professional development, teaching me the nuances of the industry. He is a natural leader and a brilliant marketer who consistently delivers results.</blockquote>
+            <figcaption class="testimonial-attribution">
+                <div class="testimonial-avatar" aria-hidden="true">SS</div>
+                <div class="testimonial-meta">
+                    <div class="testimonial-name">Shekhar Singh</div>
+                    <div class="testimonial-role">Growth & Performance Marketing Lead</div>
+                    <div class="testimonial-relationship">Colleague — worked on the same team across multiple client accounts</div>
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="testimonial-card reveal">
+            <svg class="testimonial-quote-mark" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M9.5 6c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6zm9 0c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6z"/>
+            </svg>
+            <blockquote class="testimonial-quote">It is incredibly rare in today's corporate world to find a manager who seamlessly doubles as a true friend and mentor, but Shivansh is exactly that. During our time working together on complex CRO audits, I was continually inspired by his keen eye for detail and serious dedication to his craft. Shivansh didn't just teach me how to pull numbers; he fundamentally shifted my approach to data, showing me how to translate raw information into real, actionable insights. Building robust dashboards together in Looker Studio was a masterclass in data presentation.</blockquote>
+            <figcaption class="testimonial-attribution">
+                <div class="testimonial-avatar" aria-hidden="true">AG</div>
+                <div class="testimonial-meta">
+                    <div class="testimonial-name">Aman Goyal</div>
+                    <div class="testimonial-role">Data & Business Analyst</div>
+                    <div class="testimonial-relationship">Direct report — reported to Shivansh on CRO audits</div>
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="testimonial-card reveal">
+            <svg class="testimonial-quote-mark" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M9.5 6c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6zm9 0c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6z"/>
+            </svg>
+            <blockquote class="testimonial-quote">I had the privilege of working under Shivansh, one of the most insightful and supportive mentors in my career. His ability to break down complex challenges into clear, actionable strategies always stood out. Beyond technical expertise, what truly made a difference was his approach to leadership — encouraging ownership, fostering critical thinking, and always being open to new ideas.</blockquote>
+            <figcaption class="testimonial-attribution">
+                <div class="testimonial-avatar" aria-hidden="true">MY</div>
+                <div class="testimonial-meta">
+                    <div class="testimonial-name">Mukesh Yadav</div>
+                    <div class="testimonial-role">Business Strategy · Performance Marketing</div>
+                    <div class="testimonial-relationship">Direct report — Shivansh was senior to Mukesh</div>
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="testimonial-card reveal">
+            <svg class="testimonial-quote-mark" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M9.5 6c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6zm9 0c-3.5 0-6 3-6 6.5 0 3 2 5.5 5 5.5 1.5 0 2.5-1 2.5-2.5 0-1.5-1-2.5-2.5-2.5-.5 0-1 0-1 .5 0-2 1.5-4 4-4V6z"/>
+            </svg>
+            <blockquote class="testimonial-quote">It was always a pleasure working with Shivansh — his attention to detail, eagerness to learn, and leadership skills have been tremendous. Hoping to see him keeping up this momentum.</blockquote>
+            <figcaption class="testimonial-attribution">
+                <div class="testimonial-avatar" aria-hidden="true">CP</div>
+                <div class="testimonial-meta">
+                    <div class="testimonial-name">Chitransh Pant</div>
+                    <div class="testimonial-role">PwC — US Advisory · PGDM, Goa Institute of Management</div>
+                    <div class="testimonial-relationship">Colleague — worked on the same team</div>
+                </div>
+            </figcaption>
+        </figure>
+            </div>
+        </section>
+
+        <section id="operations" class="section reveal capabilities-section">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">Ops &amp; Data</h2>
+                <p class="section-lede">The technical and operational work that keeps a testing program readable. Click any card for the detailed approach.</p>
+            </div>
+            <div class="case-grid">
+                
+        <a class="case-preview capability-preview reveal" href="capabilities/operating-system.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Ops & PM</span>
+            </div>
+            <h3 class="case-preview-title">The Experimentation Operating System</h3>
+            <p class="case-preview-hook">A Master Tracker keeps 15+ concurrent tests visible. Strict pipeline stages kill ambiguity. A loss protocol keeps executives informed instead of surprised.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">15+</span>
+                    <span class="case-preview-metric-label">Concurrent Tests Managed</span>
+                </div>
+                <span class="case-preview-cta">See how <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview capability-preview reveal" href="capabilities/ga4-architecture.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Analytics</span>
+            </div>
+            <h3 class="case-preview-title">GA4 Architecture</h3>
+            <p class="case-preview-hook">Cross-domain attribution restored. Modeled conversions preserved through Consent Mode v2. Enhanced Conversions feeding match rates back to paid platforms. Before the tests ran.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">100%</span>
+                    <span class="case-preview-metric-label">Attribution Restored</span>
+                </div>
+                <span class="case-preview-cta">See how <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview capability-preview reveal" href="capabilities/gtm-tracking.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Tag Management</span>
+            </div>
+            <h3 class="case-preview-title">GTM & Event Layer</h3>
+            <p class="case-preview-hook">Brittle Custom HTML tags replaced with deterministic templates. Duplicate events eliminated at the source. A data layer schema documented, not improvised.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">14 tags</span>
+                    <span class="case-preview-metric-label">Removed in One Audit</span>
+                </div>
+                <span class="case-preview-cta">See how <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+
+        <a class="case-preview capability-preview reveal" href="capabilities/data-analysis.html">
+            <div class="case-preview-top">
+                <span class="case-preview-industry">Research</span>
+            </div>
+            <h3 class="case-preview-title">Data Analysis & VoC Mining</h3>
+            <p class="case-preview-hook">Funnel audits that find where revenue is leaking, review mining at scale, cohort segmentation, and turning qualitative signal into a prioritized test roadmap.</p>
+            <div class="case-preview-footer">
+                <div class="case-preview-metric">
+                    <span class="case-preview-metric-value">5,028</span>
+                    <span class="case-preview-metric-label">Reviews Coded in One Engagement</span>
+                </div>
+                <span class="case-preview-cta">See how <span aria-hidden="true">→</span></span>
+            </div>
+        </a>
+            </div>
+        </section>
+<!-- BUILD:CONTENT_END -->
+    </main>
+
+    <!-- Contact / CTA Section -->
+    <section id="contact" class="section">
+        <div class="contact-card">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="contact-subtitle">I work best embedded — not as a one-off hire. If your data is broken, your tests
+                aren't converting, or you're ready to build a real experimentation program, I want to hear about it.</p>
+            <div class="contact-cta">
+                <a href="mailto:shivansh8109@bluebagels.com" class="btn-primary btn-lg">Send me a note →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="pulse-dot"></span>
+                Shivansh.
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link"
+                    aria-label="LinkedIn profile">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <a href="./tools-skills.html" class="footer-link">Tools & Skills</a>
+                <a href="./ai-automation.html" class="footer-link">AI & Automation</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/script.js" defer></script>
+</body>
+
+</html>
