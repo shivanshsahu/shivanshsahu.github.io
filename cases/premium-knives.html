@@ -79,7 +79,18 @@
         .back-nav a.back{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.9rem;text-decoration:none;transition:color .2s}
         .back-nav a.back:hover{color:var(--accent-primary)}
         .back-nav a.logo{font-family:var(--font-heading);font-weight:700;color:#fff;font-size:1.1rem;text-decoration:none}
-        @media(max-width:600px){.reasons-grid,.segment-split,.persona-grid{grid-template-columns:1fr}.funnel-label{width:110px;font-size:.78rem}}
+        @media(max-width:640px){
+  .reasons-grid,.segment-split,.persona-grid{grid-template-columns:1fr}
+  .funnel-label{width:90px;font-size:.75rem}
+  .funnel-step-pct{width:auto;font-size:.78rem}
+  .page-cvr,.ads-grid{font-size:.82rem}
+  .page-cvr th,.page-cvr td{padding:.45rem .6rem}
+  .ads-before,.ads-after{font-size:.9rem}
+  .ads-grid{grid-template-columns:1fr 1fr}
+}
+/* Tables scroll horizontally on small screens */
+.page-cvr-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.25rem 0}
+.page-cvr{margin:0}
     </style>
 </head>
 <body>
@@ -148,14 +159,14 @@
         <h2>Page-Level CVR — The Counterintuitive Finding</h2>
         <p>Collection pages converted at the highest rate — better than product pages, and nearly 2× better than the homepage. This inverts the typical assumption that PDPs are the primary conversion surface.</p>
 
-        <table class="page-cvr">
+        <div class="page-cvr-wrap"><table class="page-cvr">
             <thead><tr><th>Page Type</th><th>Sessions</th><th>Purchases</th><th>Session CVR</th></tr></thead>
             <tbody>
                 <tr><td>Collection pages</td><td>~5,900</td><td>83</td><td class="best">1.41%</td></tr>
                 <tr><td>Product pages</td><td>~11,300</td><td>117</td><td>1.03%</td></tr>
                 <tr><td>Homepage</td><td>~11,400</td><td>85</td><td>0.75%</td></tr>
             </tbody>
-        </table>
+        </table></div>
 
         <p>Collections also had the highest average session duration (~6m 23s vs ~1m 56s on product pages). High-intent buyers who landed on collection pages were browsing with purpose — and converting at a higher rate when they got there. The implication for paid media: stop routing prospecting traffic to the homepage. Route to best-performing collections.</p>
 

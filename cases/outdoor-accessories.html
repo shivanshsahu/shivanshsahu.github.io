@@ -75,7 +75,18 @@
         .back-nav a.back{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.9rem;text-decoration:none;transition:color .2s}
         .back-nav a.back:hover{color:var(--accent-primary)}
         .back-nav a.logo{font-family:var(--font-heading);font-weight:700;color:#fff;font-size:1.1rem;text-decoration:none}
-        @media(max-width:600px){.paradox-row{grid-template-columns:1fr}.quote-grid{grid-template-columns:1fr}.funnel-step-name{width:130px;font-size:.82rem}}
+        @media(max-width:640px){
+  .paradox-row{grid-template-columns:1fr}
+  .quote-grid,.comp-grid{grid-template-columns:1fr}
+  .funnel-step-name{width:110px;font-size:.82rem}
+  .tap-rank{width:16px}
+  .tap-pct{width:auto;min-width:40px}
+  .tap-count{font-size:.75rem}
+  .heatmap-block{padding:1rem}
+  .post-table th,.post-table td{padding:.45rem .6rem;font-size:.82rem}
+}
+.post-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.25rem 0}
+.post-table{margin:0}
     </style>
 </head>
 <body>
@@ -165,7 +176,7 @@
         <h2>Post-Purchase Survey — How Buyers Compared the Brand</h2>
         <p>Post-purchase data showed users comparing favorably against major outdoor apparel brands:</p>
 
-        <table class="post-table">
+        <div class="post-table-wrap"><table class="post-table">
             <thead><tr><th>What Buyers Said vs Competitors</th><th>Brands Named</th></tr></thead>
             <tbody>
                 <tr><td>Better pricing for equivalent quality</td><td>HUK, Columbia, Northface</td></tr>
@@ -174,7 +185,7 @@
                 <tr><td>Bundle pricing not available elsewhere</td><td>All competitors</td></tr>
                 <tr><td>Patriotic theme — unique differentiator</td><td>No direct competitor</td></tr>
             </tbody>
-        </table>
+        </table></div>
 
         <p>The brand had a real competitive advantage in pricing, value bundling, and patriotic theme. None of that was clearly communicated on the pages where buyers were making their decisions.</p>
 
