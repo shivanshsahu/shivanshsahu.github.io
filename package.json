@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@iconify-json/devicon": "^1.2.62",
+    "@iconify-json/logos": "^1.2.11",
+    "@iconify-json/simple-icons": "^1.2.79"
+  }
+}

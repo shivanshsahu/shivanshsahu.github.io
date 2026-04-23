@@ -23,3 +23,6 @@ __pycache__/
 *.metadata.json
 *.resolved
 *.resolved.*
+
+# Temporary Node tooling used for asset generation
+node_modules/
