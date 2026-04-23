@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Attribution Lie and the Sale That Exposed It — Shivansh</title>
+    <meta name="description" content="Meta said 123 conversions. GA4 said 28. One of those numbers was running the ad budget. A fitness apparel brand with broken desktop UI, overstated Meta attribution, and a sale event that showed what the numbers should have looked like all along.">
+    <meta property="og:title" content="The Attribution Lie — Fitness Apparel Brand · Shivansh">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; }
+        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
+        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 5rem; }
+        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
+        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
+        .case-body h3 { font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.6rem; color: var(--accent-primary); }
+        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
+        .case-body strong { color: #fff; font-weight: 600; }
+        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+        .case-body li { margin-bottom: 0.5rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
+        .stat-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem 1rem; text-align: center; }
+        .stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent-primary); line-height: 1; }
+        .stat-label { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.4rem; line-height: 1.3; }
+        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
+        .callout strong { color: #fff; }
+        /* Attribution comparison */
+        .attr-conflict { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-color); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+        .attr-col { background: var(--bg-surface); padding: 1.5rem; text-align: center; }
+        .attr-col .platform { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+        .attr-col.meta .platform { color: #4267B2; }
+        .attr-col.ga4 .platform { color: var(--accent-primary); }
+        .attr-col .num { font-family: var(--font-heading); font-size: 3rem; font-weight: 800; line-height: 1; }
+        .attr-col.meta .num { color: #f87171; }
+        .attr-col.ga4 .num { color: #4ade80; }
+        .attr-col .sublabel { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.5rem; }
+        /* Sale comparison table */
+        .sale-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+        .sale-table th { text-align: left; padding: 0.6rem 1rem; background: rgba(255,255,255,0.04); color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
+        .sale-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-muted); }
+        .sale-table td:first-child { color: #fff; font-weight: 500; }
+        .sale-table td.pos { color: #4ade80; font-weight: 600; }
+        .sale-table tr:last-child td { border-bottom: none; }
+        /* Bug list */
+        .bug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+        .bug-card { background: rgba(248,113,113,0.04); border: 1px solid rgba(248,113,113,0.15); border-radius: var(--radius-sm); padding: 1rem 1.1rem; }
+        .bug-location { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #f87171; margin-bottom: 0.3rem; }
+        .bug-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+        /* Channel table */
+        .channel-row { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+        .channel-row:last-child { border-bottom: none; }
+        .channel-name { width: 180px; color: #fff; font-weight: 500; flex-shrink: 0; }
+        .channel-cvr { width: 80px; font-weight: 700; }
+        .channel-cvr.high { color: #4ade80; }
+        .channel-cvr.mid { color: #fbbf24; }
+        .channel-cvr.low { color: #f87171; }
+        .channel-note { color: var(--text-dim); font-size: 0.82rem; }
+        /* back nav */
+        .back-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); }
+        .back-nav a.back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+        .back-nav a.back:hover { color: var(--accent-primary); }
+        .back-nav a.logo { font-family: var(--font-heading); font-weight: 700; color: #fff; font-size: 1.1rem; text-decoration: none; }
+        @media (max-width: 600px) { .attr-conflict { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="back-nav">
+        <a href="../index.html#case-studies" class="back">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            All Cases
+        </a>
+        <a href="../index.html" class="logo">Shivansh.</a>
+    </nav>
+
+    <div class="rich-hero">
+        <div class="badge">Activewear · DTC · Shopify</div>
+        <h1>The <span class="gradient-text">Attribution Lie</span> and the Sale That Exposed It</h1>
+        <p class="case-lede">Meta said 123 conversions. GA4 said 28. One of those numbers was running a $6,000/month ad budget. A fitness apparel brand with a suppressed 1.6% CVR, broken desktop UI, and a sale event that showed what the funnel was actually capable of — +27% Conversion Rate, +45% revenue, once the real signals were read correctly.</p>
+    </div>
+
+    <div class="case-body">
+        <div class="stats-row">
+            <div class="stat-card"><div class="stat-num">+45%</div><div class="stat-label">Revenue during<br>sale period</div></div>
+            <div class="stat-card"><div class="stat-num">+27%</div><div class="stat-label">CVR lift,<br>sale vs pre-sale</div></div>
+            <div class="stat-card"><div class="stat-num">+72%</div><div class="stat-label">First-time orders<br>during sale</div></div>
+            <div class="stat-card"><div class="stat-num" style="color:#f87171">4×</div><div class="stat-label">Meta attribution<br>overcount vs GA4</div></div>
+        </div>
+
+        <h2>The Baseline Problem</h2>
+        <p>Fitness Apparel Brand is a DTC fitness apparel brand — activewear, joggers, hoodies, starter packs. The audit baseline (December 2024 – January 2025) showed a <strong>1.6% overall CVR</strong>, an Add-to-Cart rate of <strong>13%</strong> (against a 16–20% benchmark for this category), and a desktop bounce rate over <strong>60%</strong>.</p>
+        <p>Before building a test roadmap, the audit identified three distinct problems: a UI layer with concrete broken elements, an attribution layer with a serious measurement conflict, and a channel mix that was funded in the wrong direction.</p>
+
+        <h2>The UI Problems Suppressing CVR</h2>
+        <p>Broken UI doesn't generate a hypothesis — it generates noise. Every test run on top of broken elements is measuring friction that shouldn't exist. These were documented first and flagged as "just do it" fixes before any A/B tests shipped.</p>
+
+        <div class="bug-grid">
+            <div class="bug-card">
+                <div class="bug-location">Desktop · 800px+</div>
+                <div class="bug-desc">Images overpower text elements at all desktop sizes starting from 800px — readability broken, hierarchy destroyed. Bounce rate >60% on desktop.</div>
+            </div>
+            <div class="bug-card">
+                <div class="bug-location">Collection Page</div>
+                <div class="bug-desc">Filter — no response on click, desktop and mobile. Users can't narrow the catalog. Discovery dead-end.</div>
+            </div>
+            <div class="bug-card">
+                <div class="bug-location">Product Page · Desktop</div>
+                <div class="bug-desc">Sticky quantity button broken — doesn't work, layout incorrect. The primary purchase action on desktop is non-functional.</div>
+            </div>
+            <div class="bug-card">
+                <div class="bug-location">Homepage · Desktop</div>
+                <div class="bug-desc">Active dropdown doesn't close when another opens. Hover interaction has high latency. Navigation feels broken.</div>
+            </div>
+            <div class="bug-card">
+                <div class="bug-location">Product Page · Mobile</div>
+                <div class="bug-desc">Image next arrows overlay the size selector — wrong margin. Users trying to select size accidentally swipe images.</div>
+            </div>
+            <div class="bug-card">
+                <div class="bug-location">All Pages</div>
+                <div class="bug-desc">Quick View doesn't lock background scroll. Page jumps while modal is open — disorienting on mobile.</div>
+            </div>
+        </div>
+
+        <div class="callout">
+            <strong>The principle:</strong> These aren't A/B test candidates. They're table stakes. Running CVR optimization on a product page with a non-functional quantity button is like diagnosing a slow engine while the fuel line is disconnected. Fix the broken elements first. Then optimize.
+        </div>
+
+        <h2>The Attribution Conflict</h2>
+        <p>The more significant finding wasn't in the UI — it was in the data. During the February sale period, Meta Ads Manager reported <strong>123 conversions</strong>. GA4 reported <strong>28</strong>. The gap is 4×.</p>
+
+        <div class="attr-conflict">
+            <div class="attr-col meta">
+                <div class="platform">Meta Ads Dashboard</div>
+                <div class="num">123</div>
+                <div class="sublabel">Conversions attributed</div>
+            </div>
+            <div class="attr-col ga4">
+                <div class="platform">GA4 (actual)</div>
+                <div class="num">28</div>
+                <div class="sublabel">Conversions confirmed</div>
+            </div>
+        </div>
+
+        <p>Three probable causes identified: UTMs not consistently applied to ad URLs (so Meta gets credit for sessions that arrive untagged), Meta's attribution window (7-day click, 1-day view) counting conversions that happened organically or via email, and GA4's last-click model stripping credit from Meta entirely.</p>
+        <p>The practical consequence: if you use Meta's number to make budget decisions, you're optimizing an ad channel that is <strong>performing 4× worse than it appears</strong>. In the same period, email campaigns — which received a fraction of the budget — were converting at <strong>7–10%</strong>, while Meta paid traffic sat at 2.34%.</p>
+
+        <h3>Channel CVR — Sale Period (Feb 10–17, 2025)</h3>
+        <div style="background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;margin:1rem 0;">
+            <div class="channel-row"><span class="channel-name">Email campaigns</span><span class="channel-cvr high">7–10%</span><span class="channel-note">Lowest budget, highest conversion</span></div>
+            <div class="channel-row"><span class="channel-name">Direct traffic</span><span class="channel-cvr high">3.71%</span><span class="channel-note">Strong brand recall signal</span></div>
+            <div class="channel-row"><span class="channel-name">Google / CPC</span><span class="channel-cvr high">3.48–3.59%</span><span class="channel-note">Highest revenue contributor ($5,389)</span></div>
+            <div class="channel-row"><span class="channel-name">Facebook / Paid</span><span class="channel-cvr low">2.22–2.34%</span><span class="channel-note">Highest budget, 4× attribution overcount</span></div>
+            <div class="channel-row"><span class="channel-name">Facebook / Referral</span><span class="channel-cvr low">Bot traffic</span><span class="channel-note">90% bot — Ireland, 2000×2000 resolution signatures</span></div>
+        </div>
+
+        <h2>The Sale Event — What the Funnel Could Actually Do</h2>
+        <p>The February 10–17 sale event provided a controlled window to read the real ceiling. With the same broken UI in place (bugs not yet fixed), simply increasing purchase intent through a sale event showed exactly how much headroom the brand had.</p>
+
+        <table class="sale-table">
+            <thead><tr><th>Metric</th><th>Pre-Sale (Feb 3–9)</th><th>Sale Period (Feb 10–17)</th><th>Change</th></tr></thead>
+            <tbody>
+                <tr><td>Visitors</td><td>6,454</td><td>6,896</td><td class="pos">+7%</td></tr>
+                <tr><td>Conversion Rate</td><td>2.07%</td><td>2.62%</td><td class="pos">+27%</td></tr>
+                <tr><td>Orders Placed</td><td>209</td><td>305</td><td class="pos">+46%</td></tr>
+                <tr><td>First-Time Orders</td><td>97</td><td>167</td><td class="pos">+72%</td></tr>
+                <tr><td>Qty Per Order</td><td>3.3</td><td>5.5</td><td class="pos">+73%</td></tr>
+                <tr><td>AOV</td><td>$101</td><td>$107</td><td class="pos">+6%</td></tr>
+                <tr><td>Gross Revenue</td><td>$24,085</td><td>$34,994</td><td class="pos">+45%</td></tr>
+            </tbody>
+        </table>
+
+        <p>The visitor count barely moved (+7%). The revenue moved +45%. That gap is entirely explained by conversion rate and order size — both of which responded to intent-signal changes, not traffic increases. The funnel had the capacity. The baseline measurement and budget allocation were the constraints.</p>
+
+        <div class="callout">
+            <strong>The lesson about attribution:</strong> The question is never just "is the channel converting?" It's "which measurement system is right, and what decision am I making based on the wrong one?" Meta's 123 vs GA4's 28 isn't a rounding error — it's a strategic budget misdirection that was costing the brand every month.
+        </div>
+
+        <h2>What This Engagement Taught Me</h2>
+        <ul>
+            <li><strong>Attribution conflicts are budget problems, not just data problems.</strong> If Meta shows 4× more conversions than GA4, the ad spend is being justified by a number that isn't real. Fixing the UTM discipline and agreeing on a single measurement source is the most valuable thing you can do before running any paid campaign optimization.</li>
+            <li><strong>Email's conversion rate is the benchmark everything else should be measured against.</strong> 7–10% on email vs 2.34% on Meta paid isn't a case for cutting Meta — it's a case for understanding what makes email buyers different and replicating those conditions upstream.</li>
+            <li><strong>Broken UI floors CVR in ways that no test can overcome.</strong> The quantity button not working on desktop is not a test candidate. It's a revenue leak that blocks every other optimization from registering.</li>
+            <li><strong>Sale events are diagnostic tools.</strong> The sale didn't just generate revenue — it revealed the actual conversion ceiling, which was nearly 60% higher than the baseline. That gap is the optimization opportunity.</li>
+        </ul>
+
+        <h2>Tools & Stack</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin:1.5rem 0 2rem;">
+            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">GA4</span>
+            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Shopify Analytics</span>
+            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Hotjar</span>
+            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Microsoft Clarity</span>
+            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Meta Ads Manager</span>
+            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Convert.com</span>
+        </div>
+
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+            <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
+            <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><span class="pulse-dot"></span>Shivansh.</div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/shivansh-sahu/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+                <a href="mailto:shivansh8109@bluebagels.com" class="footer-link">Email</a>
+                <p>© 2026 Shivansh. Fix the data first.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/script.js" defer></script>
+</body>
+</html>
