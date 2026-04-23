@@ -4,61 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Products Nobody Understood But Everybody Bought — Shivansh</title>
-    <meta name="description" content="92% of orders came from pack deals. 80% of visitors left without adding anything. The product most people didn't understand was the one driving all the revenue — and the site was making it hard to find.">
-    <meta property="og:title" content="92% of Revenue From Pack Deals — Outdoor Accessories Brand · Shivansh">
-    <meta property="og:type" content="article">
+    <meta name="description" content="92% of orders came from pack deals. 80% left without adding anything. The product most people didn't understand was the one driving all revenue — and the site was making it hard to find.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        .rich-hero { max-width: 900px; margin: 0 auto; padding: 9rem 1.5rem 3rem; }
-        .rich-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); font-size: 0.8rem; font-weight: 500; color: var(--accent-primary); margin-bottom: 1.5rem; letter-spacing: 0.02em; }
-        .rich-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-        .rich-hero .case-lede { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); max-width: 750px; margin-bottom: 2rem; }
-        .case-body { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem 5rem; }
-        .case-body h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: #fff; letter-spacing: -0.01em; }
-        .case-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 2rem; }
-        .case-body h3 { font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.6rem; color: var(--accent-primary); }
-        .case-body p, .case-body li { font-size: 1.02rem; line-height: 1.75; color: var(--text-muted); }
-        .case-body strong { color: #fff; font-weight: 600; }
-        .case-body ul { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
-        .case-body li { margin-bottom: 0.5rem; }
-        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0 2.5rem; }
-        .stat-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem 1rem; text-align: center; }
-        .stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent-primary); line-height: 1; }
-        .stat-label { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.4rem; line-height: 1.3; }
-        .callout { padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin: 2rem 0; border-left: 3px solid var(--accent-primary); background: rgba(56,189,248,0.04); font-size: 0.98rem; line-height: 1.7; color: var(--text-muted); }
-        .callout strong { color: #fff; }
+        .rich-hero{max-width:900px;margin:0 auto;padding:9rem 1.5rem 3rem}
+        .rich-hero .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:9999px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);font-size:.8rem;font-weight:500;color:var(--accent-primary);margin-bottom:1.5rem;letter-spacing:.02em}
+        .rich-hero h1{font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.02em}
+        .rich-hero .case-lede{font-size:1.15rem;line-height:1.7;color:var(--text-muted);max-width:750px;margin-bottom:2rem}
+        .case-body{max-width:900px;margin:0 auto;padding:1rem 1.5rem 5rem}
+        .case-body h2{font-family:var(--font-heading);font-size:1.75rem;font-weight:700;margin:3.5rem 0 1.25rem;padding-top:1.5rem;border-top:1px solid var(--border-color);color:#fff;letter-spacing:-.01em}
+        .case-body h2:first-of-type{border-top:none;padding-top:0;margin-top:2rem}
+        .case-body h3{font-size:1.05rem;font-weight:600;margin:1.75rem 0 .6rem;color:var(--accent-primary)}
+        .case-body p,.case-body li{font-size:1.02rem;line-height:1.75;color:var(--text-muted)}
+        .case-body strong{color:#fff;font-weight:600}
+        .case-body ul{padding-left:1.25rem;margin:1rem 0 1.5rem}
+        .case-body li{margin-bottom:.5rem}
+        .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:2rem 0 2.5rem}
+        .stat-card{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:1.25rem 1rem;text-align:center}
+        .stat-num{font-family:var(--font-heading);font-size:2rem;font-weight:800;color:var(--accent-primary);line-height:1}
+        .stat-label{font-size:.78rem;color:var(--text-dim);margin-top:.4rem;line-height:1.3}
+        .callout{padding:1.25rem 1.5rem;border-radius:var(--radius-sm);margin:2rem 0;border-left:3px solid var(--accent-primary);background:rgba(56,189,248,.04);font-size:.98rem;line-height:1.7;color:var(--text-muted)}
+        .callout strong{color:#fff}
         /* Paradox panel */
-        .paradox { background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.2); border-radius: var(--radius); padding: 2rem; margin: 2rem 0; }
-        .paradox-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-secondary); margin-bottom: 1rem; }
-        .paradox-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin: 1rem 0; }
-        .paradox-fact { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; text-align: center; }
-        .paradox-fact .pfact { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
-        .paradox-fact .pfact strong { color: #fff; display: block; font-size: 1.1rem; margin-bottom: 0.25rem; }
-        .paradox-vs { font-size: 1.3rem; font-weight: 800; color: var(--accent-secondary); text-align: center; }
-        /* Funnel breakdown */
-        .funnel-steps { margin: 1.5rem 0; }
-        .funnel-step { display: flex; align-items: baseline; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
-        .funnel-step:last-child { border-bottom: none; }
-        .funnel-step-name { width: 180px; color: #fff; font-weight: 500; flex-shrink: 0; }
-        .funnel-step-pct { font-family: var(--font-heading); font-weight: 700; width: 60px; }
-        .funnel-step-pct.ok { color: #4ade80; }
-        .funnel-step-pct.warn { color: #fbbf24; }
-        .funnel-step-pct.bad { color: #f87171; }
-        .funnel-step-note { color: var(--text-dim); font-size: 0.82rem; }
+        .paradox{background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.2);border-radius:var(--radius);padding:2rem;margin:2rem 0}
+        .paradox-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-secondary);margin-bottom:1rem}
+        .paradox-row{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;margin:1rem 0}
+        .paradox-fact{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:1rem;text-align:center}
+        .paradox-fact .pfact{font-size:.88rem;color:var(--text-muted);line-height:1.5}
+        .paradox-fact .pfact strong{color:#fff;display:block;font-size:1.05rem;margin-bottom:.25rem}
+        .paradox-vs{font-size:1.3rem;font-weight:800;color:var(--accent-secondary);text-align:center}
+        /* Heatmap data */
+        .heatmap-block{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;margin:1.25rem 0}
+        .heatmap-page{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-primary);margin-bottom:.75rem}
+        .tap-row{display:flex;align-items:center;gap:1rem;margin-bottom:.5rem;font-size:.88rem}
+        .tap-rank{width:20px;color:var(--text-dim);font-weight:700;flex-shrink:0}
+        .tap-element{flex:1;color:#fff;font-weight:500}
+        .tap-count{color:var(--accent-secondary);font-weight:700;font-size:.82rem}
+        .tap-pct{color:var(--text-dim);font-size:.78rem;width:60px;text-align:right}
+        /* Funnel */
+        .funnel-steps{margin:1.5rem 0}
+        .funnel-step{display:flex;align-items:baseline;gap:1rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem}
+        .funnel-step:last-child{border-bottom:none}
+        .funnel-step-name{width:200px;color:#fff;font-weight:500;flex-shrink:0}
+        .funnel-step-pct{font-family:var(--font-heading);font-weight:700;width:65px}
+        .funnel-step-pct.ok{color:#4ade80}
+        .funnel-step-pct.warn{color:#fbbf24}
+        .funnel-step-pct.bad{color:#f87171}
+        .funnel-step-note{color:var(--text-dim);font-size:.82rem}
         /* VoC quotes */
-        .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.5rem 0; }
-        .quote-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; font-style: italic; }
-        .quote-card .quote-attr { font-style: normal; font-size: 0.75rem; color: var(--text-dim); margin-top: 0.5rem; }
+        .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.5rem 0}
+        .quote-card{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:1rem;font-size:.88rem;color:var(--text-muted);line-height:1.6;font-style:italic}
+        .quote-card .quote-attr{font-style:normal;font-size:.75rem;color:var(--text-dim);margin-top:.5rem}
+        /* Competitor */
+        .comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin:1.5rem 0}
+        .comp-card{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:1.1rem}
+        .comp-name{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+        .comp-feature{font-size:.78rem;color:var(--text-dim);line-height:1.5}
+        /* Post-purchase */
+        .post-table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.88rem}
+        .post-table th{text-align:left;padding:.5rem .9rem;background:rgba(255,255,255,.04);color:var(--text-dim);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border-color)}
+        .post-table td{padding:.6rem .9rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-muted)}
+        .post-table td:first-child{color:#fff;font-weight:500}
+        .post-table tr:last-child td{border-bottom:none}
         /* back nav */
-        .back-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); }
-        .back-nav a.back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
-        .back-nav a.back:hover { color: var(--accent-primary); }
-        .back-nav a.logo { font-family: var(--font-heading); font-weight: 700; color: #fff; font-size: 1.1rem; text-decoration: none; }
-        @media (max-width: 600px) { .paradox-row { grid-template-columns: 1fr; } .quote-grid { grid-template-columns: 1fr; } }
+        .back-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,20,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-color)}
+        .back-nav a.back{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.9rem;text-decoration:none;transition:color .2s}
+        .back-nav a.back:hover{color:var(--accent-primary)}
+        .back-nav a.logo{font-family:var(--font-heading);font-weight:700;color:#fff;font-size:1.1rem;text-decoration:none}
+        @media(max-width:600px){.paradox-row{grid-template-columns:1fr}.quote-grid{grid-template-columns:1fr}.funnel-step-name{width:130px;font-size:.82rem}}
     </style>
 </head>
 <body>
@@ -73,7 +90,7 @@
     <div class="rich-hero">
         <div class="badge">Outdoor & Fishing Accessories · D2C · Shopify</div>
         <h1>The Products Nobody Understood But <span class="gradient-text">Everybody Bought</span></h1>
-        <p class="case-lede">80% of visitors left without adding a single item to cart. 70% left within 10 seconds. And yet 92% of orders came from bundle pack deals — a product format that the site made confusing to find and harder to build. The opportunity wasn't in the conversion rate. It was in the discovery gap between what was driving revenue and how prominently the site surfaced it.</p>
+        <p class="case-lede">80% of visitors left without adding anything. 70% left within 10 seconds. And yet 92% of orders came from bundle pack deals — a product format that the site made confusing to find and harder to build. The opportunity wasn't a conversion rate problem. It was a discovery and clarity gap between what was driving revenue and how the site surfaced it.</p>
     </div>
 
     <div class="case-body">
@@ -81,83 +98,134 @@
             <div class="stat-card"><div class="stat-num">92%</div><div class="stat-label">Revenue from<br>pack deals</div></div>
             <div class="stat-card"><div class="stat-num" style="color:#f87171">80%</div><div class="stat-label">Drop-off without<br>adding to cart</div></div>
             <div class="stat-card"><div class="stat-num" style="color:#fbbf24">70%</div><div class="stat-label">Users leave<br>within 10 seconds</div></div>
-            <div class="stat-card"><div class="stat-num">35%</div><div class="stat-label">Hamburger menu<br>— most tapped element</div></div>
+            <div class="stat-card"><div class="stat-num">43%</div><div class="stat-label">Sessions from<br>Facebook paid</div></div>
         </div>
 
-        <h2>The Brand</h2>
-        <p>Outdoor Accessories Brand ([brand].com) sells outdoor accessories — silicone rings, face shields, straw hats, hoodies, and bundle packs designed for fishing, hunting, and outdoor work. It's a patriotic-theme brand with strong customer satisfaction, good reviews, and a product that buyers love after they receive it.</p>
-        <p>The audit period ran September 2022 to February 2023. Facebook paid drove 43% of sessions and 37% of revenue. Google CPC contributed 14.6% of traffic and 18% of revenue. The brand had traffic. The problem was what happened to it.</p>
+        <h2>The Brand and the Data Period</h2>
+        <p>An outdoor accessories brand selling silicone rings, face shields, straw hats, hoodies, and bundle packs — products primarily for fishing, hunting, and outdoor work, with a strong patriotic theme. Facebook paid drove 43% of sessions and 37% of revenue. Google CPC contributed 14.6% of traffic and 18% of revenue. The audit period ran September 2022 through February 2023.</p>
 
         <h2>The Paradox</h2>
-        <p>The most important finding in this engagement wasn't in the heatmaps or the funnel data — it was in the contradiction between what the data showed and what the surveys said.</p>
 
         <div class="paradox">
             <div class="paradox-label">The Contradiction That Defined the Diagnosis</div>
             <div class="paradox-row">
-                <div class="paradox-fact">
-                    <div class="pfact"><strong>Session Recordings</strong>Users are not reading the product descriptions</div>
-                </div>
+                <div class="paradox-fact"><div class="pfact"><strong>Session Recordings</strong>Users are not reading product descriptions</div></div>
                 <div class="paradox-vs">vs</div>
-                <div class="paradox-fact">
-                    <div class="pfact"><strong>Customer Survey</strong>A proper description is an important aspect for a visitor to purchase</div>
-                </div>
+                <div class="paradox-fact"><div class="pfact"><strong>Customer Survey</strong>"A proper description is an important aspect for a visitor to purchase products"</div></div>
             </div>
-            <p style="font-size:0.92rem;color:var(--text-muted);margin:1rem 0 0;line-height:1.6;">Users weren't skipping descriptions because they didn't want information. They were skipping descriptions because the format wasn't scannable — dense paragraphs where they expected icons, bullet benefits, and visual proof. The information they needed to buy was on the page. The format made it invisible.</p>
+            <p style="font-size:.92rem;color:var(--text-muted);margin:1rem 0 0;line-height:1.6">Users weren't skipping descriptions because they didn't want information. They were skipping because dense paragraph text wasn't scannable. The information they needed to buy was on the page in a format they wouldn't use. Replace paragraphs with icon rows — activity categories, material badges, weather suitability — and the same information becomes decision-ready.</p>
         </div>
 
         <h2>The Funnel</h2>
 
         <div class="funnel-steps">
-            <div class="funnel-step"><span class="funnel-step-name">Sessions</span><span class="funnel-step-pct ok">100%</span><span class="funnel-step-note">Facebook paid, Google CPC, direct</span></div>
-            <div class="funnel-step"><span class="funnel-step-name">First touchpoint</span><span class="funnel-step-pct warn">27%</span><span class="funnel-step-note">73% drop off on first page — no second interaction</span></div>
+            <div class="funnel-step"><span class="funnel-step-name">All sessions</span><span class="funnel-step-pct ok">100%</span><span class="funnel-step-note">Facebook paid, Google CPC, direct</span></div>
+            <div class="funnel-step"><span class="funnel-step-name">Second interaction</span><span class="funnel-step-pct warn">27%</span><span class="funnel-step-note">73% drop off on first page — no second interaction at all</span></div>
             <div class="funnel-step"><span class="funnel-step-name">Add to Cart</span><span class="funnel-step-pct bad">20%</span><span class="funnel-step-note">80% never add anything</span></div>
             <div class="funnel-step"><span class="funnel-step-name">Checkout</span><span class="funnel-step-pct bad">~6%</span><span class="funnel-step-note">Major abandons at information/address page</span></div>
         </div>
 
-        <p>The funnel looked like a typical traffic quality problem. But the data told a more specific story: <strong>pack deal pages had the lowest drop-offs of any page on the site</strong>. Summer clearance pages led to 31% checkout in first interaction. The product format that converted best was the one with the most friction to discover and build.</p>
+        <p>The number that breaks the funnel story open: <strong>pack deal pages had the lowest drop-offs of any page on the site</strong>. Summer clearance pages led to 31% checkout in first interaction. The product format that converted best was the one with the most friction to discover and the most confusion to build.</p>
 
-        <h2>The Pack Deal Gap</h2>
-        <p>92% of orders came from pack deals. The homepage surfaced individual product categories first. The hamburger menu — which 35% of taps went to — was the primary navigation tool, and users used it specifically to find pack deals rather than scroll the homepage. The site was routing traffic to its weakest converting products first.</p>
+        <h2>The Heatmap Evidence — What Users Actually Did</h2>
 
-        <div class="callout">
-            <strong>The navigation heatmap read:</strong> Hamburger menu = 4,807 taps (35% of all taps). Right arrow on Spring Best Sellers carousel = 1,932 taps (14%). The hero banner = 828 taps (6%). Users weren't engaging with the content the homepage was promoting. They were navigating around it to find what they actually wanted — which was packs.
+        <div class="heatmap-block">
+            <div class="heatmap-page">Homepage — All Taps</div>
+            <div class="tap-row"><span class="tap-rank">1</span><span class="tap-element">Hamburger menu</span><span class="tap-count">4,807 taps</span><span class="tap-pct">35.15%</span></div>
+            <div class="tap-row"><span class="tap-rank">2</span><span class="tap-element">Right arrow — Spring Best Sellers carousel</span><span class="tap-count">1,932 taps</span><span class="tap-pct">14.13%</span></div>
+            <div class="tap-row"><span class="tap-rank">3</span><span class="tap-element">Hero banner</span><span class="tap-count">828 taps</span><span class="tap-pct">6.05%</span></div>
+            <p style="font-size:.82rem;color:var(--text-dim);margin:.75rem 0 0">Users weren't engaging with the homepage content. They were navigating <em>around</em> it to reach pack deals via the hamburger menu. The homepage was routing friction, not a destination.</p>
         </div>
 
-        <h3>The pack builder problem</h3>
-        <p>Once users found the pack builder, a second friction point emerged. User testing confirmed it directly: <em>"They did not know they need to click 'Next.' Users also wanted to customize their packs. Most are abandoning the builder page after selecting 1–2 items."</em> The pack builder — the highest-converting product format on the site — had no clear process explanation, no step indicators, and no prompts.</p>
+        <div class="heatmap-block">
+            <div class="heatmap-page">Pack Builder Product Page — All Taps</div>
+            <div class="tap-row"><span class="tap-rank">1</span><span class="tap-element">"Build Your Pack" sticky CTA button</span><span class="tap-count">8,185 taps</span><span class="tap-pct">45.64%</span></div>
+            <div class="tap-row"><span class="tap-rank">2</span><span class="tap-element">Right arrow — scroll product images</span><span class="tap-count">3,230 taps</span><span class="tap-pct">18.01%</span></div>
+            <div class="tap-row"><span class="tap-rank">3</span><span class="tap-element">Right arrow — Recommended Products</span><span class="tap-count">2,673 taps</span><span class="tap-pct">14.90%</span></div>
+            <p style="font-size:.82rem;color:var(--text-dim);margin:.75rem 0 0">The pack builder CTA captured nearly half of all taps on the page — the highest engagement of any element across the site. Users wanted to build packs. The interface made it unclear how.</p>
+        </div>
 
-        <h2>What Customers Actually Said</h2>
+        <div class="heatmap-block">
+            <div class="heatmap-page">Silicone Rings Collection Page</div>
+            <div class="tap-row"><span class="tap-rank">1</span><span class="tap-element">"Load More" button at bottom</span><span class="tap-count">1,140 taps</span><span class="tap-pct">41%</span></div>
+            <div class="tap-row"><span class="tap-rank">2</span><span class="tap-element">"Build Your Pack" CTA — 5 ring bundle</span><span class="tap-count">833 taps</span><span class="tap-pct">29.89%</span></div>
+            <div class="tap-row"><span class="tap-rank">3</span><span class="tap-element">FAQ section</span><span class="tap-count">300 taps</span><span class="tap-pct">10.79%</span></div>
+            <p style="font-size:.82rem;color:var(--text-dim);margin:.75rem 0 0">71% of users scrolled to the very bottom — actively looking for more product options or the pack CTA. 50% dropped off at the FAQ section, indicating product questions were going unanswered higher up the page.</p>
+        </div>
+
+        <h2>What Customers Said — Both Sides</h2>
+
         <div class="quote-grid">
-            <div class="quote-card">"I've been ordering from the brand for several years now and the quality and selection just keeps getting better and better."<div class="quote-attr">Post-purchase survey — loyalty signal</div></div>
+            <div class="quote-card">"I've been ordering from SA for several years now and the quality and selection just keeps getting better and better."<div class="quote-attr">Post-purchase survey — loyalty signal</div></div>
             <div class="quote-card">"Best hoodies hands down. Extremely warm and comfortable. Great prices especially on their daily deal and hoodie packs."<div class="quote-attr">Review — pack deal mention</div></div>
-            <div class="quote-card">"Are there different sizes for women, men, and children? Have any customers left reviews? Can I choose the color of the straw hat? What are the materials?"<div class="quote-attr">User test — pre-purchase anxiety</div></div>
-            <div class="quote-card">"Needs to be sold as a pair — 99.9% of the population has two arms!"<div class="quote-attr">Review — arm shield product gap</div></div>
+            <div class="quote-card">"Are there different sizes for women, men, and children? Have any customers left reviews? Can I choose the color? What are the materials?"<div class="quote-attr">User test session — pre-purchase anxiety</div></div>
+            <div class="quote-card">"Needs to be sold as a pair — 99.9% of the population has two arms!"<div class="quote-attr">Review — product gap (arm shields)</div></div>
         </div>
 
-        <p>The satisfaction reviews and the hesitation surveys were about completely different aspects of the product. Satisfied buyers talked about quality, comfort, and value. Hesitant buyers needed size information, material details, and durability reassurance — none of which the product pages made easy to find.</p>
+        <h2>Post-Purchase Survey — How Buyers Compared the Brand</h2>
+        <p>Post-purchase data showed users comparing favorably against major outdoor apparel brands:</p>
+
+        <table class="post-table">
+            <thead><tr><th>What Buyers Said vs Competitors</th><th>Brands Named</th></tr></thead>
+            <tbody>
+                <tr><td>Better pricing for equivalent quality</td><td>HUK, Columbia, Northface</td></tr>
+                <tr><td>Superior material quality and warmth</td><td>Multiple outdoor brands</td></tr>
+                <tr><td>More design variety and color choices</td><td>Category average</td></tr>
+                <tr><td>Bundle pricing not available elsewhere</td><td>All competitors</td></tr>
+                <tr><td>Patriotic theme — unique differentiator</td><td>No direct competitor</td></tr>
+            </tbody>
+        </table>
+
+        <p>The brand had a real competitive advantage in pricing, value bundling, and patriotic theme. None of that was clearly communicated on the pages where buyers were making their decisions.</p>
+
+        <h2>What Competitors Did That the Brand Didn't</h2>
+        <p>The competitor review covered Columbia, Guy Harvey, Pelagic, and Salt Life. Four patterns appeared repeatedly that were absent from the brand's pages:</p>
+
+        <div class="comp-grid">
+            <div class="comp-card">
+                <div class="comp-name">Columbia</div>
+                <div class="comp-feature">Auto-scrolling announcement bar showing all offers. Product finder quiz on PLP. Upsell items embedded between product detail sections. Multiple CTAs on homepage hero.</div>
+            </div>
+            <div class="comp-card">
+                <div class="comp-name">Guy Harvey</div>
+                <div class="comp-feature">Storytelling copy in hero. Featured product directly below hero. "Review highlights" section below product details — trust building close to the buy decision.</div>
+            </div>
+            <div class="comp-card">
+                <div class="comp-name">Pelagic</div>
+                <div class="comp-feature">Clear single UVP on hero. Visual filter on PLP (not hidden in a drawer). Checkout step indicators. Single featured category section per page.</div>
+            </div>
+            <div class="comp-card">
+                <div class="comp-name">Salt Life</div>
+                <div class="comp-feature">UGC with offers — social proof + commercial in same module. Variant selection exposed on PLP (no PDP click needed). Optimized drawer cart with Amazon checkout option.</div>
+            </div>
+        </div>
 
         <h2>The Test Roadmap</h2>
-        <p>The audit produced a prioritized list of changes, starting with the highest-leverage items:</p>
         <ul>
-            <li><strong>Promote packs to first-fold homepage:</strong> If 92% of revenue comes from packs, the homepage should lead with packs — not categories. Best sellers section moved up; pack deals given dedicated hero placement.</li>
-            <li><strong>Hamburger menu simplification:</strong> Restructure the navigation with visual category tiles so users can navigate to pack deals in one tap, not through a nested menu requiring three.</li>
-            <li><strong>Pack builder UX:</strong> Add step-by-step prompts, progress indicator, and visible "what you're building" summary at the top. The builder needed to feel guided, not abandoned.</li>
-            <li><strong>Icon-first product benefits:</strong> Replace dense description paragraphs with scannable icon rows — activity categories (fishing, hunting, work), material badges, weather suitability. Users didn't want to read. Give them a format they'd actually use.</li>
-            <li><strong>Cart assurance layer:</strong> No trust signals at cart or checkout. Added guarantee callout, free shipping threshold, and return policy — all the reassurances that reduce the final hesitation before purchase.</li>
+            <li><strong>Promote packs to first-fold homepage:</strong> 92% of revenue from packs. Best sellers section moved up; pack deals given dedicated hero placement. Stop routing traffic to individual product categories first.</li>
+            <li><strong>Hamburger menu simplification:</strong> 35% of all homepage taps went to the hamburger menu. Restructure with visual category tiles — pack deals reachable in one tap, not through nested menus.</li>
+            <li><strong>Pack builder UX:</strong> Add step-by-step progress prompts, visible "items in your pack" summary, clear "Next" button with visual affordance. User testing confirmed: most users abandoned after selecting 1–2 items because they didn't know what to do next.</li>
+            <li><strong>Icon-first product benefits:</strong> Replace paragraph descriptions with scannable icon rows — activity categories (fishing, hunting, work), material properties, weather suitability. Users didn't want to read. Give them a format they'd actually use to make a decision.</li>
+            <li><strong>Cart and checkout assurance:</strong> No trust signals at cart or checkout. Guarantee callout, free shipping threshold, return policy clarity — the final hesitations that break buyers at the last step.</li>
+            <li><strong>Review visibility:</strong> Reviews received strong attention in heatmaps but were placed too low on collection and product pages. Surface stars and review count at the card level on PLPs. Move review highlights above product description on PDPs.</li>
         </ul>
 
-        <h2>Tools & Stack</h2>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin:1.5rem 0 2rem;">
-            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">GA4</span>
-            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Hotjar</span>
-            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Userbrain</span>
-            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Trustpilot review mining</span>
-            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Visitor survey</span>
-            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Convert.com</span>
-            <span style="padding:0.35rem 0.85rem;border-radius:9999px;font-size:0.82rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--text-main);">Shopify</span>
+        <div class="callout">
+            <strong>The insight that carries:</strong> A brand with strong post-purchase satisfaction, repeat buyers, and favorable comparisons against major competitors was leaking 80% of its traffic because the site couldn't efficiently route visitors to the product format they wanted. The product was right. The path to it was broken.
         </div>
 
-        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+        <h2>Tools & Stack</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0 2rem">
+            <span style="padding:.35rem .85rem;border-radius:9999px;font-size:.82rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--text-main)">GA4</span>
+            <span style="padding:.35rem .85rem;border-radius:9999px;font-size:.82rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--text-main)">Hotjar</span>
+            <span style="padding:.35rem .85rem;border-radius:9999px;font-size:.82rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--text-main)">Userbrain</span>
+            <span style="padding:.35rem .85rem;border-radius:9999px;font-size:.82rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--text-main)">Trustpilot review mining</span>
+            <span style="padding:.35rem .85rem;border-radius:9999px;font-size:.82rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--text-main)">Visitor + post-purchase surveys</span>
+            <span style="padding:.35rem .85rem;border-radius:9999px;font-size:.82rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--text-main)">Convert.com</span>
+            <span style="padding:.35rem .85rem;border-radius:9999px;font-size:.82rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--text-main)">Shopify</span>
+        </div>
+
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
             <a href="../index.html#case-studies" class="btn-secondary">← All case studies</a>
             <a href="../index.html#contact" class="btn-primary">Let's talk about your program →</a>
         </div>
